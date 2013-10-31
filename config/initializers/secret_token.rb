@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-BreakthroughForMen::Application.config.secret_key_base = ENV['SECRET_TOKEN']
+BreakthroughForMen::Application.config.secret_key_base = ENV['RAILS_SECRET_TOKEN'] || '645d9548ff32b96a4500966986477d85fb69773bb850068cd2cb87dfc8694e08126bb19478613a1e289bcbc00b707401a8a0123a92204951df9d6b0e3f7cc3ee'
