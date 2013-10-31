@@ -1,8 +1,11 @@
-Breakthrough Men's Community Website
-=====================================
+Breakthrough Men's Community
+============================
 
 [ ![Codeship Status for
 breakthroughformen/breakthroughformen](https://www.codeship.io/projects/4ddd2200-2419-0131-525e-2ab15a461804/status?branch=master)](https://www.codeship.io/projects/8841)
+
+[![Coverage
+Status](https://coveralls.io/repos/breakthroughformen/breakthroughformen/badge.png)](https://coveralls.io/r/breakthroughformen/breakthroughformen)
 
 == README
 

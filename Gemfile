@@ -11,8 +11,27 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'haml-rails'
+# gem 'clearance', '~> 1.0.0.rc7'
+# gem 'simple_form', '3.0.0.rc'
+# gem 'simple_form', git: 'https://github.com/plataformatec/simple_form.git'
+# gem 'paper_trail', '~> 2.7.1'
+# gem 'paper_trail', github: 'airblade/paper_trail', branch: 'rails4'
+# gem 'destroyed_at'
+# gem 'mailchimp'
+# gem 'uuidtools'
+# gem 'aasm'
+# gem 'stripe'
+# gem 'stripe_event'
+# gem 'analytics-ruby'
+# gem 'newrelic_rpm'
+# gem 'exception_notification'
 
 group :test do
+  gem 'coveralls', require: false
+  # gem 'database_cleaner'
+  # gem 'email_spec'
+  # gem 'shoulda-matchers'
+  # gem 'faker'
 end
 
 group :development do
