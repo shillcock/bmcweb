@@ -16,13 +16,18 @@ group :test do
 end
 
 group :development do
-
+  gem 'pry-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'rails_best_practices'
+  gem 'brakeman'
+  gem 'annotate'
 end
 
 group :development, :test do
   gem 'dotenv-rails'
-  gem 'better_errors'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails'
+  gem 'debugger'
 end
