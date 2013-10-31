@@ -16,7 +16,7 @@ group :test do
 end
 
 group :development do
-  gem 'pry-rails'
+  # gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rails_best_practices'

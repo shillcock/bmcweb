@@ -48,7 +48,7 @@ test:
   encoding: unicode
   database: breakthrough_for_men_test
   pool: 5
-  username:breakthrough_for_men
+  username: breakthrough_for_men
   password:
 
 production:
@@ -56,5 +56,5 @@ production:
   encoding: unicode
   database: breakthrough_for_men_production
   pool: 5
-  username:breakthrough_for_men
+  username: breakthrough_for_men
   password:
