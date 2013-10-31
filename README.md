@@ -7,6 +7,8 @@ breakthroughformen/breakthroughformen](https://www.codeship.io/projects/4ddd2200
 [![Coverage
 Status](https://coveralls.io/repos/breakthroughformen/breakthroughformen/badge.png)](https://coveralls.io/r/breakthroughformen/breakthroughformen)
 
+[![Code Climate](https://codeclimate.com/github/breakthroughformen/breakthroughformen.png)](https://codeclimate.com/github/breakthroughformen/breakthroughformen)
+
 == README
 
 This README would normally document whatever steps are necessary to get the
