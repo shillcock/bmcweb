@@ -48,8 +48,8 @@ test:
   encoding: unicode
   database: breakthrough_for_men_test
   pool: 5
-  username: breakthrough_for_men
-  password:
+  #username: breakthrough_for_men
+  #password:
 
 production:
   adapter: postgresql
