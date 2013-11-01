@@ -29,15 +29,16 @@ gem 'passenger'
 
 group :test do
   gem 'coveralls', require: false
-  # gem 'database_cleaner'
+  gem 'bourne'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
   # gem 'email_spec'
-  # gem 'shoulda-matchers'
-  # gem 'faker'
+  gem 'launchy'
+  gem 'faker'
 end
 
 group :development do
-  # gem 'pry-rails'
-  gem 'better_errors'
+  gem 'better_errors', '~> 1.0.1'
   gem 'binding_of_caller'
   gem 'rails_best_practices'
   gem 'brakeman'
@@ -50,6 +51,8 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'debugger'
+  # gem 'pry-rails', '~> 0.3.2'
+  # gem 'pry-nav'
 end
 
 group :production do
