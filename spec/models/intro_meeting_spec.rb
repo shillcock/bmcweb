@@ -15,8 +15,7 @@ require 'spec_helper'
 
 describe IntroMeeting do
   it "is valid with title, starts_at and ends_at" do
-    meeting = build(:intro_meeting)
-    expect(meeting).to be_valid
+    expect(create(:intro_meeting)).to be_valid
   end
 
   it "is valid and has values equal to those passed in" do
@@ -25,7 +24,7 @@ describe IntroMeeting do
     end_time = start_time + 4.hours
     description = "This meeting is open to everyone."
 
-    meeting = build(:intro_meeting, title: title, starts_at: start_time, ends_at: end_time, description: description)
+    meeting = create(:intro_meeting, title: title, starts_at: start_time, ends_at: end_time, description: description)
 
     expect(meeting).to be_valid
     expect(meeting.title).to eq title
@@ -35,7 +34,7 @@ describe IntroMeeting do
   end
 
   it "is valid without a description" do
-    meeting = build(:intro_meeting, description: nil)
+    meeting = create(:intro_meeting, description: nil)
     expect(meeting).to be_valid
   end
 
@@ -52,5 +51,18 @@ describe IntroMeeting do
   it "is invalid without a ends_at" do
     meeting = build(:intro_meeting, ends_at: nil)
     expect(meeting).to have(1).errors_on(:ends_at)
+  end
+end
+
+describe IntroMeeting, ".upcomming" do
+  it "should list only meetings that haven't happened yet" do
+    meeting0 = create_intro_meeting_in -1.week
+    meeting1 = create_intro_meeting_in 1.week
+    meeting2 = create_intro_meeting_in 2.week
+    meeting3 = create_intro_meeting_in 3.week
+
+    upcomming_meetings = [meeting1, meeting2, meeting3]
+
+    expect(IntroMeeting.upcomming).to eq upcomming_meetings
   end
 end

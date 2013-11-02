@@ -13,4 +13,8 @@
 
 class IntroMeeting < ActiveRecord::Base
   validates :title, :starts_at, :ends_at, presence: true
+
+  def self.upcomming(limit=3)
+    where('starts_at >= ?', Time.now).order(:starts_at).limit(limit)
+  end
 end
