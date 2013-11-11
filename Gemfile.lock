@@ -35,6 +35,7 @@ GEM
       descendants_tracker (~> 0.0.1)
       ice_nine (~> 0.9)
     backports (3.3.5)
+    bcrypt-ruby (3.1.2)
     better_errors (1.0.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -60,6 +61,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    clearance (1.0.1)
+      bcrypt-ruby
+      email_validator (~> 1.4)
+      rails (>= 3.1)
     code_analyzer (0.4.3)
       sexp_processor
     coderay (1.1.0)
@@ -95,6 +100,8 @@ GEM
     dotenv (0.9.0)
     dotenv-rails (0.9.0)
       dotenv (= 0.9.0)
+    email_validator (1.4.0)
+      activemodel
     equalizer (0.0.7)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -260,6 +267,7 @@ DEPENDENCIES
   bourne
   brakeman
   capybara
+  clearance (~> 1.0.1)
   coffee-rails (~> 4.0.0)
   coveralls
   database_cleaner
