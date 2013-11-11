@@ -130,6 +130,10 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     metaclass (0.0.1)
+    migrant (1.5.0)
+      faker
+      rails (>= 3.0.0)
+      term-ansicolor
     mime-types (1.25)
     mini_portile (0.5.2)
     minitest (4.7.5)
@@ -267,6 +271,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   launchy
+  migrant
   passenger
   pg
   rails (= 4.0.1)
