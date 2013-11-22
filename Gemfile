@@ -30,9 +30,9 @@ gem 'clearance', '~> 1.0.1'
 # gem 'analytics-ruby'
 # gem 'newrelic_rpm'
 # gem 'exception_notification'
+gem 'coveralls', require: false
 
 group :test do
-  gem 'coveralls', require: false
   gem 'bourne'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
