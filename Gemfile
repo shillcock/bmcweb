@@ -55,7 +55,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails'
-  gem 'debugger'
+  # gem 'debugger'
   # gem 'pry-rails', '~> 0.3.2'
   # gem 'pry-nav'
 end
