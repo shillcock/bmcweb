@@ -3,6 +3,5 @@
 %p Upcoming Free Introductory Meetings
 
 %ul
-  - @upcomming_intro_meetings.each do |meeting|
-    %li.intro_meeting
-      = meeting.starts_at.to_date
+  - @upcoming_intro_meetings.each do |meeting|
+    %li.intro_meeting= meeting.date

@@ -19,16 +19,17 @@ ActiveRecord::Schema.define(version: 20131111025537) do
   create_table "intro_meetings", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "starts_at"
-    t.datetime "ends_at"
+    t.date     "date"
+    t.time     "starts_at",   default: '2000-01-01 03:00:00'
+    t.time     "ends_at",     default: '2000-01-01 05:00:00'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
     t.string   "email"
-    t.datetime "updated_at"
     t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "encrypted_password", limit: 128
     t.string   "confirmation_token", limit: 128
     t.string   "remember_token",     limit: 128

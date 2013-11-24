@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-    @upcomming_intro_meetings = IntroMeeting.upcomming
+    @upcoming_intro_meetings = IntroMeeting.upcoming
   end
 end

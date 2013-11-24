@@ -1,13 +1,9 @@
 class CreateUsers < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :users do |t|
       t.string :email
-      t.datetime :updated_at
-      t.datetime :created_at
-    end
-  end
 
-  def self.down
-    drop_table :users
+      t.timestamps
+    end
   end
 end

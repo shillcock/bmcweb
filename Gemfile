@@ -13,7 +13,6 @@ gem 'jbuilder', '~> 1.2'
 gem 'haml-rails'
 gem 'passenger'
 gem 'virtus'
-gem 'migrant'
 gem 'clearance', '~> 1.0.1'
 # gem 'cancan'
 # gem 'rolify'
@@ -38,7 +37,6 @@ group :test do
   gem 'shoulda-matchers'
   # gem 'email_spec'
   gem 'launchy'
-  gem 'faker'
   gem 'timecop'
 end
 
@@ -55,6 +53,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails'
+  gem 'faker'
   # gem 'debugger'
   # gem 'pry-rails', '~> 0.3.2'
   # gem 'pry-nav'
