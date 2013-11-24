@@ -17,11 +17,9 @@ ActiveRecord::Schema.define(version: 20131111025537) do
   enable_extension "plpgsql"
 
   create_table "intro_meetings", force: true do |t|
-    t.string   "title"
-    t.text     "description"
     t.date     "date"
-    t.time     "starts_at",   default: '2000-01-01 03:00:00'
-    t.time     "ends_at",     default: '2000-01-01 05:00:00'
+    t.time     "starts_at"
+    t.time     "ends_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

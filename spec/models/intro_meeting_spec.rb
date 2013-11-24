@@ -2,21 +2,18 @@
 #
 # Table name: intro_meetings
 #
-#  id          :integer          not null, primary key
-#  title       :string(255)
-#  description :text
-#  date        :date
-#  starts_at   :time             default(2000-01-01 03:00:00 UTC)
-#  ends_at     :time             default(2000-01-01 05:00:00 UTC)
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id         :integer          not null, primary key
+#  date       :date
+#  starts_at  :time
+#  ends_at    :time
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 require 'spec_helper'
 
 describe IntroMeeting do
 
-  it { should validate_presence_of :title }
   it { should validate_presence_of :date }
   it { should validate_presence_of :starts_at }
   it { should validate_presence_of :ends_at }

@@ -2,21 +2,23 @@
 #
 # Table name: intro_meetings
 #
-#  id          :integer          not null, primary key
-#  title       :string(255)
-#  description :text
-#  date        :date
-#  starts_at   :time             default(2000-01-01 03:00:00 UTC)
-#  ends_at     :time             default(2000-01-01 05:00:00 UTC)
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id         :integer          not null, primary key
+#  date       :date
+#  starts_at  :time
+#  ends_at    :time
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 class IntroMeeting < ActiveRecord::Base
-  validates :title, presence: true
   validates :date, presence: true
   validates :starts_at, presence: true
   validates :ends_at, presence: true
+
+  after_initialize do
+    self.starts_at ||= Time.parse("19:00")
+    self.ends_at ||= Time.parse("21:00")
+  end
 
   def self.upcoming(limit=3)
     where('date >= ?', Time.now).order(:date).limit(limit)
