@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 feature 'Creating IntroMeetings' do
-  scenario 'can create a intro meeting' do
-    visit admin_root_path
-
+  scenario 'Creating an intro meeting' do
+    admin = create(:admin)
+    visit admin_root_path(as: admin)
     click_link 'New Intro Meeting'
 
     select_date meeting_date, from: "intro_meeting_date"

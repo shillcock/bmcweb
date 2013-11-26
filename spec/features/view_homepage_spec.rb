@@ -23,11 +23,4 @@ feature 'View the homepage' do
       end
     end
   end
-
-  # scenario 'user clicks on the donate button' do
-  #   visit root_path
-  #   click_button 'Donate'
-
-  #   expect(page.path)
-  # end
 end

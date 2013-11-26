@@ -10,17 +10,18 @@
     /[if lt IE 9]
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     = yield :head
-  %body{class: "#{controller_name}, #{action_name}"}
+  %body{class: page_class}
     - if signed_in?
-      Signed in as: #{current_user.email} #{link_to 'Sign out', sign_out_path, :method => :delete}
+      Signed in as: #{current_user.email}
+      | #{link_to 'Sign out', sign_out_path, :method => :delete}
+      - if current_user_is_admin?
+        | #{link_to 'Admin', admin_root_path }
     - else
       = link_to 'Sign in', sign_in_path
-
-    - flash.each do |name, msg|
-      - if msg.is_a?(String)
-        .alert{:class => "alert-#{name == :notice ? "success" : "error"}"}
-          %a.close{"data-dismiss" => "alert"} &#215;
-          = content_tag :div, msg, :id => "flash_#{name}"
+    - if flash.notice
+      .alert{class: "alert-success"}= flash.notice
+    - if flash.alert
+      .alert{class: "alert-error"}= flash.alert
 
     .content
       = yield

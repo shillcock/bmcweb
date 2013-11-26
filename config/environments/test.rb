@@ -34,4 +34,7 @@ BreakthroughForMen::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # Load Clearance middleware for faster tests
+  config.middleware.use Clearance::BackDoor
 end
