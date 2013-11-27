@@ -1,0 +1,8 @@
+= link_to "New Intro Meeting", new_admin_intro_meeting_path
+
+%ul#intro_meetings
+  - @intro_meetings.each do |meeting|
+    %li{id: "intro_meeting_#{meeting.id}"}
+      = meeting.date
+      = link_to "Delete", admin_intro_meeting_path(meeting), method: :delete,
+        data: { confirm: "Are you sure you want to delete this intro meeting?" }

@@ -4,6 +4,6 @@ BreakthroughForMen::Application.routes.draw do
   namespace :admin do
     root to: 'base#index'
     resources :users
-    resources :intro_meetings, only: [:new, :create]
+    resources :intro_meetings, only: [:index, :new, :create, :destroy]
   end
 end

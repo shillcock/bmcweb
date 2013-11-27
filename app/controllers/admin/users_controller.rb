@@ -1,7 +1,8 @@
 class Admin::UsersController < Clearance::UsersController
   before_action :authorize
   before_action :redirect_unless_user_is_admin
-  skip_before_filter :avoid_sign_in
+  skip_before_filter :avoid_sign_in # clearance defaults to signing in user after create
+
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
