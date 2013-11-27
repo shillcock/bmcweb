@@ -1,6 +1,5 @@
-.text-field
-  = form.input :email
-  = form.text_field :email, :type => 'email'
-.password-field
-  = form.input :password
-  = form.password_field :password
+= simple_form_for [:admin, @user] do |f|
+  = f.input :email
+  = f.input :password
+  = f.input :admin, label: "Is an admin?"
+  = f.submit
