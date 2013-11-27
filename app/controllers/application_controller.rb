@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   include Clearance::Controller
   protect_from_forgery with: :exception
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, alert: exception.message
+  end
+
   protected
 
     def redirect_unless_user_is_admin
@@ -15,4 +19,9 @@ class ApplicationController < ActionController::Base
       current_user && current_user.admin?
     end
     helper_method :current_user_is_admin?
+
+    def admins_only(&block)
+      block.call if current_user_is_admin?
+    end
+    helper_method :admins_only
 end

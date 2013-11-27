@@ -1,0 +1,6 @@
+%h1 Create new user
+= simple_form_for [:admin, @user] do |f|
+  = f.input :email
+  = f.input :password
+  = f.input :admin
+  = f.submit "Create User"
