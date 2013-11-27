@@ -2,7 +2,7 @@ class Admin::UsersController < Clearance::UsersController
   before_action :authorize
   before_action :redirect_unless_user_is_admin
   skip_before_filter :avoid_sign_in
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -47,6 +47,17 @@ class Admin::UsersController < Clearance::UsersController
       flash[:alert] = "User has not been updated."
       render :edit
     end
+  end
+
+  def destroy
+    if @user == current_user
+      flash[:alert] = "You cannot delete yourself!"
+    else
+      @user.destroy
+      flash[:notice] = "User has been deleted."
+    end
+
+    redirect_to admin_users_path
   end
 
   private
