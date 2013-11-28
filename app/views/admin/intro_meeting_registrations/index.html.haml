@@ -1,0 +1,9 @@
+%h2 Registrations for Intro Meeting: #{@meeting.date}
+
+%ul#registrations
+  - @registrations.each do |registration|
+    %li{id: "intro_meeting_registration_#{registration.id}"}
+      = registration.full_name
+      = "registered on #{registration.created_at}"
+      = link_to "Delete", admin_intro_meeting_registration_path(@meeting, registration), method: :delete,
+        data: { confirm: "Are you sure you want to delete this intro meeting registration?" }

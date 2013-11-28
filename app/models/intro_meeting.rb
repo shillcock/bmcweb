@@ -15,7 +15,7 @@ class IntroMeeting < ActiveRecord::Base
   validates :starts_at, presence: true
   validates :ends_at, presence: true
 
-  has_many :intro_meeting_registrations, dependent: :destroy
+  has_many :registrations, dependent: :destroy, class_name: "IntroMeetingRegistration"
 
   after_initialize do
     self.starts_at ||= Time.parse("19:00")

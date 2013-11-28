@@ -11,11 +11,10 @@ feature "Deleting Intro Meetings" do
   end
 
   scenario "Deleting an intro meeting" do
-    meeting_id = "#intro_meeting_#{intro_meeting.id}"
-    within(meeting_id) do
+    within("#intro_meeting_#{intro_meeting.id}") do
       click_link "Delete"
     end
 
-    expect(page).to have_content("Intro Meeting has been deleted.")
+    expect(page).to have_content("Intro meeting has been deleted.")
   end
 end

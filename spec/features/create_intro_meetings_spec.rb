@@ -15,7 +15,7 @@ feature 'Creating IntroMeetings' do
 
     click_button 'Create Intro meeting'
 
-    expect(page).to have_content("Intro Meeting has been created for #{meeting_date}")
+    expect(page).to have_content("Intro meeting has been created for #{meeting_date}")
   end
 
   def meeting_date

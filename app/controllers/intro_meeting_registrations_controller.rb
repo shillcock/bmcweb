@@ -28,6 +28,6 @@ class IntroMeetingRegistrationsController < ApplicationController
     end
 
     def create_registration_from_params
-      @registration = @meeting.intro_meeting_registrations.create(intro_meeting_registration_params)
+      @registration = @meeting.registrations.create(intro_meeting_registration_params)
     end
 end

@@ -13,17 +13,17 @@ class Admin::IntroMeetingsController < Admin::BaseController
     @intro_meeting = IntroMeeting.new(intro_meeting_params)
 
     if @intro_meeting.save
-      flash[:notice] = "Intro Meeting has been created for #{@intro_meeting.date}."
-      redirect_to root_path
+      flash[:notice] = "Intro meeting has been created for #{@intro_meeting.date}."
+      redirect_to admin_intro_meetings_path
     else
-      flash[:alert] = "Intro Meeting has not been created."
+      flash[:alert] = "Intro meeting has not been created."
       render :new
     end
   end
 
   def destroy
     @intro_meeting.destroy
-    flash[:notice] = "Intro Meeting has been deleted."
+    flash[:notice] = "Intro meeting has been deleted."
     redirect_to admin_intro_meetings_path
   end
 
