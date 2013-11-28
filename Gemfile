@@ -27,6 +27,7 @@ gem 'simple_form', '3.0.0.rc'
 # gem 'analytics-ruby'
 # gem 'newrelic_rpm'
 # gem 'exception_notification'
+gem 'simplecov', require: false, group: :test
 gem 'coveralls', require: false
 
 group :test do
