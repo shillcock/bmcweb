@@ -16,7 +16,7 @@ feature 'View the homepage' do
 
       visit root_path
       expect(page).to have_content 'Upcoming Free Introductory Meetings'
-      expect(page).to have_selector 'li.intro_meeting', count: 3
+      expect(page).to have_selector 'table#intro_meetings tr', count: 4 # 1 heading row + 3 meetings rows
 
       [1.week, 2.weeks, 3.weeks].each do |days|
         expect(page).to have_content (first_of_november + days).to_date

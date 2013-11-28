@@ -3,6 +3,15 @@
 
 %p Upcoming Free Introductory Meetings
 
-%ul
-  - @upcoming_intro_meetings.each do |meeting|
-    %li.intro_meeting= meeting.date
+%table.table#intro_meetings
+  %thead
+    %tr
+      %th Date
+      %th Time
+      %th
+  %tbody
+    - @upcoming_intro_meetings.each do |meeting|
+      %tr{id: "intro_meeting_#{meeting.id}"}
+        %td= meeting.date
+        %td= "#{meeting.starts_at.strftime('%l:%M %p')} - #{meeting.ends_at.strftime('%l:%M %p')}"
+        %td= link_to 'Register', new_intro_meeting_registration_path(meeting), { class: "btn btn-success" }
