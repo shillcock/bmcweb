@@ -43,6 +43,8 @@ GEM
       debug_inspector (>= 0.0.1)
     bourne (1.5.0)
       mocha (>= 0.13.2, < 0.15)
+    braintree (2.26.0)
+      builder (>= 2.0.0)
     brakeman (2.2.0)
       erubis (~> 2.6)
       fastercsv (~> 1.5)
@@ -275,6 +277,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bourne
+  braintree
   brakeman
   cancan
   capybara

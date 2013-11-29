@@ -13,6 +13,7 @@
   %body{class: page_class}
     %ul
       %li= link_to 'Home', root_url
+      %li= link_to 'Donate', donate_path
       - if signed_in?
         - admins_only do
           %li= link_to 'Admin', admin_root_path
@@ -28,4 +29,7 @@
     .content
       = yield
 
-    = yield :javascript
+  %footer
+    %p &copy; Breakthrough Men's Communtiy 2013
+
+  = yield :javascript

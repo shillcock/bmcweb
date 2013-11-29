@@ -27,7 +27,7 @@ gem 'simple_form', '3.0.0.rc'
 # gem 'analytics-ruby'
 # gem 'newrelic_rpm'
 # gem 'exception_notification'
-# gem 'braintree'
+gem 'braintree'
 # gem 'ashmont'
 gem 'coveralls', require: false
 

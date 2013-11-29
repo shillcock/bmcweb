@@ -1,0 +1,9 @@
+%h1 Donate
+
+= render "form"
+
+- content_for :javascript do
+  %script{src: "https://js.braintreegateway.com/v1/braintree.js"}
+  :javascript
+    var braintree = Braintree.create("#{Rails.configuration.braintree[:client_side_encryption_key]}")
+    braintree.onSubmitEncryptForm("donation-form");

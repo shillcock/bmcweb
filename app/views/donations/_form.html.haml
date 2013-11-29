@@ -1,0 +1,30 @@
+= simple_form_for :donation, url: "/donate", html: { class: "form-horizontal", id: "donation-form" } do |f|
+  = f.error_notification
+
+  %h2 Donor Information
+  .form-inputs
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :email
+    = f.input :amount, placeholder: "50.00", input_html: { min: "0", step: "25.00" }
+
+    %h2 Credit Card
+    = f.input :number,
+      :maxlength    => 19,
+      :input_html   => { :autocomplete => "off", "data-encrypted-name" => "number", placeholder: "●●●● ●●●● ●●●● ●●●●" }
+
+    = f.input :expiration_month,
+      :collection   => 1..12,
+      :input_html => { "data-encrypted-name" => "month" }
+
+    = f.input :expiration_year,
+      :collection   => Time.zone.now.year..(Time.zone.now.year + 25),
+      :input_html => { "data-encrypted-name" => "year" }
+
+    = f.input :cvv,
+      :maxlength    => 4,
+      :input_html   => { :autocomplete => "off", "data-encrypted-name" => "cvv" }
+
+  .form-actions
+    = f.button :submit
+    = link_to "Cancel", root_path, class: "btn"
