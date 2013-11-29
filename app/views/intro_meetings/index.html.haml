@@ -1,0 +1,12 @@
+%table.table#intro_meetings
+  %thead
+    %tr
+      %th Date
+      %th Time
+      %th
+      %th
+  %tbody
+    - @meetings.each do |meeting|
+      %tr{id: "intro_meeting_#{meeting.id}"}
+        %td= meeting.date
+        %td= "#{meeting.starts_at.strftime('%l:%M %p')} - #{meeting.ends_at.strftime('%l:%M %p')}"

@@ -1,0 +1,32 @@
+!!! 5
+%html
+  %head
+    %meta{ charset: 'utf-8' }
+    %title= content_for?(:title) ? yield(:title) : "Breakthrough Men's Community"
+    %meta{:content => content_for?(:description) ? yield(:description) : "Breakthrough Men's Community", :name => "description"}
+    = stylesheet_link_tag    "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    /[if lt IE 9]
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    = yield :head
+  %body{class: page_class}
+    %h1 ADMIN DASHBOARD
+    %ul
+      %li= link_to 'Home', root_url
+      - if signed_in?
+        - admins_only do
+          %li= link_to 'Admin', admin_root_path
+        %li Signed in as: #{current_user.email} | #{link_to 'Sign out', sign_out_path, :method => :delete}
+      - else
+        = link_to 'Sign in', sign_in_path
+
+    - if flash.notice
+      .alert{class: "alert-success"}= flash.notice
+    - if flash.alert
+      .alert{class: "alert-error"}= flash.alert
+
+    .content
+      = yield
+
+    = yield :javascript

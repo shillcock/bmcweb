@@ -21,6 +21,6 @@ class IntroMeetingRegistration < ActiveRecord::Base
   validates_presence_of :intro_meeting_id
 
   def full_name
-    "#{first_name} #{last_name}"
+    "#{first_name.capitalize} #{last_name.capitalize}"
   end
 end

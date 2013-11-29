@@ -27,20 +27,23 @@ gem 'simple_form', '3.0.0.rc'
 # gem 'analytics-ruby'
 # gem 'newrelic_rpm'
 # gem 'exception_notification'
-gem 'simplecov', require: false, group: :test
+# gem 'braintree'
+# gem 'ashmont'
 gem 'coveralls', require: false
 
 group :test do
   gem 'bourne'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
-  # gem 'email_spec'
+  gem 'simplecov', require: false
   gem 'launchy'
   gem 'timecop'
+  # gem 'fake_braintree'
+  # gem 'email_spec'
 end
 
 group :development do
-  gem 'better_errors', '~> 1.0.1'
+  gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rails_best_practices'
   gem 'brakeman'
@@ -53,8 +56,8 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'faker'
-  # gem 'debugger'
-  # gem 'pry-rails', '~> 0.3.2'
+  gem 'debugger'
+  gem 'pry-rails'
   # gem 'pry-nav'
 end
 

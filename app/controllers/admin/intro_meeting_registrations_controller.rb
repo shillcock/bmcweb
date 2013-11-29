@@ -1,4 +1,4 @@
-class Admin::IntroMeetingRegistrationsController < Admin::BaseController
+class Admin::IntroMeetingRegistrationsController < AdminController
   before_action :set_meeting, only: [:index, :destroy]
   before_action :set_registration, only: [:destroy]
 

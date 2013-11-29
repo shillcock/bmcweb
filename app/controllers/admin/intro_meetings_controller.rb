@@ -1,4 +1,4 @@
-class Admin::IntroMeetingsController < Admin::BaseController
+class Admin::IntroMeetingsController < AdminController
   before_action :set_intro_meeting, only: [:destroy]
 
   def index

@@ -1,4 +1,5 @@
 class Admin::UsersController < Clearance::UsersController
+  layout 'admin'
   before_action :authorize
   before_action :redirect_unless_user_is_admin
   skip_before_filter :avoid_sign_in # clearance defaults to signing in user after create
