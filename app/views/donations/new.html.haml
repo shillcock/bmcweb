@@ -1,6 +1,6 @@
 %h1 Donate
 
-= render "form"
+= render "form", donation: @donation
 
 - content_for :javascript do
   %script{src: "https://js.braintreegateway.com/v1/braintree.js"}
