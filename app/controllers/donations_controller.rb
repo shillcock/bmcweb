@@ -8,13 +8,11 @@ class DonationsController < ApplicationController
     @donation.attributes = credit_card_params
 
     @donation.process_payment!
-    @donation.attributes = { number: nil, cvv: nil }
 
     if @donation.finished?
       flash[:notice] = "Thank you for your donation."
       redirect_to root_path
     else
-      flash.now[:alert] = @donation.error
       render :new
     end
   end

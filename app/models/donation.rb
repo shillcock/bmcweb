@@ -21,7 +21,7 @@ class Donation
   validates :cvv, presence: true
   validates :expiration_date, presence: true
 
-  attr_reader :transaction_id, :error
+  attr_reader :transaction_id
 
   def persisted?
     false
@@ -33,28 +33,20 @@ class Donation
 
   def process_payment!
     charge_card if valid?
+    self.attributes = { number: nil, cvv: nil }
   end
 
   private
 
     def charge_card
-      @result = Braintree::Transaction.sale(
+      result = Braintree::Transaction.sale(
         amount: self.amount,
         credit_card: credit_card,
         customer: customer,
         options: { submit_for_settlement: true }
       )
 
-      if @result.success?
-        @transaction_id = @result.transaction.id
-        @finished = true
-      else
-        copy_errors_from_result
-        @error = @result.message
-        @finished = false
-      end
-
-
+      @finished = handle_result(result)
     end
 
     def credit_card
@@ -73,21 +65,34 @@ class Donation
       }
     end
 
-    def copy_errors_from_result
-      @result.errors.each do |e|
-        errors.add(e.attribute, e.message)
+    def handle_result(result)
+      if result.success?
+        @transaction_id = result.transaction.id
+        @transaction = result.transaction
+        true
+      else
+        handle_result_transaction(result.transaction)
+        handle_result_errors(result.errors)
+        false
       end
     end
-end
 
-def dddd
-d = Donation.new({:first_name=>"scott",
- :last_name=>"shillcock",
- :email=>"me@scott.sh",
- :amount=>99,
- :credit_card=>
-  {:number=>"4411111111111111",
-   :cvv=>123,
-   :expiration_month=>11,
-   :expiration_year=>2015}})
+    def handle_result_transaction(transaction)
+      if transaction.respond_to?(:status)
+        case transaction.status
+        when "failed"
+          errors.add :number, "transaction failed: #{transaction.processor_response_text}"
+        when "processor_declined"
+          errors.add :number, "was denied by the payment processor with the message: #{transaction.processor_response_text}"
+        when "gateway_rejected"
+          errors.add :cvv, "did not match"
+        end
+      end
+    end
+
+    def handle_result_errors(remote_errors)
+      remote_errors.each do |error|
+        errors.add error.attribute, error.message
+      end
+    end
 end

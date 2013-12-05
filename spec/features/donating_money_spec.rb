@@ -6,16 +6,16 @@ feature "Donating money to Breakthrough" do
     click_link "Donate"
   end
 
-  scenario "Visitor can donate money" do
+  scenario "Visitor can donate money", js: true do
     fill_in "First name", with: "Jon"
     fill_in "Last name", with: "Snow"
     fill_in "Email", with: "jonsnow@example.com"
     fill_in "Amount", with: "150.00"
 
-    fill_in "Number", with: "4242424242424242"
-    fill_in "Cvv", with: "123"
+    fill_in "Number", with: "4111111111111111"
+    fill_in "CVV", with: "123"
 
-    click_button "Save Donation"
+    click_button "Create Donation"
 
     expect(page).to have_content("Thank you for your donation.")
   end

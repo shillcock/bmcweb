@@ -8,7 +8,7 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
-gem 'turbolinks'
+# gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'haml-rails'
 gem 'passenger'
@@ -22,14 +22,13 @@ gem 'simple_form', '3.0.0.rc'
 # gem 'mailchimp'
 # gem 'uuidtools'
 # gem 'aasm'
-# gem 'stripe'
-# gem 'stripe_event'
 # gem 'analytics-ruby'
 # gem 'newrelic_rpm'
 # gem 'exception_notification'
 gem 'braintree'
 # gem 'ashmont'
 gem 'coveralls', require: false
+gem 'faker'
 
 group :test do
   gem 'bourne'
@@ -38,7 +37,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'launchy'
   gem 'timecop'
-  # gem 'fake_braintree'
+  gem 'fake_braintree'
   # gem 'email_spec'
 end
 
@@ -54,11 +53,12 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'debugger'
   gem 'pry-rails'
-  # gem 'pry-nav'
+  gem 'pry-nav'
 end
 
 group :production do

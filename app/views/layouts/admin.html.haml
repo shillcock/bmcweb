@@ -11,15 +11,11 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     = yield :head
   %body{class: page_class}
-    %h1 ADMIN DASHBOARD
     %ul
+      %li ADMIN DASHBOARD
       %li= link_to 'Home', root_url
-      - if signed_in?
-        - admins_only do
-          %li= link_to 'Admin', admin_root_path
-        %li Signed in as: #{current_user.email} | #{link_to 'Sign out', sign_out_path, :method => :delete}
-      - else
-        = link_to 'Sign in', sign_in_path
+      %li= link_to 'Admin', admin_root_path
+      %li Signed in as: #{current_user.email} | #{link_to 'Sign out', sign_out_path, :method => :delete}
 
     - if flash.notice
       .alert{class: "alert-success"}= flash.notice
@@ -28,5 +24,8 @@
 
     .content
       = yield
+
+  %footer
+    %p &copy; Breakthrough Men's Communtiy 2013
 
     = yield :javascript

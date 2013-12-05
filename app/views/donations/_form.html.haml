@@ -10,8 +10,7 @@
     = f.input :amount, placeholder: "100.00"
 
     %h2 Credit Card
-    = f.input :number, maxlength: 19,
-      input_html: { autocomplete: "off", "data-encrypted-name" => "number", placeholder: "●●●● ●●●● ●●●● ●●●●" }
+    = f.input :number, maxlength: 19, input_html: { autocomplete: "off", "data-encrypted-name" => "number" }
 
     = f.input :expiration_date, as: :date,
       start_year: Time.zone.now.year,

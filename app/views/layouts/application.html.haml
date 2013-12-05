@@ -31,5 +31,6 @@
 
   %footer
     %p &copy; Breakthrough Men's Communtiy 2013
+    = debug(params) if Rails.env.development?
 
   = yield :javascript
