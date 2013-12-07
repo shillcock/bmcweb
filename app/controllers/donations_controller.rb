@@ -1,4 +1,6 @@
 class DonationsController < ApplicationController
+  skip_before_action :authorize, only: [:new, :create]
+
   def new
     @donation = Donation.new
   end

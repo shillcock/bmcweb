@@ -17,7 +17,7 @@ class Donation
   validates :last_name, presence: true
   validates :email, presence: true
   validates :amount, presence: true
-  validates :number, presence: true
+  validates :number, presence: true, numericality: { greater_than: 0 }
   validates :cvv, presence: true
   validates :expiration_date, presence: true
 

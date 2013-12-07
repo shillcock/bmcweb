@@ -30,7 +30,9 @@
       = yield
 
   %footer
-    %p &copy; Breakthrough Men's Communtiy 2013
+    %p.copyright &copy; Breakthrough Men's Communtiy 2013 -
+      = Time.zone.today.year
+
     = debug(params) if Rails.env.development?
 
   = yield :javascript
