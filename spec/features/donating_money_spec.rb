@@ -11,7 +11,7 @@ feature "Donating money to Breakthrough" do
 
   let(:donate_page) { DonatePage.new }
 
-  scenario "via the landing page", js: true do
+  xscenario "via the landing page", js: true do
     # donate_page = DonatePage.new
 
     donate_page.visit_page
