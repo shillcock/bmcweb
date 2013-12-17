@@ -16,19 +16,20 @@ gem 'virtus'
 gem 'clearance', '~> 1.0.1'
 gem 'cancan'
 gem 'simple_form', '3.0.0.rc'
+gem 'money-rails'
 # gem 'paper_trail', '~> 2.7.1'
 # gem 'paper_trail', github: 'airblade/paper_trail', branch: 'rails4'
 # gem 'destroyed_at'
 # gem 'mailchimp'
 # gem 'uuidtools'
-# gem 'aasm'
 # gem 'analytics-ruby'
 # gem 'newrelic_rpm'
 # gem 'exception_notification'
-gem 'braintree'
-# gem 'ashmont'
 gem 'coveralls', require: false
-gem 'faker'
+gem 'aasm'
+gem 'stripe'
+# gem 'stripe_event'
+gem 'bourbon'
 
 group :test do
   gem 'bourne'
@@ -44,9 +45,12 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'meta_request'
   gem 'rails_best_practices'
   gem 'brakeman'
   gem 'annotate'
+  # gem 'awesome_print'
+  # gem letter_opener
 end
 
 group :development, :test do
@@ -55,7 +59,6 @@ group :development, :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'factory_girl_rails'
-  gem 'faker'
   gem 'debugger'
   gem 'pry-rails'
   gem 'pry-nav'
@@ -63,4 +66,5 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'rails_stdout_logging'
 end

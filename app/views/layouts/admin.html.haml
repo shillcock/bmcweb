@@ -1,31 +1,20 @@
 !!! 5
 %html
   %head
-    %meta{ charset: 'utf-8' }
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
     %title= content_for?(:title) ? yield(:title) : "Breakthrough Men's Community"
-    %meta{:content => content_for?(:description) ? yield(:description) : "Breakthrough Men's Community", :name => "description"}
-    = stylesheet_link_tag    "application", media: "all"
-    = javascript_include_tag "application"
+    %meta{name: "description", content: content_for?(:description) ? yield(:description) : "Breakthrough Men's Community"}
+    = stylesheet_link_tag :admin, media: "all"
+    = javascript_include_tag :admin
     = csrf_meta_tags
-    /[if lt IE 9]
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    = render 'shared/ie_shiv'
     = yield :head
   %body{class: page_class}
-    %ul
-      %li ADMIN DASHBOARD
-      %li= link_to 'Home', root_url
-      %li= link_to 'Admin', admin_root_path
-      %li Signed in as: #{current_user.email} | #{link_to 'Sign out', sign_out_path, :method => :delete}
-
-    - if flash.notice
-      .alert{class: "alert-success"}= flash.notice
-    - if flash.alert
-      .alert{class: "alert-error"}= flash.alert
-
-    .content
+    %header
+      = render 'admin/shared/navigation'
+    %main{role: 'main'}
+      = render 'shared/messages'
       = yield
-
-  %footer
-    %p &copy; Breakthrough Men's Communtiy 2013
-
-    = yield :javascript
+    %footer
+      = render 'shared/footer'
+    = render 'shared/javascript'

@@ -17,4 +17,6 @@ rerun.txt
 pickle-email-*.html
 .project
 .env
+.env.test
 /config/database.yml
+.idea/

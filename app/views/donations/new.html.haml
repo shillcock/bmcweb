@@ -1,9 +1,27 @@
-%h1 Donate
+- content_for :head do
+  %meta{ name: "stripe-key", content: "#{Rails.configuration.stripe[:publishable_key]}" }
 
-= render "form", donation: @donation
+%h1 Support Breakthrough with a Donation
+
+%p
+  We want to make Breakthrough available to all men who want to make positive change in their lives.
+  %br/
+  Please consider making a donation to support scholarships for lower income men.
+
+.alert.alert-danger.alert-dismissable{id: "stripe-error", style:"display:none"}
+
+= render 'form', donation: @donation
+
+%br/
+%small
+  To ensure your data is safe, we use
+  = link_to "stripe", "http://stripe.com"
+  to process the payments and store your information. Your data is sent encrypted using HTTPS.
+%br/
+%small Breakthrough Men's Community does not directly process or store your credit card information at any time.
+%br/
 
 - content_for :javascript do
-  %script{src: "https://js.braintreegateway.com/v1/braintree.js"}
-  :javascript
-    var braintree = Braintree.create("#{Rails.configuration.braintree[:client_side_encryption_key]}")
-    braintree.onSubmitEncryptForm("donation-form");
+  = javascript_include_tag 'https://js.stripe.com/v2/'
+  = javascript_include_tag 'jquery.payment.js'
+  = javascript_include_tag 'donations'

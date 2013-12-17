@@ -7,12 +7,12 @@ module CapybaraHelpers
     expect(page).to(have_css("a", :text => text), "Expected to see the #{text.inspect} link, but did not.")
   end
 
-  def select_by_id(id, options = {})
-    field = options[:from]
-    option_xpath = "//*[@id='#{field}']/option[#{id}]"
-    option_text = find(:xpath, option_xpath).text
-    select option_text, :from => field
-  end
+  # def select_by_id(id, options = {})
+  #   field = options[:from]
+  #   option_xpath = "//*[@id='#{field}']/option[#{id}]"
+  #   option_text = find(:xpath, option_xpath).text
+  #   select option_text, :from => field
+  # end
 
   def select_date(date, options = {})
     field = options[:from]

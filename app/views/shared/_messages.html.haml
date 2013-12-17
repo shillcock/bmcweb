@@ -1,0 +1,11 @@
+/ - if flash.notice
+/   .alert{class: "alert-success"}
+/     = flash.notice
+
+/ - if flash.alert
+/   .alert{class: "alert-error"}
+/     = flash.alert
+
+- flash.each do |name, msg|
+  - if msg.is_a?(String)
+    = content_tag :div, msg, :class => "flash_#{name}"

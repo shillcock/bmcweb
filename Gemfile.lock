@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (3.0.24)
     actionmailer (4.0.1)
       actionpack (= 4.0.1)
       mail (~> 2.5.4)
@@ -41,6 +42,9 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bourbon (3.1.8)
+      sass (>= 3.2.0)
+      thor
     bourne (1.5.0)
       mocha (>= 0.13.2, < 0.15)
     braintree (2.26.0)
@@ -57,6 +61,7 @@ GEM
       slim (>= 1.3.6, < 3.0)
       terminal-table (~> 1.4)
     builder (3.1.4)
+    callsite (0.0.11)
     cancan (1.6.10)
     capybara (2.2.0)
       mime-types (>= 1.16)
@@ -125,8 +130,6 @@ GEM
       i18n
       sinatra
       thin
-    faker (1.2.0)
-      i18n (~> 0.5)
     fastercsv (1.5.5)
     ffi (1.9.3)
     haml (4.0.4)
@@ -152,6 +155,10 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta_request (0.2.8)
+      callsite
+      rack-contrib
+      railties
     metaclass (0.0.1)
     method_source (0.8.2)
     mime-types (1.25)
@@ -159,6 +166,12 @@ GEM
     minitest (4.7.5)
     mocha (0.14.0)
       metaclass (~> 0.0.1)
+    money (5.1.1)
+      i18n (~> 0.6.0)
+    money-rails (0.8.1)
+      activesupport (>= 3.0)
+      money (~> 5.1.0)
+      railties (>= 3.0)
     multi_json (1.8.2)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
@@ -177,6 +190,8 @@ GEM
     pry-rails (0.3.2)
       pry (>= 0.9.10)
     rack (1.5.2)
+    rack-contrib (1.1.0)
+      rack (>= 0.9.1)
     rack-protection (1.5.1)
       rack
     rack-test (0.6.2)
@@ -268,6 +283,10 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    stripe (1.9.9)
+      mime-types (~> 1.25)
+      multi_json (>= 1.0.4, < 2)
+      rest-client (~> 1.4)
     temple (0.6.7)
     term-ansicolor (1.2.2)
       tins (~> 0.8)
@@ -302,11 +321,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   annotate
   better_errors
   binding_of_caller
+  bourbon
   bourne
-  braintree
   brakeman
   cancan
   capybara
@@ -318,11 +338,12 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   fake_braintree
-  faker
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails
   launchy
+  meta_request
+  money-rails
   passenger
   pg
   pry-nav
@@ -330,12 +351,14 @@ DEPENDENCIES
   rails (= 4.0.1)
   rails_12factor
   rails_best_practices
+  rails_stdout_logging
   rspec-rails
   sass-rails (~> 4.0.0)
   selenium-webdriver
   shoulda-matchers
   simple_form (= 3.0.0.rc)
   simplecov
+  stripe
   timecop
   uglifier (>= 1.3.0)
   virtus
