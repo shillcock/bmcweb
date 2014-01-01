@@ -1,3 +1,20 @@
-%ul.nav
-  %li= link_to 'Home', root_path
-  = render 'shared/navigation_links'
+%nav.top-bar{"data-topbar" => ""}
+  %ul.title-area
+    %li.name
+    %li.toggle-topbar.menu-icon
+      %a{href: "#"}
+        %span Menu
+  %section.top-bar-section
+    %ul.left
+      = render 'shared/navigation_links'
+    %ul.right
+      %li.divider
+      - if signed_in?
+        %li.has-dropdown
+          %a{href: "#"}= current_user.email
+          %ul.dropdown
+            - admins_only do
+              %li= link_to 'Admin', admin_root_path
+            %li= link_to 'Sign out', sign_out_path, :method => :delete
+      - else
+        %li= link_to 'Sign in', sign_in_path

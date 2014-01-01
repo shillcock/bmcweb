@@ -42,9 +42,6 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bourbon (3.1.8)
-      sass (>= 3.2.0)
-      thor
     bourne (1.5.0)
       mocha (>= 0.13.2, < 0.15)
     braintree (2.26.0)
@@ -132,6 +129,9 @@ GEM
       thin
     fastercsv (1.5.5)
     ffi (1.9.3)
+    foundation-rails (5.0.2.0)
+      railties (>= 3.1.0)
+      sass (>= 3.2.0)
     haml (4.0.4)
       tilt
     haml-rails (0.4)
@@ -325,7 +325,6 @@ DEPENDENCIES
   annotate
   better_errors
   binding_of_caller
-  bourbon
   bourne
   brakeman
   cancan
@@ -338,6 +337,7 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   fake_braintree
+  foundation-rails
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails

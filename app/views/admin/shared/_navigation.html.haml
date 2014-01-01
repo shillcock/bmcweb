@@ -1,5 +1,16 @@
-%ul.nav
-  %li ADMIN DASHBOARD
-  %li= link_to 'Home', root_path
-  = render 'admin/shared/navigation_links'
-
+%div{class: "contain-to-grid fixed"}
+  %nav.top-bar{"data-topbar" => ""}
+    %ul.title-area
+      %li.name
+        %h1= link_to "Breakthrough Men's Communtiy", root_url
+      %li.toggle-topbar.menu-icon
+        %a{href: "#"}
+          %span Menu
+    %section.top-bar-section
+      %ul.left
+        = render 'admin/shared/navigation_links'
+      %ul.right
+        %li.has-dropdown
+          %a{href: "#"}= current_user.email
+          %ul.dropdown
+            %li= link_to 'Sign out', sign_out_path, :method => :delete

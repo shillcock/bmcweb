@@ -29,7 +29,8 @@ gem 'coveralls', require: false
 gem 'aasm'
 gem 'stripe'
 # gem 'stripe_event'
-gem 'bourbon'
+# gem 'bourbon'
+gem 'foundation-rails'
 
 group :test do
   gem 'bourne'

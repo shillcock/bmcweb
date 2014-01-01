@@ -1,5 +1,14 @@
-%footer
-  %p.copyright
-    &copy; Breakthrough Men's Communtiy 2013
+%ul.inline-list.right
+  %li= link_to "Home", root_path
+  %li= link_to "Donate", donate_path
+  %li= link_to "Contact Us", "#"
+  - if signed_in?
+    %li= link_to 'Sign out', sign_out_path, :method => :delete
+    - admins_only do
+      %li= link_to "Admin", admin_root_path
+  - else
+    %li= link_to "Sign in", sign_in_path
+%p.copyright
+  &copy; Breakthrough Men's Communtiy 2013
 
 = debug(params) if Rails.env.development?

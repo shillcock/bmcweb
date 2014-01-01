@@ -7,23 +7,17 @@
     = f.input :comment
     = f.input :amount, placeholder: "75", input_html: { min: "10", step: "10" }
 
-  .form-inputs
     = label_tag "card-number", "Credit Card Number"
     = text_field_tag "card-number", nil, name: nil, autocomplet: 'off', maxlength: 20, placeholder: "●●●● ●●●● ●●●● ●●●●"
 
-  .form-inputs
     = label_tag "card-cvc", "CVC"
     = text_field_tag "card-cvc", nil, name: nil, size: 4, placeholder: "CVC"
-    = image_tag "creditcards/credit.png", id: "card-image", style: "height: 30px; padding-left: 10px; margin-top: -10px"
-
-  .form-inputs
-    /= label_tag "card-expiry", "Expiry"
-    /= text_field_tag "card-expiry", nil, name: nil, maxlength: 7, placeholder: "MM / YY"
+    = image_tag "creditcards/credit.png", id: "card-image"
 
     = label_tag "card-month", "Card Expiration"
     = select_month nil, {add_month_numbers: true}, {name: nil, id: "card-month"}
     = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card-year"}
 
   .form-actions
-    = f.button :submit, "Send Donation", class: "btn-primary", id: "submit-button"
-    = link_to "Cancel", root_path, class: "btn"
+    = f.button :submit, "Send Donation", id: "submit-button"
+    = link_to "Cancel", root_path, class: "button secondary"

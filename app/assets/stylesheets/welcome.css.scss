@@ -1,3 +1,23 @@
-// Place all the styles related to the welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.masthead {
+  text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+#upcoming-intro-meetings {
+  padding-top: 1em;
+}
+
+#upcoming-events {
+  padding-top: 1em;
+}
+
+#blue-shield {
+  padding-top: 1em;
+}
+
+#blue-shield-info {
+  img {
+    padding-right: 1em;
+  }
+}

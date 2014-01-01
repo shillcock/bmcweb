@@ -1,20 +1,29 @@
 !!! 5
 %html
   %head
+    %meta{charset: "utf-8"}
     %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
     %title= content_for?(:title) ? yield(:title) : "Breakthrough Men's Community"
     %meta{name: "description", content: content_for?(:description) ? yield(:description) : "Breakthrough Men's Community"}
-    = stylesheet_link_tag :application, media: "all"
-    = javascript_include_tag :application
+    = stylesheet_link_tag :application
+    = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tags
-    = render 'shared/ie_shiv'
     = yield :head
   %body{class: page_class}
     %header
-      = render 'shared/navigation'
+      .row
+        .large-12.columns
+          .masthead
+            = image_tag 'bmc_banner.png'
+          = render 'shared/navigation'
     %main{role: 'main'}
-      = render 'shared/messages'
-      = yield
+      .row
+        .large-12.columns
+          = render 'shared/messages'
+          = yield
     %footer
-      = render 'shared/footer'
+      .row
+        .large-12.columns
+          = render 'shared/footer'
+    = javascript_include_tag :application
     = render 'shared/javascript'

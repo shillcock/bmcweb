@@ -1,6 +1,7 @@
 BreakthroughForMen::Application.routes.draw do
-  get "donations/new"
   root to: "welcome#index"
+  get "what_is_breakthrough", to: "welcome#info"
+  get "schedule", to: "welcome#schedule"
 
   resources :intro_meetings, only: [:index] do
     resources :registrations, controller: "intro_meeting_registrations", only: [:new, :create]

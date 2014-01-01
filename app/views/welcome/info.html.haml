@@ -1,0 +1,19 @@
+%div
+  %dl.radius.tabs{"data-tab" => ""}
+    %dd.active
+      = link_to "Breakthrough", "#info"
+    %dd
+      = link_to "Workshops", "#workshops"
+    %dd
+      = link_to "History", "#history"
+    %dd
+      = link_to "Leadership", "#leadership"
+  .tabs-content
+    #info.content.active
+      = render 'breakthrough'
+    #workshops.content
+      = render 'workshops'
+    #history.content
+      = render 'history'
+    #leadership.content
+      = render 'leadership'

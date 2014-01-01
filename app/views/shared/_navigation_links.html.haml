@@ -1,7 +1,3 @@
-%li= link_to 'Donate', donate_path
-- if signed_in?
-  - admins_only do
-    %li= link_to 'Admin', admin_root_path
-  %li Signed in as: #{current_user.email} | #{link_to 'Sign out', sign_out_path, :method => :delete}
-- else
-  %li= link_to 'Sign in', sign_in_path
+= nav_link_to 'Home', root_path
+= nav_link_to 'What is Breakthrough?', what_is_breakthrough_path
+= nav_link_to 'Donate', donate_path
