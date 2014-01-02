@@ -2,4 +2,5 @@
   = f.input :email
   = f.input :password
   = f.input :admin, label: "Is an admin?"
-  = f.submit
+  = f.submit class: "button"
+  = link_to "Cancel", admin_users_path, class: "button secondary"

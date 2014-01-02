@@ -31,6 +31,7 @@ gem 'stripe'
 # gem 'stripe_event'
 # gem 'bourbon'
 gem 'foundation-rails'
+gem 'font-awesome-rails'
 
 group :test do
   gem 'bourne'

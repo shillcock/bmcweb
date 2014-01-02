@@ -1,7 +1,29 @@
-= link_to "New User", new_admin_user_path
+- content_for :head do
+  = stylesheet_link_tag 'admin/users'
 
-%ul#users
-  - @users.each do |user|
-    %li
-      = link_to user.email, [:admin, user]
-      = "(Admin)" if user.admin?
+.row
+  .large-3.columns
+    %p
+      .sidebar
+        = link_to fa_icon("plus-circle", text: "New User"), new_admin_user_path, class: "button secondary round"
+  .large-9.columns
+    %p
+      %table#intro-meetings
+        %thead
+          %tr
+            %th Email
+            %th
+            %th Edit
+            %th Delete
+        %tbody
+          - @users.each do |user|
+            %tr{id: "user_#{user.id}"}
+              %td= link_to user.email, [:admin, user]
+              %td
+                - if user.admin?
+                  %span.round.label Admin
+              %td.center
+                = link_to fa_icon("pencil"), edit_admin_user_path(user)
+              %td.center
+                = link_to fa_icon("times"), admin_user_path(user), method: :delete,
+                  data: { confirm: "Are you sure you want to delete this user?" }

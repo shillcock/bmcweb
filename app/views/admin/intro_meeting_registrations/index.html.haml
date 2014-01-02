@@ -1,9 +1,22 @@
 %h2 Registrations for Intro Meeting: #{@meeting.date}
 
-%ul#registrations
-  - @registrations.each do |registration|
-    %li{id: "intro_meeting_registration_#{registration.id}"}
-      = registration.full_name
-      = "registered on #{registration.created_at}"
-      = link_to "Delete", admin_intro_meeting_registration_path(@meeting, registration), method: :delete,
-        data: { confirm: "Are you sure you want to delete this intro meeting registration?" }
+%p
+  Total Registered: #{@registrations.count}
+
+- if @registrations.count == 0
+  %p No one has registered online yet.
+- else
+  %table#registrations
+    %tbody
+      - @registrations.each do |registration|
+        %tr{id: "intro_meeting_registration_#{registration.id}"}
+          %td
+            %strong
+              = registration.full_name
+            registered on
+            %strong
+              = registration.created_at
+          %td= link_to "Delete", admin_intro_meeting_registration_path(@meeting, registration), method: :delete,
+            data: { confirm: "Are you sure you want to delete this intro meeting registration?" }
+
+= link_to fa_icon("chevron-left", text: "Back"), admin_intro_meetings_path, class: "button secondary"

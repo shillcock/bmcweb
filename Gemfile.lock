@@ -129,6 +129,8 @@ GEM
       thin
     fastercsv (1.5.5)
     ffi (1.9.3)
+    font-awesome-rails (4.0.3.0)
+      railties (>= 3.2, < 5.0)
     foundation-rails (5.0.2.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
@@ -337,6 +339,7 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   fake_braintree
+  font-awesome-rails
   foundation-rails
   haml-rails
   jbuilder (~> 1.2)
