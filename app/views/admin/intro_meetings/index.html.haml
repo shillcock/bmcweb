@@ -1,8 +1,8 @@
 .row
   .large-3.columns
     %p
-      .sidebar
-        = link_to fa_icon("plus-circle", text: "New Intro Meeting"), new_admin_intro_meeting_path, class: "button secondary round"
+      %ul.side-nav
+        %li= link_to fa_icon("plus-circle", text: "New Intro Meeting"), new_admin_intro_meeting_path, class: "button secondary round"
   .large-9.columns
     %p
       %table#intro_meetings
