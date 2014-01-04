@@ -7,20 +7,16 @@ feature "Deleting Intro Meeting Registrations" do
 
   before do
     visit root_path(as: admin)
-    click_link "Admin"
-    click_link "Intro Meetings"
+    header_nav.click_link "Admin"
+    header_nav.click_link "Intro Meetings"
 
-    within("#intro_meeting_#{intro_meeting.id}") do
-      click_link "Registrations"
-    end
+    find("#intro_meeting_#{intro_meeting.id}").click_link "Registrations"
 
     current_path.should eq admin_intro_meeting_registrations_path(intro_meeting)
   end
 
   scenario "Deleting an intro meeting registration" do
-    within("#intro_meeting_registration_#{registration.id}") do
-      click_link "Delete"
-    end
+    find("#intro_meeting_registration_#{registration.id}").click_link "Delete"
 
     expect(page).to have_content("Intro meeting registration has been deleted.")
   end

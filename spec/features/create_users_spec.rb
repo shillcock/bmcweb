@@ -5,12 +5,12 @@ feature "Creating Users" do
 
   before do
     visit root_path(as: admin)
-    click_link "Admin"
-    click_link "Users"
+    header_nav.click_link "Admin"
+    header_nav.click_link "Users"
     click_link "New User"
   end
 
-  scenario "Creating a new user" do
+  scenario "Creating a new user as an Admin" do
     fill_in "Email", with: "new_user@example.com"
     fill_in "Password", with: "password"
     click_button "Sign up"

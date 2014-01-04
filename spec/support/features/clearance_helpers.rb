@@ -27,7 +27,7 @@ module Features
     end
 
     def sign_out
-      click_link I18n.t('layouts.application.sign_out')
+      header_nav.click_link I18n.t('layouts.application.sign_out')
     end
 
     def user_should_be_signed_out

@@ -61,7 +61,7 @@ group :development, :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'factory_girl_rails'
-  gem 'debugger'
+  #gem 'debugger'
   gem 'pry-rails'
   gem 'pry-nav'
 end

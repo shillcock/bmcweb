@@ -6,8 +6,8 @@ feature "Deleting Users" do
 
   before do
     visit root_path(as: admin)
-    click_link "Admin"
-    click_link "Users"
+    header_nav.click_link "Admin"
+    header_nav.click_link "Users"
   end
 
   scenario "Deleting a user" do
@@ -18,7 +18,10 @@ feature "Deleting Users" do
   end
 
   scenario "Users cannot delete themselves" do
-    click_link admin.email
+    within_table('users') do
+      click_link admin.email
+    end
+
     click_link "Delete User"
 
     expect(page).to have_content("You cannot delete yourself!")

@@ -11,14 +11,14 @@ feature "Donating money to Breakthrough" do
 
   let(:donate_page) { DonatePage.new }
 
-  xscenario "via the landing page", js: true do
-    # donate_page = DonatePage.new
-
-    donate_page.visit_page
-    donate_page.complete_form
-    donate_page.submit
-    expect(donate_page).to be_successful
-  end
+  #xscenario "via the landing page", js: true do
+  #  # donate_page = DonatePage.new
+  #
+  #  donate_page.visit_page
+  #  donate_page.complete_form
+  #  donate_page.submit
+  #  expect(donate_page).to be_successful
+  #end
 
   # scenario "Visitor can donate money", js: true do
   #   # fill_in "First name", with: "Jon"
