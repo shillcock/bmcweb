@@ -1,22 +1,35 @@
-%h2 Registrations for Intro Meeting: #{@meeting.date}
+.row
+  .large-6.columns
+    %p
+      %h2 Registrations
+  .large-6.columns
+    %p
+      %ul.inline-list.right
+        %li= link_to fa_icon("chevron-left", text: "Back"), :back, class: "button secondary round"
+.row
+  .large-9.columns
+    %h4 Intro Meeting: #{@meeting.date}
+    %h5
+      Total Registered:
+      %strong #{@registrations.count}
 
-%p
-  Total Registered: #{@registrations.count}
-
-- if @registrations.count == 0
-  %p No one has registered online yet.
-- else
-  %table#registrations
-    %tbody
-      - @registrations.each do |registration|
-        %tr{id: "intro_meeting_registration_#{registration.id}"}
-          %td
-            %strong
-              = registration.full_name
-            registered on
-            %strong
-              = registration.created_at
-          %td= link_to "Delete", admin_intro_meeting_registration_path(@meeting, registration), method: :delete,
-            data: { confirm: "Are you sure you want to delete this intro meeting registration?" }
-
-= link_to fa_icon("chevron-left", text: "Back"), admin_intro_meetings_path, class: "button secondary"
+    - if @registrations.count == 0
+      %p No one has registered online yet.
+    - else
+      %table#registrations
+        %thead
+          %tr
+            %th ID
+            %th Name
+            %th Email
+            %th Registered on
+            %th
+        %tbody
+          - @registrations.each do |registration|
+            %tr{id: "intro_meeting_registration_#{registration.id}"}
+              %td= registration.id
+              %td= registration.full_name
+              %td= registration.email
+              %td= registration.created_at
+              %td= link_to "Delete", admin_intro_meeting_registration_path(@meeting, registration), method: :delete,
+                data: { confirm: "Are you sure you want to delete this intro meeting registration?" }

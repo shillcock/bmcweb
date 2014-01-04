@@ -1,3 +1,12 @@
-%h1 New user
+.row
+  .large-6.columns
+    %p
+      %h2 New User
+  .large-6.columns
+    %p
+      %ul.inline-list.right
+        -#%li= link_to fa_icon("plus-circle", text: "New User"), new_admin_user_path, class: "button secondary round"
 
-= render "form", user: @user
+.row
+  .large-9.columns
+    = render "form", user: @user
