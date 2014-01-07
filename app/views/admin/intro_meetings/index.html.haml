@@ -19,7 +19,7 @@
           %th Delete
       %tbody
         - @intro_meetings.each do |meeting|
-          %tr{id: "intro_meeting_#{meeting.id}"}
+          %tr[meeting]
             %td= meeting.id
             %td= meeting.date
             %td= "#{meeting.starts_at.strftime('%l:%M %p')} - #{meeting.ends_at.strftime('%l:%M %p')}"

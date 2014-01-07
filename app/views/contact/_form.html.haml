@@ -1,0 +1,6 @@
+= simple_form_for message, url: "/contact" do |f|
+  .panel
+    = f.input :name
+    = f.input :email
+    = f.input :message
+  = f.submit 'Send Message', class: "button"

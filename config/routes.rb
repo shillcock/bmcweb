@@ -3,6 +3,9 @@ BreakthroughForMen::Application.routes.draw do
   get "what_is_breakthrough", to: "welcome#info"
   get "schedule", to: "welcome#schedule"
 
+  get "contact", to: "contact#new"
+  resource "contact", controller: :contact, only: [:create]
+
   resources :intro_meetings, only: [:index] do
     resources :registrations, controller: "intro_meeting_registrations", only: [:new, :create]
   end

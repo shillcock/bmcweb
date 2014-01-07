@@ -21,7 +21,7 @@
           %th
       %tbody
         - @users.each do |user|
-          %tr{id: "user_#{user.id}"}
+          %tr[user]
             %td= user.id
             %td= link_to user.email, [:admin, user]
             %td= user.created_at

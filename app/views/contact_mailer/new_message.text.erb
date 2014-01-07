@@ -1,0 +1,22 @@
+Hello <%= @name %>,
+
+We've received your email and will get back with you as soon as possible.
+
+Thanks!
+-Breakthrough Men's Community
+
+Begin forwarded message:
+
+> From: <%= "#{@name} <#{@email}>" %>
+> Subject: Contact Form
+> Date: <%= Time.zone.now %>
+> To: Breakthrough <info@breakthroughformen.org>
+>
+>
+
+Message:
+<%= @message %>
+
+********* Request Info *********
+IP Address: <%= @ip_address %>
+User Agent: <%= @user_agent %>

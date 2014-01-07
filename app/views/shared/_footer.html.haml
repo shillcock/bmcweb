@@ -1,7 +1,7 @@
 %ul.inline-list.right
   %li= link_to "Home", root_path
   %li= link_to "Donate", donate_path
-  %li= link_to "Contact Us", "#"
+  %li= link_to "Contact Us", contact_path
   - if signed_in?
     %li= link_to 'Sign out', sign_out_path, :method => :delete
     - admins_only do

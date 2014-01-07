@@ -26,7 +26,7 @@
             %th
         %tbody
           - @registrations.each do |registration|
-            %tr{id: "intro_meeting_registration_#{registration.id}"}
+            %tr[registration]
               %td= registration.id
               %td= registration.full_name
               %td= registration.email
