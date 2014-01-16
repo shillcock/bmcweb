@@ -12,7 +12,7 @@ class ContactPage
   end
 
   def submit
-    click_button 'Send it!'
+    click_button 'Send Message'
   end
 
   def successful?
