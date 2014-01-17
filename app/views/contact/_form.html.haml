@@ -1,6 +1,14 @@
 = simple_form_for message, url: "/contact" do |f|
   .panel
-    = f.input :name
-    = f.input :email
-    = f.input :message
-  = f.submit 'Send Message', class: "button"
+    .form-inputs
+      .row
+        .large-6.columns
+          = f.input :name
+        .large-6.columns
+          = f.input :email
+      .row
+        .large-12.columns
+          = f.input :message, as: :text
+  .form-actions
+    = f.submit 'Send Message', class: "button"
+    = link_to "Cancel", root_path, class: "button secondary"

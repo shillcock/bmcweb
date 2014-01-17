@@ -1,5 +1,8 @@
 = simple_form_for registration do |f|
-  = f.input :first_name
-  = f.input :last_name
-  = f.input :email
-  = f.submit 'Register now'
+  .form-inputs
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :email
+  .form-actions
+    = f.submit 'Register now', class: "button"
+    = link_to "Cancel", root_path, class: "button secondary"
