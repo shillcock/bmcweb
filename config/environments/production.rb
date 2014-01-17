@@ -65,7 +65,7 @@ BreakthroughForMen::Application.configure do
     admin.css
     admin.js
     welcome.css
-    donation.js
+    donations.js
     jquery.payment.js
   )
 
