@@ -51,3 +51,6 @@ window.analytics.load('fn0wuelgq0');
 // name or tag the page, edit or move this call to use your own tags.
 /*  */
 window.analytics.page();
+
+// accommodate Turbolinks and track page views
+// $(document).on('ready page:change', function() { analytics.page(); })
