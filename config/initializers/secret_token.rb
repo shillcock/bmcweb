@@ -9,4 +9,17 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-BreakthroughForMen::Application.config.secret_key_base = ENV['RAILS_SECRET_TOKEN'] || '645d9548ff32b96a4500966986477d85fb69773bb850068cd2cb87dfc8694e08126bb19478613a1e289bcbc00b707401a8a0123a92204951df9d6b0e3f7cc3ee'
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+BreakthroughForMen::Application.config.secret_key_base = secure_token

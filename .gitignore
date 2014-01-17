@@ -20,3 +20,4 @@ pickle-email-*.html
 .env.test
 /config/database.yml
 .idea/
+.secret
