@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131207085015) do
+ActiveRecord::Schema.define(version: 20140123051812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,38 @@ ActiveRecord::Schema.define(version: 20131207085015) do
     t.datetime "updated_at"
   end
 
+  create_table "lessons", force: true do |t|
+    t.string   "title"
+    t.text     "summary"
+    t.integer  "lesson_number"
+    t.integer  "workshop_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lessons", ["workshop_id"], name: "index_lessons_on_workshop_id", using: :btree
+
+  create_table "meetings", force: true do |t|
+    t.date     "date"
+    t.time     "starts_at"
+    t.time     "ends_at"
+    t.integer  "lesson_id"
+    t.integer  "section_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "meetings", ["lesson_id"], name: "index_meetings_on_lesson_id", using: :btree
+  add_index "meetings", ["section_id"], name: "index_meetings_on_section_id", using: :btree
+
+  create_table "sections", force: true do |t|
+    t.integer  "workshop_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sections", ["workshop_id"], name: "index_sections_on_workshop_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email"
     t.datetime "created_at"
@@ -59,5 +91,12 @@ ActiveRecord::Schema.define(version: 20131207085015) do
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+
+  create_table "workshops", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
