@@ -1,0 +1,12 @@
+.row
+  .large-6.columns
+    %p
+      %h2 Edit Workshop
+  .large-6.columns
+    %p
+      %ul.inline-list.right
+        %li= link_to fa_icon("plus-circle", text: "New Workshop"), new_admin_workshop_path, class: "button secondary round"
+
+.row
+  .large-9.columns
+    = render "form", workshop: @workshop

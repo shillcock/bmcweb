@@ -14,12 +14,17 @@ BreakthroughForMen::Application.routes.draw do
   post "donate", to: "donations#create"
 
   namespace :admin do
-    root to: "dashboard#index"
-    get "dashboard", to: "dashboard#index"
-
     resources :users
+
     resources :intro_meetings, only: [:index, :new, :create, :destroy] do
       resources :registrations, controller: "intro_meeting_registrations", only: [:index, :destroy]
     end
+
+    resources :workshops do
+      resources :lessons
+    end
+
+    root to: "dashboard#index"
+    get "dashboard", to: "dashboard#index"
   end
 end

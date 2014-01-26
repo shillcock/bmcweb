@@ -1,0 +1,33 @@
+.row
+  .large-6.columns
+    %p
+      %h2 Lessons
+  .large-6.columns
+    %p
+      %ul.inline-list.right
+        %li= link_to fa_icon("plus-circle", text: "New Lesson"), new_admin_workshop_lesson_path(@workshop), class: "button secondary round"
+.row
+  .large-9.columns
+    %table#workshop
+      %thead
+        %tr
+          %th ID
+          %th #
+          %th Title
+          %th Create at
+          %th
+      %tbody
+        - @lessons.each do |lesson|
+          %tr[lesson]
+            %td= lesson.id
+            %td= lesson.lesson_number
+            %td= link_to lesson.title, [:admin, @workshop, lesson]
+            %td= lesson.created_at
+            %td
+              = link_to "View", [:admin, @workshop, lesson]
+              |
+              = link_to "Edit", edit_admin_workshop_lesson_path(@workshop, lesson)
+              |
+              = link_to "Delete", admin_workshop_lesson_path(@workshop, lesson), method: :delete,
+                data: { confirm: "Are you sure you want to delete this lesson?" }
+  .large-3.columns
