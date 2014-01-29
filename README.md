@@ -1,5 +1,6 @@
-Breakthrough Men's Community
-============================
+![Breakthrough Men's Community](https://raw.github.com/breakthroughformen/breakthroughformen/267df30366c7ca48cb5b7a76bced98a7e30e5aeb/app/assets/images/bmc_banner.png)
+
+**Website:** http://breakthroughformen.org
 
 [ ![Codeship Status for
 breakthroughformen/breakthroughformen](https://www.codeship.io/projects/4ddd2200-2419-0131-525e-2ab15a461804/status?branch=master)](https://www.codeship.io/projects/8841) [![Coverage
@@ -27,4 +28,3 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
