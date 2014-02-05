@@ -1,23 +1,52 @@
-= simple_form_for donation, url: "/donate", html: { class: "form-horizontal", id: "donation-form" } do |f|
+= simple_form_for donation, url: "/donate", html: { id: "donation_form" } do |f|
   = f.error_notification
 
-  .form-inputs
-    %h2 Donor Information
+  %h2 Donor Information
+  .form-inputs.panel
     = f.input :email, as: :email, placeholder: "you@example.com"
     = f.input :comment
-    = f.input :amount, placeholder: "75", input_html: { min: "10", step: "10" }
 
-    = label_tag "card-number", "Credit Card Number"
-    = text_field_tag "card-number", nil, name: nil, autocomplet: 'off', maxlength: 20, placeholder: "●●●● ●●●● ●●●● ●●●●"
+    %div.panel
+      = f.input :amount, placeholder: "$100", input_html: { min: "10", step: "10" }
+      #donation_amount_slider
 
-    = label_tag "card-cvc", "CVC"
-    = text_field_tag "card-cvc", nil, name: nil, size: 4, placeholder: "CVC"
-    = image_tag "creditcards/credit.png", id: "card-image"
+    #stripe_error.error.alert-box.alert{"data-alert" => "", style: "display:none"}
+      = f.error :base
 
-    = label_tag "card-month", "Card Expiration"
-    = select_month nil, {add_month_numbers: true}, {name: nil, id: "card-month"}
-    = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card-year"}
+    = f.input :cc_number,
+      label: "Credit Card Number",
+      required: true,
+      autocomplete: 'off',
+      pattern: "\d*",
+      maxlength: 20,
+      placeholder: "●●●● ●●●● ●●●● ●●●●",
+      input_html: { name: nil, autocompletetype: "cc-number" }
+    = f.error :cc_number
+
+    .row
+      .large-5.columns
+        = f.input :cc_cvc,
+          label: "Security Code on Card",
+          required: true,
+          autocomplete: 'off',
+          size: 4,
+          placeholder: "CVC",
+          input_html: { name: nil, autocompletetype: "cc-csc" }
+      .large-2.columns
+        = image_tag "creditcards/credit.png", id: "cc_image"
+
+      .large-5.columns
+        = f.input :cc_expiration,
+          label: "Card Expiration",
+          required: true,
+          as: :date,
+          start_year: Date.today.year,
+          end_year: Date.today.year+15,
+          discard_day: true,
+          add_month_numbers: true,
+          order: [:month, :year],
+          input_html: { name: '' }
 
   .form-actions
-    = f.button :submit, "Send Donation", id: "submit-button"
+    = f.button :submit, "Send Donation", id: "submit_button"
     = link_to "Cancel", root_path, class: "button secondary"

@@ -1,5 +1,6 @@
-- content_for :head do
-  %meta{ name: "stripe-key", content: "#{Rails.configuration.stripe[:publishable_key]}" }
+- content_for :javascript do
+  = javascript_include_tag 'https://js.stripe.com/v2/'
+  = javascript_include_tag 'donations'
 
 %h1 Support Breakthrough with a Donation
 
@@ -8,9 +9,8 @@
   %br/
   Please consider making a donation to support scholarships for lower income men.
 
-.alert.alert-danger.alert-dismissable{id: "stripe-error", style:"display:none"}
-
-= render 'form', donation: @donation
+#donation{"data-stripe-key" => "#{Rails.configuration.stripe[:publishable_key]}"}
+  = render 'form', donation: @donation
 
 %br/
 %small
@@ -20,8 +20,3 @@
 %br/
 %small Breakthrough Men's Community does not directly process or store your credit card information at any time.
 %br/
-
-- content_for :javascript do
-  = javascript_include_tag 'https://js.stripe.com/v2/'
-  = javascript_include_tag 'jquery.payment.js'
-  = javascript_include_tag 'donations'

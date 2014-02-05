@@ -1,17 +1,12 @@
-%h1 New Introductory Meetings
-
-= simple_form_for [:admin, @intro_meeting] do |f|
-  - if @intro_meeting.errors.any?
-    %div#error_explantion
-      %h2
-        = pluralize(@intro_meeting.errors.count, 'error')
-        prohibited this intro meeting from being saved:
-
-      %ul
-        - @intro_meeting.errors.full_messages.each do |msg|
-          %li= msg
-
-  = f.input :date
-  = f.input :starts_at
-  = f.input :ends_at
-  = f.button :submit
+.row
+  .large-6.columns
+    %p
+      %h2 New Intro Meetings
+  .large-6.columns
+    %p
+      %ul.inline-list.right
+        %li= link_to fa_icon("plus-circle", text: "New Intro Meeting"), new_admin_intro_meeting_path, class: "button secondary round"
+.row
+  .large-9.columns
+    = render "form", intro_meeting: @intro_meeting
+  .large-3.columns

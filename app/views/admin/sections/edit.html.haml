@@ -1,0 +1,9 @@
+.row
+  .large-6.columns
+    %p
+      %h2= fa_icon("calendar", text: "Edit Section")
+  .large-6.columns
+    %p
+.row
+  .large-9.columns
+    = render "form", workshop: @workshop, section: @section

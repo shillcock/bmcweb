@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140123051812) do
+ActiveRecord::Schema.define(version: 20140126172419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,9 +59,8 @@ ActiveRecord::Schema.define(version: 20140123051812) do
   add_index "lessons", ["workshop_id"], name: "index_lessons_on_workshop_id", using: :btree
 
   create_table "meetings", force: true do |t|
-    t.date     "date"
-    t.time     "starts_at"
-    t.time     "ends_at"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.integer  "lesson_id"
     t.integer  "section_id"
     t.datetime "created_at"
@@ -75,6 +74,7 @@ ActiveRecord::Schema.define(version: 20140123051812) do
     t.integer  "workshop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
   end
 
   add_index "sections", ["workshop_id"], name: "index_sections_on_workshop_id", using: :btree

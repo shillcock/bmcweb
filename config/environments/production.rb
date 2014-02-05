@@ -64,9 +64,7 @@ BreakthroughForMen::Application.configure do
     vendor/modernizr.js
     admin.css
     admin.js
-    welcome.css
     donations.js
-    jquery.payment.js
   )
 
   # Ignore bad email addresses and do not raise email delivery errors.

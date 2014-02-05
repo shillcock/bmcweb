@@ -1,6 +1,3 @@
-- content_for :head do
-  = stylesheet_link_tag :welcome
-
 .row
   .large-12.columns
     .masthead
@@ -35,8 +32,8 @@
           %tbody
             - @upcoming_intro_meetings.each do |meeting|
               %tr{id: "intro_meeting_#{meeting.id}"}
-                %td= meeting.date
-                %td= "#{meeting.starts_at.strftime('%l:%M %p')} - #{meeting.ends_at.strftime('%l:%M %p')}"
+                %td= meeting.date.strftime("%A, %B %e, %Y")
+                %td= meeting.time_range
                 %td= link_to 'Register', new_intro_meeting_registration_path(meeting)
   .large-6.columns
     #upcoming-events
@@ -88,7 +85,6 @@
         = link_to "Final Report", "/files/BMC_Final_Report_Blue_Shield_Study.pdf"
         (1.45 MB) of a study funded by the Blue Shield of California Foundation, evaluating the impact of Breakthrough on men’s health, focusing on issues of anger, violence, and abuse.
       %a{class: "close-reveal-modal"} &#215;
-
 .row
   .large-12.columns
     #support-donation
@@ -98,4 +94,3 @@
         %p
           = link_to "Donate now", donate_path, class: "button success right"
           we want to make breakthrough available to all men who want to make positive change in their lives. Please consider making a donation to support scholarships for lower income men.
-

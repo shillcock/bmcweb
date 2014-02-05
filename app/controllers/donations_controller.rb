@@ -46,6 +46,7 @@ class DonationsController < ApplicationController
     end
 
     def process_donation
+      return false unless @donation.valid?
       DonationProcessor.new(@donation).process
     end
 end

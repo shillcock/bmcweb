@@ -1,7 +1,10 @@
 = simple_form_for registration do |f|
-  .form-inputs
-    = f.input :first_name
-    = f.input :last_name
+  .form-inputs.panel
+    .row
+      .large-6.columns
+        = f.input :first_name
+      .large-6.columns
+        = f.input :last_name
     = f.input :email
   .form-actions
     = f.submit 'Register now', class: "button"

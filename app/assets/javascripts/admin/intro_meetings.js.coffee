@@ -1,3 +1,5 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+jQuery ->
+  $("#intro_meeting_starts_at").ptTimeSelect()
+  $("#intro_meeting_ends_at").ptTimeSelect()
+  $('#intro_meeting_date').fdatepicker
+    format: 'yyyy-mm-dd'

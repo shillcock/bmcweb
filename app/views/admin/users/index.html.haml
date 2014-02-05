@@ -1,5 +1,37 @@
-- content_for :head do
-  = stylesheet_link_tag 'admin/users'
+.off-canvas-wrap
+  .inner-wrap
+    %nav.tab-bar
+      %section.left-small
+        %a.left-off-canvas-toggle.menu-icon
+          %span
+      %section.middle.tab-bar-section
+        %h1.title Foundation
+      %section.right-small
+        %a.right-off-canvas-toggle.menu-icon
+          %span
+    %aside.left-off-canvas-menu
+      %ul.off-canvas-list
+        %li
+          %label Foundation
+        %li
+          %a{href: "#"} The Psychohistorians
+          %a{href: "#"} The Psychohistorians
+          %a{href: "#"} The Psychohistorians
+          %a{href: "#"} The Psychohistorians
+    %aside.right-off-canvas-menu
+      %ul.off-canvas-list
+        %li
+          %label Users
+        %li
+          %a{href: "#"} Hari Seldon
+    %section.main-section
+    %a.exit-off-canvas
+
+.row
+  .large-2.columns
+    %ul.side-nav
+      %li
+  .large-10.colums
 
 .row
   .large-6.columns

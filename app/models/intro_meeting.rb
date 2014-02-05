@@ -26,5 +26,9 @@ class IntroMeeting < ActiveRecord::Base
     where('date >= ?', Time.now).order(:date).limit(limit)
   end
 
+  def time_range
+    "#{starts_at.strftime('%l:%M %p')} - #{ends_at.strftime('%l:%M %p')}"
+  end
+
   #strftime(”%l:%M %p”)
 end

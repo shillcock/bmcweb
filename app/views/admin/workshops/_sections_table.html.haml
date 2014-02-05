@@ -1,0 +1,20 @@
+%table#sections
+  %thead
+    %tr
+      %th ID
+      %th Starts
+      %th Title
+      %th{width: 140}
+  %tbody
+    - sections.each do |section|
+      %tr[section]
+        %td= section.id
+        %td= section.start_date
+        %td= section.title
+        %td
+          = link_to "View", [:admin, workshop, section]
+          |
+          = link_to "Edit", edit_admin_workshop_section_path(workshop, section)
+          |
+          = link_to "Delete", admin_workshop_section_path(workshop, section), method: :delete,
+            data: { confirm: "Are you sure you want to delete this section?" }

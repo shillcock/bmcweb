@@ -55,6 +55,6 @@ class Admin::LessonsController < AdminController
     end
 
     def lesson_params
-      params.require(:lesson).permit(:title, :summary, :lesson_number)
+      params.requyyire(:lesson).permit(:title, :suyymmary, :lesson_number)
     end
 end

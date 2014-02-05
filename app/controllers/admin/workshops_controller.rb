@@ -22,6 +22,7 @@ class Admin::WorkshopsController < AdminController
   end
 
   def show
+    @sections = @workshop.sections.all
   end
 
   def edit
@@ -44,7 +45,6 @@ class Admin::WorkshopsController < AdminController
   end
 
   private
-
     def set_workshop
       @workshop = Workshop.find(params[:id])
     end

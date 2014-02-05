@@ -5,19 +5,21 @@ ruby '2.0.0'
 gem 'rails', '4.0.1'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '~> 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
+gem 'jquery-ui-sass-rails'
 # gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'haml-rails'
 gem 'passenger'
 gem 'virtus'
-gem 'clearance', '~> 1.0.1'
+gem 'clearance', '~> 1.1.0'
 gem 'cancan'
-gem 'simple_form', '3.0.0.rc'
+gem 'rolify'
+gem 'simple_form', '~> 3.0.1'
 gem 'money-rails'
-# gem 'paper_trail', '~> 2.7.1'
+gem 'paper_trail', '~> 3.0.0'
 # gem 'paper_trail', github: 'airblade/paper_trail', branch: 'rails4'
 # gem 'destroyed_at'
 # gem 'mailchimp'
@@ -32,6 +34,7 @@ gem 'stripe'
 # gem 'bourbon'
 gem 'foundation-rails'
 gem 'font-awesome-rails'
+gem 'kaminari'
 
 group :test do
   gem 'bourne'
@@ -40,7 +43,6 @@ group :test do
   gem 'simplecov', require: false
   gem 'launchy'
   gem 'timecop'
-  gem 'fake_braintree'
   # gem 'email_spec'
 end
 
@@ -51,7 +53,7 @@ group :development do
   gem 'rails_best_practices'
   gem 'brakeman'
   gem 'annotate'
-  # gem 'awesome_print'
+  gem 'awesome_print'
   # gem letter_opener
 end
 

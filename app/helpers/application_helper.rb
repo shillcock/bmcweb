@@ -22,4 +22,12 @@ module ApplicationHelper
     hash = Digest::MD5.hexigest(email)
     "http://www.gravatar.com/avatar/#{hash}?s=#{size}"
   end
+
+  # def formatted_date(date)
+  #   date.strftime("%A, %B %e, %Y")
+  # end
+
+  # def formatted_time(time)
+  #   time.strftime("%l:%M %p")
+  # end
 end

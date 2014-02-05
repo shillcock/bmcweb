@@ -1,3 +1,15 @@
-%h2 Intro Meeting Registration
-
-= render "form", registration: @registration
+%h2 Introductory Meeting Registration
+%p
+  Fill in the form below to registering for a free introductory meeting on the
+  %strong= @meeting.date.strftime("%A, %B %e, %Y.")
+.row
+  .large-6.columns
+    = render "form", registration: @registration
+  .large-6.columns
+    %p
+      Thanks for signing up for one of our introductory meetings. You'll have a chance to meet the group leaders and other interested men as well as having all your questions regarding content, schedules and finances addressed. Bring all your questions, curiosity, interest, hopes and doubts. You are also encouraged to bring friends who are interested.
+    %p
+      Plan on arriving about
+      = (@meeting.starts_at - 600).strftime("%l:%M %p,")
+      we'll start right at
+      = @meeting.starts_at.strftime("%l:%M %p")
