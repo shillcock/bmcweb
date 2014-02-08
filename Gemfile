@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
+ruby '2.1.0'
 
-gem 'rails', '4.0.1'
+gem 'rails', '4.0.2'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '~> 1.3.0'
@@ -18,7 +18,8 @@ gem 'clearance', '~> 1.1.0'
 gem 'cancan'
 gem 'rolify'
 gem 'simple_form', '~> 3.0.1'
-gem 'money-rails'
+gem 'money', '~> 6.0.1'
+gem 'money-rails', '~> 0.9.0'
 gem 'paper_trail', '~> 3.0.0'
 # gem 'paper_trail', github: 'airblade/paper_trail', branch: 'rails4'
 # gem 'destroyed_at'
@@ -43,7 +44,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'launchy'
   gem 'timecop'
-  # gem 'email_spec'
+  gem 'email_spec'
 end
 
 group :development do
@@ -53,7 +54,6 @@ group :development do
   gem 'rails_best_practices'
   gem 'brakeman'
   gem 'annotate'
-  gem 'awesome_print'
   # gem letter_opener
 end
 
@@ -64,8 +64,8 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'factory_girl_rails'
   #gem 'debugger'
-  gem 'pry-rails'
-  gem 'pry-nav'
+  gem 'awesome_print'
+  gem 'jazz_hands'
 end
 
 group :production do
