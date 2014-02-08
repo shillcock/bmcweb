@@ -2,16 +2,6 @@ jQuery ->
   Stripe.setPublishableKey($("#donation").data('stripe-key'))
   donation.setupForm()
 
-  $("#donation_amount_slider").slider
-    range: "min"
-    animate: "fast"
-    value: 100
-    min: 10
-    max: 1000
-    slide: (event, ui) ->
-      $("#donation_amount").val("$" + ui.value)
-  $("#donation_amount").val("$" + $("#donation_amount_slider").slider("value"))
-
 donation =
   setupForm: ->
     $("#donation_cc_number").payment "formatCardNumber"
@@ -21,11 +11,20 @@ donation =
       cardType = $.payment.cardType(number)
       img = $("#cc_image")[0]
       img.src = donation.cardTypeImage(cardType)
-    $("#stripe_error").hide()
+    $("#stripe_error").slideUp()
     $('#donation_form').submit ->
       $('#submit_button').attr('disabled', true)
       donation.processCard() if donation.isValid()
       false
+    $("#donation_amount_slider").slider
+      range: "min"
+      animate: "fast"
+      value: 100
+      min: 10
+      max: 1000
+      slide: (event, ui) ->
+        $("#donation_amount").val("$" + ui.value)
+    $("#donation_amount").val("$" + $("#donation_amount_slider").slider("value"))
 
   isValid: ->
     valid = true
@@ -40,6 +39,7 @@ donation =
     if valid
       true
     else
+      $("#stripe_error").slideDown()
       $("#stripe_error").text("Your credit card information is not valid.")
       $("#stripe_error").show()
       $('#submit_button').attr('disabled', false)
@@ -65,7 +65,7 @@ donation =
       $form.get(0).submit()
     else
       console.log(response.error.message)
-      $("#stripe_error").text(response.error.message)
+      $("#stripe_error").text(response.error.message).slideDown()
       $("#stripe_error").show()
       $("#submit_button").attr('disabled', false)
 
