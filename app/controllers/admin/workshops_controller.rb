@@ -22,7 +22,7 @@ class Admin::WorkshopsController < AdminController
   end
 
   def show
-    @sections = @workshop.sections.all
+    @sections = @workshop.sections.order('created_at ASC')
   end
 
   def edit
