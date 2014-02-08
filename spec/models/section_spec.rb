@@ -11,5 +11,9 @@
 require 'spec_helper'
 
 describe Section do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:section) { create(:section) }
+  subject { section }
+
+  it { should belong_to(:workshop) }
+  it { should have_many(:meetings) }
 end

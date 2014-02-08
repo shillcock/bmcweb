@@ -25,8 +25,8 @@ describe Donation do
 
     it { should validate_presence_of :email }
     it { should validate_presence_of :amount_cents }
-    it { should monetize(:amount) }
-    it { should monetize(:stripe_processing_fee) }
+    it { should monetize(:amount_cents) }
+    it { should monetize(:stripe_processing_fee_cents) }
     it { should be_valid }
   end
 end

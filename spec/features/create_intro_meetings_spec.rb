@@ -9,9 +9,9 @@ feature 'Creating IntroMeetings as an Admin' do
     header_nav.click_link('Intro Meetings')
     click_link 'New Intro Meeting'
 
-    select_date meeting_date, from: 'intro_meeting_date'
-    select_time Time.parse("19:00"), from: 'intro_meeting_starts_at'
-    select_time Time.parse("21:00"), from: 'intro_meeting_ends_at'
+    fill_in "Date", with: meeting_date
+    fill_in "Starts at" , with: "7:00 PM"
+    fill_in "Ends at" , with: "9:00 PM"
 
     click_button 'Create Intro meeting'
 

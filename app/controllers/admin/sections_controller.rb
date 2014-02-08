@@ -27,6 +27,7 @@ class Admin::SectionsController < AdminController
   def show
     @meetings = @section.meetings.order(:created_at)
     @meetings_url = admin_section_meetings_path(@section, format: :json)
+    # FIXME, what if meetings is empty?
     @first_meeting_date = @meetings.first.starts_at.to_date
   end
     #sectionCalendar{"data-meetings-url" => admin_section_meetings_path(@section, format: :json)}

@@ -15,5 +15,12 @@
 require 'spec_helper'
 
 describe Meeting do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:workshop) { create(:workshop) }
+  let(:lesson) { create(:lesson, workshop: workshop) }
+  let(:section) { create(:section, workshop: workshop) }
+  let(:meeting) { create(:meeting, section: section, lesson: lesson) }
+  subject { meeting }
+
+  it { should belong_to(:section) }
+  it { should belong_to(:lesson) }
 end

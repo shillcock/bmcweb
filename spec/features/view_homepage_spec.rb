@@ -18,7 +18,7 @@ feature 'View the homepage' do
       expect(page).to have_selector 'table#intro-meetings tr', count: 4 # 1 heading row + 3 meetings rows
 
       [1.week, 2.weeks, 3.weeks].each do |days|
-        expect(page).to have_content (first_of_november + days).to_date
+        expect(page).to have_content (first_of_november + days).strftime("%A, %B %e, %Y")
       end
     end
   end
