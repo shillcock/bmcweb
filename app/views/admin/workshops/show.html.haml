@@ -1,20 +1,20 @@
-.row
-  .large-6.columns
-    %p
-      %h2= @workshop.title
-  .large-6.columns
-    %p
-      %ul.inline-list.right
-        %li= link_to fa_icon("pencil", text: "Edit Workshop"), edit_admin_workshop_path(@workshop), class: "button secondary round"
-        %li= link_to fa_icon("times", text: "Delete Workshop"), admin_workshop_path(@workshop), class: "button secondary round",
-          method: :delete, data: { confirm: "Are you sure you want to delete this workshop?" }
-.row
-  .large-9.columns
-    .row
-      .large-12.columns
-        %h4 Sections
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li= link_to "Workshops", [:admin, :workshops]
+    %li.active= @workshop.title
+
+.container.workshops
+  %header
+    %h2= fa_icon("book", text: @workshop.title)
+  %hr
+  .row
+    .tabbable.col-md-9
+      %ul.nav.nav-tabs
+        %li.active= link_to fa_icon("list", text: "Sections"), [:admin, @workshop]
+        %li= link_to fa_icon("chevron-left", text: "Back"), [:admin, :workshops]
+      .main
         = render "sections_table", workshop: @workshop, sections: @sections
-  .large-3.columns
-    .panel
-      %h4 New Section
+    %aside.col-md-3
+      %h4= fa_icon("plus", text: "New Section")
       = render "new_section", workshop: @workshop, section: @workshop.sections.build

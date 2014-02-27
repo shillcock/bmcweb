@@ -1,12 +1,16 @@
-.row
-  .large-6.columns
-    %p
-      %h2 New User
-  .large-6.columns
-    %p
-      %ul.inline-list.right
-        -#%li= link_to fa_icon("plus-circle", text: "New User"), new_admin_user_path, class: "button secondary round"
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li= link_to "Users", [:admin, :users]
+    %li.active New
 
-.row
-  .large-9.columns
+.container.users
+  %header
+    %h2= fa_icon("users", text: "Users")
+  %hr
+  .tabbable
+    %ul.nav.nav-tabs
+      %li= link_to fa_icon("list", text: "List"), [:admin, :users]
+      %li.active= link_to fa_icon("plus", text: "Add new user"), [:new, :admin, :user]
+  .main
     = render "form", user: @user

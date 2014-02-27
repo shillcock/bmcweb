@@ -1,4 +1,14 @@
-= nav_link_to 'Home', root_path
-= nav_link_to 'What is Breakthrough?', what_is_breakthrough_path
-= nav_link_to 'Donate', donate_path
-= nav_link_to 'Contact Us', contact_path
+%li{class: active_page_class(root_path)}
+  = link_to "Home", root_path
+
+%li{class: active_page_class(:what_is_breakthrough)}
+  = link_to 'What is Breakthrough?', :what_is_breakthrough
+
+%li{class: active_page_class(:schedule)}
+  = link_to "Schedule", :schedule
+
+%li{class: active_page_class(:donate)}
+  = link_to 'Donate', :donate
+
+%li{class: active_page_class(:contact)}
+  = link_to 'Contact Us', :contact

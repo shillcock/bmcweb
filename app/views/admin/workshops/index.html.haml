@@ -1,11 +1,25 @@
-.row
-  .large-6.columns
-    %p
-      %h2= fa_icon("book", text: "Workshops")
-  .large-6.columns
-.row
-  .large-9.columns
-    %ul.side-nav#workshops
-      - @workshops.each do |workshop|
-        %li[workshop]= link_to workshop.title, [:admin, workshop], class: "button large secondary"
-  .large-3.columns
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li.active Workshops
+
+.container.workshops
+  %header
+    %h2= fa_icon("book", text: "Workshops")
+  %hr
+  .tabbable
+    %ul.nav.nav-tabs
+      %li.active= link_to fa_icon("list", text: "List"), [:admin, :users]
+  .main
+    %table.table.table-hover#workshops
+      %thead
+        %tr
+          %th ID
+          %th Title
+          %th Created at
+      %tbody
+        - @workshops.each do |workshop|
+          %tr[workshop]
+            %td= workshop.id
+            %td= link_to workshop.title, [:admin, workshop]
+            %td= workshop.created_at

@@ -1,0 +1,21 @@
+%p#blue-shield
+  Learn about the
+  %button.btn.btn-default{type: "button", "data-toggle" => "modal", "data-target" => "#blue-shield-dialog"}
+    Blue Shield of CA Foundation Study.
+#blue-shield-dialog.modal.fade{tabindex: "-1", role: "dialog", "aria-labelledby" => "blue-shield-dialog-title", "aria-hidden" => "true"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{type: "button", "data-dismiss" => "modal", "aria-hidden" => true} &times
+        %h3#blue-shield-dialog-title.modal-title Blue Shield of CA Foundation Study
+      .modal-body
+        %p
+          A 2 year study of the long term effectiveness of Breakthrough for men over the past 20 years was conducted in 2006 – 2008. The results are stunning. Below you’ll find both a simple 7 page Executive Summary as well as the full 212 page report.
+        %h5 Breakthrough Men’s Community: Lessons Learned and Future Directions
+        %p
+          = image_tag("pdf_file.gif", alt: "pdf file", class: "pull-left")
+          Download the
+          =link_to "Executive Summary", "/files/BMC_Executive_Summary_Blue_Shield_Study.pdf"
+          (282 KB) or the
+          =link_to "Final Report", "/files/BMC_Final_Report_Blue_Shield_Study.pdf"
+          (1.45 MB) of a study funded by the Blue Shield of California Foundation, evaluating the impact of Breakthrough on men’s health, focusing on issues of anger, violence, and abuse.

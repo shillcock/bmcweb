@@ -5,9 +5,9 @@ feature 'Creating IntroMeetings as an Admin' do
 
   scenario 'Creating an intro meeting' do
     visit root_path(as: admin)
-    header_nav.click_link('Admin')
-    header_nav.click_link('Intro Meetings')
-    click_link 'New Intro Meeting'
+    click_link 'Admin'
+    click_link 'Intro Meetings'
+    click_link 'Add new meeting'
 
     fill_in "Date", with: meeting_date
     fill_in "Starts at" , with: "7:00 PM"

@@ -7,8 +7,8 @@ feature "Deleting Intro Meeting Registrations" do
 
   before do
     visit root_path(as: admin)
-    header_nav.click_link "Admin"
-    header_nav.click_link "Intro Meetings"
+    click_link "Admin"
+    click_link "Intro Meetings"
 
     find("#intro_meeting_#{intro_meeting.id}").click_link "Registrations"
 

@@ -1,12 +1,16 @@
-.row
-  .large-6.columns
-    %p
-      %h2 New Intro Meetings
-  .large-6.columns
-    %p
-      %ul.inline-list.right
-        %li= link_to fa_icon("plus-circle", text: "New Intro Meeting"), new_admin_intro_meeting_path, class: "button secondary round"
-.row
-  .large-9.columns
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li= link_to "Intro Meetings", [:admin, :intro_meetings]
+    %li.active New
+
+.container.users
+  %header
+    %h2= fa_icon("bullhorn", text: "Intro Mettings")
+  %hr
+  .tabbable
+    %ul.nav.nav-tabs
+      %li= link_to fa_icon("list", text: "List"), [:admin, :intro_meetings]
+      %li.active= link_to fa_icon("plus", text: "Add new meeting"), [:new, :admin, :intro_meeting]
+  .main
     = render "form", intro_meeting: @intro_meeting
-  .large-3.columns

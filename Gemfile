@@ -2,16 +2,18 @@ source 'https://rubygems.org'
 
 ruby '2.1.0'
 
-gem 'rails', '4.0.2'
+gem 'rails', '4.0.3'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '~> 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jquery-ui-sass-rails'
+gem 'bootstrap-sass', '~> 3.1.0'
 # gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'haml-rails'
+
 gem 'passenger'
 gem 'virtus'
 gem 'clearance', '~> 1.1.0'
@@ -33,7 +35,6 @@ gem 'aasm'
 gem 'stripe'
 # gem 'stripe_event'
 # gem 'bourbon'
-gem 'foundation-rails'
 gem 'font-awesome-rails'
 gem 'kaminari'
 
@@ -55,6 +56,7 @@ group :development do
   gem 'brakeman'
   gem 'annotate'
   # gem letter_opener
+  gem 'spring'
 end
 
 group :development, :test do
@@ -66,6 +68,7 @@ group :development, :test do
   #gem 'debugger'
   gem 'awesome_print'
   gem 'jazz_hands'
+  gem "spring-commands-rspec"
 end
 
 group :production do

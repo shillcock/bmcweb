@@ -6,25 +6,20 @@
     %title= content_for?(:title) ? yield(:title) : "Breakthrough Men's Community"
     %meta{name: "description", content: content_for?(:description) ? yield(:description) : "Breakthrough Men's Community"}
     = stylesheet_link_tag :application
-    = javascript_include_tag "vendor/modernizr"
+    /[if lt IE 9]
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     = yield :head
     = csrf_meta_tags
   %body{class: page_class}
-    %header
-      .row
-        .large-12.columns
-          .masthead
-            = image_tag 'bmc_banner.png'
-          = render 'shared/navigation'
-    %main{role: 'main'}
-      .row
-        .large-12.columns
-          = render 'shared/messages'
-          = yield
-    %footer
-      .row
-        .large-12.columns
-          %hr
-          = render 'shared/footer'
+    .container-narrow
+      .masthead
+        = image_tag 'bmc_banner.png'
+        = render 'shared/navigation'
+      %hr
+      = render 'shared/messages'
+      = yield
+      %hr
+      %footer
+        = render 'shared/footer'
     = javascript_include_tag :application
     = render 'shared/javascript'

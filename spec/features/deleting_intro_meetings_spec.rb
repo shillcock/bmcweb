@@ -6,8 +6,8 @@ feature "Deleting Intro Meetings" do
 
   before do
     visit root_path(as: admin)
-    header_nav.click_link "Admin"
-    header_nav.click_link "Intro Meetings"
+    click_link "Admin"
+    click_link "Intro Meetings"
   end
 
   scenario "Deleting an intro meeting" do

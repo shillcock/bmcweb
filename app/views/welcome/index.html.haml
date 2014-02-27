@@ -1,96 +1,39 @@
-.row
-  .large-12.columns
-    .masthead
-      = image_tag "real_change.png"
-.row
-  .large-6.columns
+.masthead
+  = image_tag "real_change.png"
+.row.marketing
+  .col-md-6
     %p
       Thanks for looking into Breakthrough - please come to one of our free introductory evenings to learn more. We'll cover the history and content of the workshops as well as go over all the details. You'll have an opportunity to register for Breakthrough that evening or online after you've heard all about it.
     %p
       Click on the date you'd like to attend and plan on arriving about 6:50 - we'll start right at 7:00.
-      = link_to "Click here", "#"
+      = link_to "Click here", schedule_path
       to see upcoming class schedules.
-  .large-6.columns
-    = image_tag "board_of_directors.jpg", class: "th"
-.row
-  .large-6.columns
-    #upcoming-intro-meetings
-      %h4
-        Upcoming Free Introductory Meetings
-      - if @upcoming_intro_meetings.count == 0
-        %p
-          No upcoming introductory meetings scheduled.
-          %br/
-          Please check back soon.
-      - else
-        %table.table#intro-meetings
-          %thead
-            %tr
-              %th Date
-              %th Time
-              %th Free
-          %tbody
-            - @upcoming_intro_meetings.each do |meeting|
-              %tr{id: "intro_meeting_#{meeting.id}"}
-                %td= meeting.date.strftime("%A, %B %e, %Y")
-                %td= meeting.time_range
-                %td= link_to 'Register', new_intro_meeting_registration_path(meeting)
-  .large-6.columns
-    #upcoming-events
-      %h4
-        Upcoming Events
-      %table.table
-        %thead
-          %tr
-            %th Date
-            %th Event
-            %th
-        %tbody
-          %tr
-            %td 2013-06-27
-            %td= link_to "The 23rd Annual Breakthrough Retreat", "#"
-            %td
-              %a.btn.btn-success{:href => "#"} Register
-.row
-  .large-6.columns
+    = render "upcoming_intro_meetings"
+    #intro-meeting-register-dialog
+  .col-md-6
+    = image_tag "board_of_directors.jpg", class: "img-rounded"
+    .events.alert.alert-block
+      %h5 Registration Open To All Breakthrough Graduates
+      = render "upcoming_events"
+.row.marketing
+  .col-md-6
     %p
       Breakthrough is you. It’s the community around you. It’s your brother, your co-worker, your friends, the neighbor you’ve never met. It’s the father struggling to find answers and the son who loves him.
     %p
       Breakthrough Men’s Community is actively creating a new community and culture of men, where listening, feeling and discussion have replaced suppression, self-medication and violence.
     %p
       At its core, Breakthrough is an education program that has transformed the lives of over 1,500 men on the Central Coast.
-  .large-6.columns
-    #graduates-say
-      %blockquote
-        %h5 Breakthrough Graduates consistently say:
-        %ul
-          %li "we are better listeners, partners and parents."
-          %li "we found the safety and support we needed."
-          %li "we have gotten tools for life that work."
-          %li "it’s been life changing."
-    #blue-shield
-      %p
-        Learn about the
-        %a.button.secondary{"data-reveal-id" => "blue-shield-info", href: "#", role: "button"} Blue Shield of CA Foundation Study.
-    #blue-shield-info{class: "reveal-modal", "data-reveal" => ""}
-      %h3 Blue Shield of CA Foundation Study
-      %p
-        A 2 year study of the long term effectiveness of Breakthrough for men over the past 20 years was conducted in 2006 – 2008. The results are stunning. Below you’ll find both a simple 7 page Executive Summary as well as the full 212 page report.
-      %h5 Breakthrough Men’s Community: Lessons Learned and Future Directions
-      %p
-        = image_tag("pdf_file.gif", alt: "pdf file", class: "left")
-        Download the
-        = link_to "Executive Summary", "/files/BMC_Executive_Summary_Blue_Shield_Study.pdf"
-        (282 KB) or the
-        = link_to "Final Report", "/files/BMC_Final_Report_Blue_Shield_Study.pdf"
-        (1.45 MB) of a study funded by the Blue Shield of California Foundation, evaluating the impact of Breakthrough on men’s health, focusing on issues of anger, violence, and abuse.
-      %a{class: "close-reveal-modal"} &#215;
-.row
-  .large-12.columns
-    #support-donation
-      .panel
-        %h4
-          Support breakthrough with a donation
-        %p
-          = link_to "Donate now", donate_path, class: "button success right"
-          we want to make breakthrough available to all men who want to make positive change in their lives. Please consider making a donation to support scholarships for lower income men.
+  .col-md-6
+    .well
+      %h5 Breakthrough Graduates consistently say:
+      %ul
+        %li "we are better listeners, partners and parents."
+        %li "we found the safety and support we needed."
+        %li "we have gotten tools for life that work."
+        %li "it’s been life changing."
+    = render "blue_shield"
+
+.row.marketing
+  .col-md-12
+    .donate.alert.alert-block.alert-info
+      = render "donate_now"

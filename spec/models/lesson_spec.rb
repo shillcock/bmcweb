@@ -18,4 +18,6 @@ describe Lesson do
   subject { lesson }
 
   it { should belong_to(:workshop) }
+  it { should have_many(:meetings).dependent(:destroy) }
+  it { should have_many(:sections).through(:meetings) }
 end

@@ -26,10 +26,6 @@ module CapybaraHelpers
     select time.hour.to_s.rjust(2, '0'), :from => "#{field}_4i"
     select time.min.to_s.rjust(2, '0'),  :from => "#{field}_5i"
   end
-
-  def header_nav
-    find('header nav')
-  end
 end
 
 RSpec.configure do |config|

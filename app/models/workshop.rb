@@ -11,5 +11,5 @@
 
 class Workshop < ActiveRecord::Base
   has_many :lessons, dependent: :destroy
-  has_many :sections
+  has_many :sections, dependent: :destroy
 end

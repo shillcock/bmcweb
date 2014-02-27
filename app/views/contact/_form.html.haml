@@ -1,14 +1,5 @@
-= simple_form_for message, url: "/contact" do |f|
-  .panel
-    .form-inputs
-      .row
-        .large-6.columns
-          = f.input :name
-        .large-6.columns
-          = f.input :email
-      .row
-        .large-12.columns
-          = f.input :message, as: :text
-  .form-actions
-    = f.submit 'Send Message', class: "button"
-    = link_to "Cancel", root_path, class: "button secondary"
+= simple_form_for message, url: "/contact", wrapper: :bootstrap3_horizontal, defaults: {right_column_html: {class: "col-md-9"}, label_html: {class: "col-md-3"}}, html: {class: "form-horizontal", role: "form"} do |f|
+  = f.input :name
+  = f.input :email
+  = f.input :message, as: :text
+  = f.submit 'Send Message', class: "btn btn-primary"

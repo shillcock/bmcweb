@@ -1,3 +1,8 @@
-= nav_link_to fa_icon("users", text: "Users"), admin_users_path
-= nav_link_to fa_icon("bullhorn", text: "Intro Meetings"), admin_intro_meetings_path
-= nav_link_to fa_icon("book", text: "Workshops"), admin_workshops_path
+%li{class: active_path_class(:users)}
+  = link_to fa_icon("users", text: "Users"), [:admin, :users]
+
+%li{class: active_path_class(:intro_meetings)}
+  = link_to fa_icon("bullhorn", text: "Intro Meetings"), [:admin, :intro_meetings]
+
+%li{class: active_path_class(:workshops)}
+  = link_to fa_icon("book", text: "Workshops"), [:admin, :workshops]

@@ -6,13 +6,13 @@ feature "Deleting Users" do
 
   before do
     visit root_path(as: admin)
-    header_nav.click_link "Admin"
-    header_nav.click_link "Users"
+    click_link "Admin"
+    click_link "Users"
   end
 
   scenario "Deleting a user" do
     click_link user.email
-    click_link "Delete User"
+    click_link "Delete"
 
     expect(page).to have_content("User has been deleted.")
   end
@@ -22,7 +22,7 @@ feature "Deleting Users" do
       click_link admin.email
     end
 
-    click_link "Delete User"
+    click_link "Delete"
 
     expect(page).to have_content("You cannot delete yourself!")
   end

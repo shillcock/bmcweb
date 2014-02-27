@@ -1,4 +1,7 @@
-%ul.side-nav
-  %li= link_to fa_icon("users", text: "Users"), admin_users_path, class: "button large secondary"
-  %li= link_to fa_icon("bullhorn", text: "Intro Meetings"), admin_intro_meetings_path, class: "button large secondary"
-  %li= link_to fa_icon("book", text: "Workshops"), admin_workshops_path, class: "button large secondary"
+-# content_for :head do
+  =# stylesheet_link_tag "admin/index"
+
+.container.sections
+  %header
+    %h2= fa_icon("dashboard", text: "Admin Dashboard")
+  %hr

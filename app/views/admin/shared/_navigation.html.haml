@@ -1,17 +1,20 @@
-%div{class: "contain-to-grid fixed"}
-  %nav.top-bar{"data-topbar" => ""}
-    %ul.title-area
-      %li.name
-        %h1= link_to "Breakthrough Men's Communtiy", root_url
-      %li.toggle-topbar.menu-icon
-        %a{href: "#"}
-          %span Menu
-    %section.top-bar-section
-      %ul.left
-        = render 'admin/shared/navigation_links'
-      %ul.right
-        %li.has-dropdown
-          %a{href: "#"}= current_user.email
-          %ul.dropdown
-            %li= link_to "Admin", admin_root_path
-            %li= link_to 'Sign out', sign_out_path, :method => :delete
+%header.navbar.navbar-inverse.navbar-fixed-top{role: "navigation"}
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to "Breakthrough Men's Community", root_path, class: "navbar-brand"
+    .navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        = render "admin/shared/navigation_links"
+      %ul.nav.navbar-nav.navbar-right
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+            =current_user.email
+            %b.caret
+          %ul.dropdown-menu
+            %li= link_to fa_icon("dashboard", text: "Admin"), admin_root_path
+            %li= link_to "Sign out", sign_out_path, :method => :delete

@@ -5,9 +5,9 @@ feature "Creating Users" do
 
   before do
     visit root_path(as: admin)
-    header_nav.click_link "Admin"
-    header_nav.click_link "Users"
-    click_link "New User"
+    click_link "Admin"
+    click_link "Users"
+    click_link "Add new user"
   end
 
   scenario "Creating a new user as an Admin" do

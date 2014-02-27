@@ -1,11 +1,5 @@
-= simple_form_for registration do |f|
-  .form-inputs.panel
-    .row
-      .large-6.columns
-        = f.input :first_name
-      .large-6.columns
-        = f.input :last_name
-    = f.input :email
-  .form-actions
-    = f.submit 'Register now', class: "button"
-    = link_to "Cancel", root_path, class: "button secondary"
+= simple_form_for registration, wrapper: :bootstrap3_horizontal, defaults: {right_column_html: {class: "col-md-8"}, label_html: {class: "col-md-4"}}, html: {class: "form-horizontal", role: "form"} do |f|
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :email
+  = f.submit "Register now", class: "btn btn-primary"

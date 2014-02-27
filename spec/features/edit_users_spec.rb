@@ -6,10 +6,10 @@ feature "Editing Users" do
 
   before do
     visit root_path(as: admin)
-    header_nav.click_link "Admin"
-    header_nav.click_link "Users"
+    click_link "Admin"
+    click_link "Users"
     click_link user.email
-    click_link "Edit User"
+    click_link "Edit"
   end
 
   scenario "Updating a user's details" do

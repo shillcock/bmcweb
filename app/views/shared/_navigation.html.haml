@@ -1,20 +1,15 @@
-%nav.top-bar{"data-topbar" => ""}
-  %ul.title-area
-    %li.name
-    %li.toggle-topbar.menu-icon
-      %a{href: "#"}
-        %span Menu
-  %section.top-bar-section
-    %ul.left
-      = render 'shared/navigation_links'
-    %ul.right
-      %li.divider
-      - if signed_in?
-        %li.has-dropdown
-          %a{href: "#"}= current_user.email
-          %ul.dropdown
-            - admins_only do
-              %li= link_to 'Admin', admin_root_path
-            %li= link_to 'Sign out', sign_out_path, :method => :delete
-      - else
-        %li= link_to 'Sign in', sign_in_path
+%header
+  %ul.nav.nav-pills
+    = render "shared/navigation_links"
+    %li.dropdown.pull-right
+      = link_to "#", class: "dropdown-toggle", "data-toggle" => "dropdown" do
+        Member
+        %span.caret
+      %ul.dropdown-menu
+        - if signed_in?
+          - admins_only do
+            %li= link_to "Admin", [:admin, :root]
+          %li= link_to "Profile", [:admin, current_user]
+          %li= link_to 'Sign out', [:sign_out], :method => :delete
+        - else
+          %li= link_to 'Sign in', [:sign_in]

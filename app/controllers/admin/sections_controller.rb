@@ -6,7 +6,7 @@ class Admin::SectionsController < AdminController
     if (params[:start] && params[:end])
       @sections = @workshop.sections.where("starts_at >= ? and ends_at <= ?", params[:start], params[:end])
     else
-      @sections = @workshop.sections.order
+      @sections = @workshop.sections
     end
   end
 

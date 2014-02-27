@@ -1,0 +1,13 @@
+%h2 #{section.title} Schedule
+%table#meetings.table.table-striped
+  %thead
+    %tr
+      %th #
+      %th Title
+      %th Date
+  %tbody
+    - meetings.each do |meeting|
+      %tr
+        %td= meeting.meeting_number
+        %td= meeting.short_name
+        %td[meeting]= meeting.starts_at.strftime("%A, %B %e, %Y")

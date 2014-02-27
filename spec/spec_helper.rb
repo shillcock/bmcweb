@@ -14,6 +14,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
+require 'shoulda/matchers/integrations/rspec'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
@@ -29,3 +30,6 @@ RSpec.configure do |config|
   #   c.syntax = :expect
   # end
 end
+
+# I18n.enforce_available_locales will default to true in the future.
+I18n.enforce_available_locales = false

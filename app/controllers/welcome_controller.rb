@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  skip_before_action :authorize, only: [:index, :info]
+  skip_before_action :authorize, only: [:index, :info, :schedule]
 
   def index
     @upcoming_intro_meetings = IntroMeeting.upcoming
@@ -7,4 +7,11 @@ class WelcomeController < ApplicationController
 
   def info
   end
+
+  def schedule
+    @sections = Section.all
+  end
+
+  private
+
 end

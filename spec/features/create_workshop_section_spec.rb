@@ -7,8 +7,8 @@ feature 'Creating New Section' do
 
   scenario 'From workshop' do
     visit root_path(as: admin)
-    header_nav.click_link('Admin')
-    header_nav.click_link('Workshops')
+    click_link('Admin')
+    click_link('Workshops')
     click_link workshop.title
 
     fill_in "Title", with: "New Test Section"

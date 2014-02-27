@@ -1,35 +1,40 @@
-.row
-  .large-6.columns
-    %p
-      %h2 Registrations
-  .large-6.columns
-    %p
-      %ul.inline-list.right
-        %li= link_to fa_icon("chevron-left", text: "Back"), :back, class: "button secondary round"
-.row
-  .large-9.columns
-    %h4 Intro Meeting: #{@meeting.date}
-    %h5
-      Total Registered:
-      %strong #{@registrations.count}
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li= link_to "Intro Meetings", [:admin, :intro_meetings]
+    %li= @meeting.date
+    %li.active Registrations
 
-    - if @registrations.count == 0
-      %p No one has registered online yet.
-    - else
-      %table#registrations
-        %thead
-          %tr
-            %th ID
-            %th Name
-            %th Email
-            %th Registered on
-            %th
-        %tbody
-          - @registrations.each do |registration|
-            %tr[registration]
-              %td= registration.id
-              %td= registration.full_name
-              %td= registration.email
-              %td= registration.created_at
-              %td= link_to "Delete", admin_intro_meeting_registration_path(@meeting, registration), method: :delete,
-                data: { confirm: "Are you sure you want to delete this intro meeting registration?" }
+.container.intro_meetings
+  %header
+    %h2= fa_icon("check-square-o", text: "#{@meeting.date}: Intro Meeting Registrations")
+  %hr
+  .tabbable
+    %ul.nav.nav-tabs
+      %li.active= link_to fa_icon("list", text: "List"), [:admin, @meeting, :registrations]
+      %li= link_to fa_icon("chevron-left", text: "Back"), [:admin, :intro_meetings]
+
+  %h5
+    Total Registered:
+    %strong #{@registrations.count}
+
+  - if @registrations.count == 0
+    %p No one has registered online yet.
+  - else
+    %table.table.table-hover#registrations
+      %thead
+        %tr
+          %th ID
+          %th Name
+          %th Email
+          %th Registered on
+          %th
+      %tbody
+        - @registrations.each do |registration|
+          %tr[registration]
+            %td= registration.id
+            %td= registration.full_name
+            %td= registration.email
+            %td= registration.created_at
+            %td= link_to "Delete", admin_intro_meeting_registration_path(@meeting, registration), method: :delete,
+              data: { confirm: "Are you sure you want to delete this intro meeting registration?" }

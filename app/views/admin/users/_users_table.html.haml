@@ -1,0 +1,22 @@
+%table.table.table-hover#users
+  %thead
+    %tr
+      %th ID
+      %th Email
+      %th Created at
+      %th Role
+      %th Actions
+  %tbody
+    - users.each do |user|
+      %tr[user]
+        %td= user.id
+        %td= link_to user.email, [:admin, user]
+        %td= user.created_at
+        %td
+          - if user.admin?
+            %span.label.label-primary Admin
+        %td
+          .btn-group.btn-group-xs
+            %button.btn.btn-default{type: "button"}= link_to fa_icon("info-circle"), [:admin, user]
+            %button.btn.btn-default{type: "button"}= link_to fa_icon("pencil"), [:edit, :admin, user]
+            %button.btn.btn-default{type: "button"}= link_to fa_icon("times"), [:admin, user], method: :delete, data: { confirm: "Are you sure you want to delete this user?" }

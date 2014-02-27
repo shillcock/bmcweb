@@ -1,12 +1,19 @@
-.row
-  .large-6.columns
-    %p
-      %h2 Edit User
-  .large-6.columns
-    %p
-      %ul.inline-list.right
-        %li= link_to fa_icon("plus-circle", text: "New User"), new_admin_user_path, class: "button secondary round"
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li= link_to "Users", [:admin, :users]
+    %li= link_to @user.email, [:admin, @user]
+    %li.active Edit
 
-.row
-  .large-9.columns
+.container.users
+  %header
+    %h2= fa_icon("user", text: "User: #{@user.email}")
+  %hr
+  .tabbable
+    %ul.nav.nav-tabs
+      %li= link_to fa_icon("show", text: "Show"), [:admin, @user]
+      %li.active= link_to fa_icon("pencil", text: "Edit"), [:edit, :admin, @user]
+      %li= link_to fa_icon("times", text: "Delete"), [:admin, @user], method: :delete, data: { confirm: "Are you sure you want to delete this user?" }
+      %li= link_to fa_icon("chevron-left", text: "Back"), [:admin, :users]
+  .main
     = render "form", user: @user

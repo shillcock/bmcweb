@@ -1,34 +1,36 @@
-.row
-  .large-6.columns
-    %p
-      %h2 Intro Meetings
-  .large-6.columns
-    %p
-      %ul.inline-list.right
-        %li= link_to fa_icon("plus-circle", text: "New Intro Meeting"), new_admin_intro_meeting_path, class: "button secondary round"
-.row
-  .large-9.columns
-    %table#intro_meetings
-      %thead
-        %tr
-          %th ID
-          %th Date
-          %th Time
-          %th Create at
-          %th Registrations
-          %th Delete
-      %tbody
-        - @intro_meetings.each do |meeting|
-          %tr[meeting]
-            %td= meeting.id
-            %td= meeting.date
-            %td= "#{meeting.starts_at.strftime('%l:%M %p')} - #{meeting.ends_at.strftime('%l:%M %p')}"
-            %td= meeting.created_at
-            %td
-              = link_to admin_intro_meeting_registrations_path(meeting) do
-                Registrations
-                %span.secondary.round.label
-                  = meeting.registrations.count
-            %td= link_to "Delete", admin_intro_meeting_path(meeting), method: :delete,
-              data: { confirm: "Are you sure you want to delete this intro meeting?" }
-  .large-3.columns
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li.active Intro Meetings
+
+.container.intro_meetings
+  %header
+    %h2= fa_icon("bullhorn", text: "Intro Meetings")
+  %hr
+  .tabbable
+    %ul.nav.nav-tabs
+      %li.active= link_to fa_icon("list", text: "List"), [:admin, :intro_meetings]
+      %li= link_to fa_icon("plus", text: "Add new meeting"), [:new, :admin, :intro_meeting]
+
+  %table.table.table-hover#intro_meetings
+    %thead
+      %tr
+        %th ID
+        %th Date
+        %th Time
+        %th Create at
+        %th Registrations
+        %th Delete
+    %tbody
+      - @intro_meetings.each do |meeting|
+        %tr[meeting]
+          %td= meeting.id
+          %td= meeting.date
+          %td= "#{meeting.starts_at.strftime('%l:%M %p')} - #{meeting.ends_at.strftime('%l:%M %p')}"
+          %td= meeting.created_at
+          %td
+            = link_to admin_intro_meeting_registrations_path(meeting) do
+              Registrations
+              %span.badge= meeting.registrations.count
+          %td= link_to "Delete", admin_intro_meeting_path(meeting), method: :delete,
+            data: { confirm: "Are you sure you want to delete this intro meeting?" }

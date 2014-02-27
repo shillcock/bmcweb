@@ -1,9 +1,8 @@
-$row-width: rem-calc(1000);
-
-@import "foundation_and_overrides";
-@import "global";
-@import "font-awesome";
+@import "bootstrap";
+@import "admin/bootstrap-overrides";
 @import "jquery.ui.all";
+@import "font-awesome";
 @import "jquery.ptTimeSelect";
-@import "foundation-datepicker";
+@import "datepicker";
 @import "fullcalendar";
+@import "global";
