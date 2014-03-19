@@ -14,7 +14,6 @@ feature "Edit User Profile" do
   end
 
   scenario "Updating a user's profile" do
-    user.profile = nil
     fill_in "Address1", with: "123 Walnut St."
     fill_in "Address2", with: "PO Box 789"
     fill_in "City", with: "Pacific Grove"
