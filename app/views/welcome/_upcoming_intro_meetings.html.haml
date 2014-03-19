@@ -6,15 +6,15 @@
       %br/
       Please check back soon.
   - else
-  %table.table.table-hover#intro-meetings
-    %thead
-      %tr
-        %th Date
-        %th Time
-        %th Free
-    %tbody
-      - @upcoming_intro_meetings.each do |meeting|
-        %tr{id: "intro_meeting_#{meeting.id}"}
-          %td= meeting.date.strftime("%A, %B %e, %Y")
-          %td= meeting.time_range
-          %td= link_to 'Register', new_intro_meeting_registration_path(meeting), class: "btn btn-success"
+    %table.table.table-hover#intro-meetings
+      %thead
+        %tr
+          %th Date
+          %th Time
+          %th Free
+      %tbody
+        - @upcoming_intro_meetings.each do |meeting|
+          %tr{id: "intro_meeting_#{meeting.id}"}
+            %td= meeting.date.strftime("%A, %B %e, %Y")
+            %td= meeting.time_range
+            %td= link_to 'Register', new_intro_meeting_registration_path(meeting), class: "btn btn-success"
