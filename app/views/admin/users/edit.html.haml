@@ -16,4 +16,10 @@
       %li= link_to fa_icon("times", text: "Delete"), [:admin, @user], method: :delete, data: { confirm: "Are you sure you want to delete this user?" }
       %li= link_to fa_icon("chevron-left", text: "Back"), [:admin, :users]
   .main
-    = render "form", user: @user
+    .row
+      .col-md-6
+        %h4 Account
+        = render "form", user: @user
+      .col-md-6
+        %h4 Profile
+        = render "admin/profiles/form", user: @user, profile: @user.profile

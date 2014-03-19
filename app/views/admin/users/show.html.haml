@@ -22,3 +22,18 @@
       %br/
       Email:
       %strong= @user.email
+
+    %hr
+
+    %h4 Profile
+
+    %p
+      %address
+        = @user.profile.address1
+        %br/
+        = "#{@user.profile.city}, #{@user.profile.state} #{@user.profile.zip_code}"
+        %br/
+
+    %p
+      Birthday:
+      = @user.profile.birthday

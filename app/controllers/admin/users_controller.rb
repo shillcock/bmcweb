@@ -11,11 +11,13 @@ class Admin::UsersController < Clearance::UsersController
 
   def new
     @user = User.new
+    @user.build_profile
     render :new
   end
 
   def create
     @user = User.new(user_params)
+    @user.build_profile
 
     if @user.save
       flash[:notice] = "User has been created."

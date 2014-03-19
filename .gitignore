@@ -21,4 +21,3 @@ pickle-email-*.html
 /config/database.yml
 .idea/
 .secret
-/lib/tasks/bmc.*

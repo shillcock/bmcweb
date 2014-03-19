@@ -95,9 +95,20 @@ FactoryGirl.define do
     lesson
   end
 
+  factory :profile do
+    phone_number "123-444-5678"
+    address1 "123 My Street"
+    address2 "PO Box 888"
+    city "Over Here"
+    state "CA"
+    zip_code "98765"
+    birthday "1974-02-12"
+  end
+
   factory :user do
     email
     password 'password'
+    profile
 
     factory :admin do
       admin true

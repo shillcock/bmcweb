@@ -16,7 +16,9 @@ BreakthroughForMen::Application.routes.draw do
 
   namespace :admin do
 
-    resources :users
+    resources :users do
+      resource :profile
+    end
 
     resources :intro_meetings, only: [:index, :new, :create, :destroy] do
       resources :registrations, controller: "intro_meeting_registrations", only: [:index, :destroy]

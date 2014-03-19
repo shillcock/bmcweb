@@ -16,7 +16,7 @@ class Admin::MeetingsController < ApplicationController
   def update
     respond_to do |format|
       if @meeting.update(meeting_params)
-        format.html { redirect_to [@section, @meeting], notice: "Meeting was successfully udpate." }
+        format.html { redirect_to [@section, @meeting], notice: "Meeting was successfully udpated." }
         format.json { head :no_content }
       else
         format.html { render :edit}
