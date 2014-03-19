@@ -3,7 +3,7 @@ namespace :bmc do
   task setup: :environment do
 
     require 'yaml'
-    require 'pry'
+    #require 'pry'
 
     config = YAML.load_file("lib/tasks/bmc.yml")
 
