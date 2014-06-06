@@ -39,7 +39,7 @@ describe DonationsController do
       assert_redirected_to root_path
       assert_equal "Thank you for your donation.", flash[:notice]
 
-      assert_not_nil assigns(:donation)
+      #assert_not_nil assigns(:donation)
       assert_equal donation.email, assigns(:donation).email
       assert_equal charge_id, assigns(:donation).stripe_charge_id
       assert_equal fee_cents, assigns(:donation).stripe_processing_fee_cents
