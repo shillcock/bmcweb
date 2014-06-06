@@ -1,5 +1,5 @@
 - content_for :javascript do
-  = javascript_include_tag 'https://js.stripe.com/v2/'
+  = javascript_include_tag 'https://checkout.stripe.com/checkout.js'
   = javascript_include_tag 'donations'
 
 %h1 Support Breakthrough with a Donation
@@ -9,8 +9,13 @@
   %br/
   Please consider making a donation to support scholarships for lower income men.
 
+%h3 How much would you like to donate?
 #donation{"data-stripe-key" => "#{Rails.configuration.stripe[:publishable_key]}"}
-  = render 'form', donation: @donation
+/= link_to donate_path, id: "donation_button", class: "btn btn-lg btn-success" do
+/  Donate Now
+/  %span.glyphicon.glyphicon-heart
+
+= render 'form', donation: @donation
 
 %br/
 %small

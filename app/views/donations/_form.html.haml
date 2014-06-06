@@ -1,52 +1,13 @@
+.row
+  .form-group.col-md-3
+    .input-group.input-group-lg
+      %span.input-group-addon
+        $
+      %input.form-control#donation_amount{type:"text", name:"donation[amount]"}
+  .form-group.col-md-8
+    %br
+    #donation_amount_slider
+
 = simple_form_for donation, url: "/donate", html: { id: "donation_form" } do |f|
   = f.error_notification
-
-  %h2 Donor Information
-  .form-inputs.panel
-    = f.input :email, as: :email, placeholder: "you@example.com"
-    = f.input :comment
-
-    %div.panel
-      = f.input :amount, placeholder: "$100", input_html: { min: "10", step: "10" }
-      #donation_amount_slider
-
-    #stripe_error.error.alert-box.alert{"data-alert" => "", style: "display:none"}
-      = f.error :base
-
-    = f.input :cc_number,
-      label: "Credit Card Number",
-      required: true,
-      autocomplete: 'off',
-      pattern: "\d*",
-      maxlength: 20,
-      placeholder: "●●●● ●●●● ●●●● ●●●●",
-      input_html: { name: nil, autocompletetype: "cc-number" }
-    = f.error :cc_number
-
-    .row
-      .large-5.columns
-        = f.input :cc_cvc,
-          label: "Security Code on Card",
-          required: true,
-          autocomplete: 'off',
-          size: 4,
-          placeholder: "CVC",
-          input_html: { name: nil, autocompletetype: "cc-csc" }
-      .large-2.columns
-        = image_tag "creditcards/credit.png", id: "cc_image"
-
-      .large-5.columns
-        = f.input :cc_expiration,
-          label: "Card Expiration",
-          required: true,
-          as: :date,
-          start_year: Date.today.year,
-          end_year: Date.today.year+15,
-          discard_day: true,
-          add_month_numbers: true,
-          order: [:month, :year],
-          input_html: { name: '' }
-
-  .form-actions
-    = f.button :submit, "Send Donation", id: "submit_button"
-    = link_to "Cancel", root_path, class: "button secondary"
+  = f.button :submit, "I would like to donate $100 to the Breakthrough Men's Community", id: "submit_button", class: "btn btn-lg btn-primary"
