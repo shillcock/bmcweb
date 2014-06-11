@@ -4,7 +4,7 @@ FactoryGirl.define do
   end
 
   sequence :name do |n|
-    "name #{n}"
+    "first#{n} last#{n}"
   end
 
   sequence :workshop_title do |n|
@@ -106,6 +106,8 @@ FactoryGirl.define do
   end
 
   factory :user do
+    first_name "Jon"
+    last_name "Snow"
     email
     password 'password'
     profile

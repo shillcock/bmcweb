@@ -16,5 +16,11 @@ class User < ActiveRecord::Base
   include Clearance::User
 
   has_one :profile, dependent: :destroy
-end
 
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
+  def full_name
+    "#{first_name.try(:humanize)} #{last_name.try(:humanize)}"
+  end
+end

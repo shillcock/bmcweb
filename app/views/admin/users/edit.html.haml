@@ -7,7 +7,7 @@
 
 .container.users
   %header
-    %h2= fa_icon("user", text: "User: #{@user.email}")
+    %h2= fa_icon("user", text: "User : #{@user.full_name} : #{@user.email}")
   %hr
   .tabbable
     %ul.nav.nav-tabs

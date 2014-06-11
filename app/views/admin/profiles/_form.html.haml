@@ -5,5 +5,5 @@
   = f.input :state
   = f.input :zip_code
   = f.input :phone_number
-  = f.input :birthday
+  = f.input :birthday, discard_year: true, order: [:month, :day]
   = f.submit class: "btn btn-primary"

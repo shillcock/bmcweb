@@ -21,7 +21,7 @@ class Admin::UsersController < Clearance::UsersController
 
     if @user.save
       flash[:notice] = "User has been created."
-      redirect_to admin_users_path
+      redirect_to [:edit, :admin, @user]
     else
       flash[:alert] = "User has not been created."
       render :new
@@ -45,7 +45,7 @@ class Admin::UsersController < Clearance::UsersController
 
     if @user.update(user_params)
       flash[:notice] = "User has been updated."
-      redirect_to admin_users_path
+      redirect_to [:admin, @user]
     else
       flash[:alert] = "User has not been updated."
       render :edit
@@ -70,6 +70,6 @@ class Admin::UsersController < Clearance::UsersController
     end
 
     def user_params
-      params.require(:user).permit(:email, :password, :admin)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :admin)
     end
 end
