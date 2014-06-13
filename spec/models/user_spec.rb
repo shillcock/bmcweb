@@ -20,12 +20,19 @@ describe User do
 
   it { should have_one(:profile) }
 
-  it { should validate_presence_of :first_name }
-  it { should validate_presence_of :last_name }
+  it { should validate_presence_of :name }
 
-  context "#full_name" do
-    it "has a first_null that is the first and last names combined" do
-      expect(user.full_name).to eq "#{user.first_name} #{user.last_name}"
+  context "#first_name" do
+    it "has a first_name that is the first part of name" do
+      user = User.new(name: "first last")
+      expect(user.first_name).to eq "first"
+    end
+  end
+
+  context "#last_name" do
+    it "has a last_name that is the last part of name" do
+      user = User.new(name: "first last")
+      expect(user.last_name).to eq "last"
     end
   end
 end

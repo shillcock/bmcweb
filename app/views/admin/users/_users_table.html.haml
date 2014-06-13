@@ -2,6 +2,7 @@
   %thead
     %tr
       %th ID
+      %th Name
       %th Email
       %th Created at
       %th Role
@@ -10,6 +11,7 @@
     - users.each do |user|
       %tr[user]
         %td= user.id
+        %td= user.name
         %td= link_to user.email, [:admin, user]
         %td= user.created_at
         %td

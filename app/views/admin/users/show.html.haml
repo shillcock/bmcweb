@@ -6,7 +6,7 @@
 
 .container.user
   %header
-    %h2= fa_icon("user", text: "User : #{@user.full_name} : #{@user.email}")
+    %h2= fa_icon("user", text: "User : #{@user.name} : #{@user.email}")
   %hr
   .tabbable
     %ul.nav.nav-tabs
@@ -19,39 +19,12 @@
       .col-md-6
         %br/
         %h4= "Account (#{@user.id})"
-        %table.table
-          %thead
-            %tr
-              %th.col-md-1
-              %th
-          %tbody
-            %tr
-              %td Name:
-              %td= @user.full_name
-            %tr
-              %td Email:
-              %td= @user.email
-            %tr{class: "#{'warning' if @user.admin?}"}
-              %td.col-md-1 Role:
-              %td= "Admin" if @user.admin?
+        = render "account", user: @user
       .col-md-6
         %br/
         %h4 Profile
-        %table.table
-          %thead
-            %tr
-              %th.col-md-1
-              %th
-          %tbody
-            %tr
-              %td Address1:
-              %td= @user.profile.address1
-            %tr
-              %td Address2:
-              %td= @user.profile.address2
-            %tr
-              %td City/St/Zip:
-              %td= "#{@user.profile.city}, #{@user.profile.state} #{@user.profile.zip_code}"
-            %tr
-              %td Birthday:
-              %td= @user.profile.birthday
+        = render "profile", profile: @user.profile
+    .row
+      .col-md-6
+        %h4 Membership
+        = render "membership", user: @user

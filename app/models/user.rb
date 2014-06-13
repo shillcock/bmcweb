@@ -17,10 +17,21 @@ class User < ActiveRecord::Base
 
   has_one :profile, dependent: :destroy
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates :name, presence: true
 
-  def full_name
-    "#{first_name.try(:humanize)} #{last_name.try(:humanize)}"
+  def first_name
+    name.split(" " ).first
   end
+
+  def last_name
+    name.split(" " ).last
+  end
+
+  private
+
+    # def stripe_customer
+    #   if stripe_customer_id.present?
+    #     Stripe::Customer.retrieve(stripe_customer_id)
+    #   end
+    # end
 end

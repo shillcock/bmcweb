@@ -1,0 +1,24 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-3
+      %th
+  %tbody
+    %tr
+      %td Name:
+      %td= @user.name
+    %tr
+      %td Email:
+      %td= @user.email
+    %tr{class: "#{'warning' if @user.admin?}"}
+      %td Role:
+      %td= "Admin" if @user.admin?
+    %tr
+      %td Stripe Customer:
+      %td
+    %tr
+      %td Created at:
+      %td= @user.created_at
+    %tr
+      %td Updated at:
+      %td= @user.updated_at

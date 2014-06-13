@@ -106,8 +106,7 @@ FactoryGirl.define do
   end
 
   factory :user do
-    first_name "Jon"
-    last_name "Snow"
+    name
     email
     password 'password'
     profile

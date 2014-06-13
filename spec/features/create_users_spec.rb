@@ -11,8 +11,7 @@ feature "Creating Users" do
   end
 
   scenario "Creating a new user as an Admin" do
-    fill_in "First name", with: "New"
-    fill_in "Last name", with: "User"
+    fill_in "Name", with: "New User"
     fill_in "Email", with: "new_user@example.com"
     fill_in "Password", with: "password"
     click_button "Create User"

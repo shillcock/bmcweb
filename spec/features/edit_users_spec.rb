@@ -12,7 +12,7 @@ feature "Editing Users" do
     click_link "Edit"
   end
 
-  scenario "Updating a user's details" do
+  scenario "Updating a user's email" do
     fill_in "Email", with: "new_guy@example.com"
     click_button "Update User"
 
@@ -20,6 +20,16 @@ feature "Editing Users" do
 
     expect(page).to have_content("new_guy@example.com")
     expect(page).to_not have_content(user.email)
+  end
+
+  scenario "Updating a user's name" do
+    fill_in "Name", with: "New Guy"
+    click_button "Update User"
+
+    expect_user_has_been_updated
+
+    expect(page).to have_content("New Guy")
+    expect(page).to_not have_content(user.name)
   end
 
   scenario "Toggling user's admin ability" do
