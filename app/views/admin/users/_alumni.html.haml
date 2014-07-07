@@ -1,0 +1,19 @@
+- if membership
+  %table.table
+    %thead
+      %tr
+        %th.col-md-3
+        %th
+    %tbody
+      %tr
+        %td Membership Level:
+        %td= "#{alumni_level(membership.amount)} Level at $#{membership.amount} a #{membership.interval}"
+      %tr
+        %td Membership Status:
+        %td= membership.status
+      %tr
+        %td Member Since:
+        %td= membership.member_since
+      %tr
+        %td Stripe Subscription:
+        %td= membership.stripe_subscription_id

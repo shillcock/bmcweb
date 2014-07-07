@@ -3,7 +3,7 @@ class Admin::UsersController < Clearance::UsersController
   before_action :redirect_unless_user_is_admin
   skip_before_filter :avoid_sign_in # clearance defaults to signing in user after create
 
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :update_credit_card]
 
   def index
     @users = User.all
@@ -11,15 +11,14 @@ class Admin::UsersController < Clearance::UsersController
 
   def new
     @user = User.new
-    @user.build_profile
     render :new
   end
 
   def create
     @user = User.new(user_params)
-    @user.build_profile
 
     if @user.save
+      CreateStripeCustomer.perform_async(@user.id)
       flash[:notice] = "User has been created."
       redirect_to [:edit, :admin, @user]
     else
@@ -52,10 +51,21 @@ class Admin::UsersController < Clearance::UsersController
     end
   end
 
+  def update_credit_card
+    # UpdateUsersDefaultCreditCard.perform_async(@user.id, params[:stripeToken])
+    # if @user.update_credit_card(params[:stripeToken])
+    #   flash[:notice] = "Your credit card was sucessfully updated!"
+    #   #redirect_to
+    # else
+    #   flash[:error] = "Unable to update credit card at this time. Please try again later."
+    # end
+  end
+
   def destroy
     if @user == current_user
       flash[:alert] = "You cannot delete yourself!"
     else
+      DeleteStripeCustomer.perform_async(@user.stripe_customer_id) if @user.stripe_customer_id.present?
       @user.destroy
       flash[:notice] = "User has been deleted."
     end
@@ -70,6 +80,7 @@ class Admin::UsersController < Clearance::UsersController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :admin)
+      params.require(:user).permit(:name, :email, :password, :admin,
+        :address1, :address2, :city, :state, :zip_code, :phone_number, :birthday)
     end
 end

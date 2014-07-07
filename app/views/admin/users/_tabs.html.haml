@@ -1,0 +1,9 @@
+.tabbable
+  %ul.nav.nav-tabs
+    %li= link_to fa_icon("chevron-left"), [:admin, :users]
+    %li{class: ("active" if current == "show")}
+      = link_to fa_icon("info-circle", text: "Show"), [:admin, @user]
+    %li{class: ("active" if current == "edit")}
+      = link_to fa_icon("pencil", text: "Edit"), [:edit, :admin, @user]
+    %li= link_to fa_icon("users", text: "Alumni"), [:admin, @user, :alumni_membership]
+    %li= link_to fa_icon("times", text: "Delete"), [:admin, @user], method: :delete, data: { confirm: "Are you sure you want to delete this user?" }

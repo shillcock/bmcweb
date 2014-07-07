@@ -15,23 +15,32 @@
 class User < ActiveRecord::Base
   include Clearance::User
 
-  has_one :profile, dependent: :destroy
+  has_one :alumni_membership, dependent: :destroy
 
   validates :name, presence: true
 
+  # after_save :create_stripe_customer
+  # before_destroy :delete_stripe_customer
+
   def first_name
-    name.split(" " ).first
+    name.split(" ").first
   end
 
   def last_name
-    name.split(" " ).last
+    name.split(" ").last
+  end
+
+  def alumni?
+    alumni_membership.present? and alumni_membership.active?
   end
 
   private
 
-    # def stripe_customer
-    #   if stripe_customer_id.present?
-    #     Stripe::Customer.retrieve(stripe_customer_id)
-    #   end
+    # def create_stripe_customer
+    #  CreateStripeCustomer.perform_async(self.id)
+    # end
+
+    # def delete_stripe_customer
+    #  DeleteStripeCustomer.perform_async(stripe_customer_id) if stripe_customer_id.present?
     # end
 end

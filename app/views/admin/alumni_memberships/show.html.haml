@@ -1,0 +1,34 @@
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li= link_to "Users", [:admin, :users]
+    %li= link_to @user.email, [:admin, @user]
+    %li.active Alumni
+
+.container.users
+  %header
+    %h2= fa_icon("users", text: "Alumni Association")
+  %hr
+  = render 'tabs', user: @user, current: 'show'
+  .main
+    %h2 Membership
+    = render "admin/users/alumni", membership: @membership
+    / - if @user.alumni?
+    /   %table.table
+    /     %thead
+    /       %tr
+    /         %th.col-md-2
+    /         %th
+    /     %tbody
+    /       %tr
+    /         %td Membership Level:
+    /         %td= "#{alumni_level(@membership.amount)} Level - $#{@membership.amount} a #{@membership.interval}"
+    /       %tr
+    /         %td Membership Status:
+    /         %td= "Active" if @user.alumni?
+    /       %tr
+    /         %td Member Since:
+    /         %td= @membership.created_at
+    /       %tr
+    /         %td Stipe Subscription:
+    /         %td= link_to @membership.stripe_subscription_id, stripe_subscription_url(@membership.stripe_subscription_id), target: "_blank"

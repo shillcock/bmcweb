@@ -24,23 +24,25 @@ class DonationProcessor
     end
 
     def charge_card!
+      @donation.save!
       charge = Stripe::Charge.create(
         currency: 'usd',
         amount: @donation.amount_cents,
         card: @donation.stripe_token,
         description: "Donation from #{@donation.email}",
         metadata: {
-          name: @donation.name,
-          email: @donation.email,
-          comment: @donation.comment
+          donation_id: @donation.id
         }
       )
-      @donation.stripe_charge_id = charge.id
-      @donation.stripe_processing_fee_cents = stripe_fee(charge)
-      @donation.save!
+      update_with_stripe_data(charge)
     end
 
-    def stripe_fee(charge)
-      Stripe::BalanceTransaction.retrieve(charge.balance_transaction).fee
+    def update_with_stripe_data(charge)
+      @donation.update(
+        stripe_charge_id: charge.id,
+        card_type: charge.card.brand,
+        card_last4: charge.card.last4,
+        card_expiration: Date.new(charge.card.exp_year, charge.card.exp_month, 1)
+      )
     end
 end

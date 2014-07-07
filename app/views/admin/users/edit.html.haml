@@ -9,17 +9,12 @@
   %header
     %h2= fa_icon("user", text: "User : #{@user.name} : #{@user.email}")
   %hr
-  .tabbable
-    %ul.nav.nav-tabs
-      %li= link_to fa_icon("info-circle", text: "Show"), [:admin, @user]
-      %li.active= link_to fa_icon("pencil", text: "Edit"), [:edit, :admin, @user]
-      %li= link_to fa_icon("times", text: "Delete"), [:admin, @user], method: :delete, data: { confirm: "Are you sure you want to delete this user?" }
-      %li= link_to fa_icon("chevron-left", text: "Back"), [:admin, :users]
+  = render "tabs", user: @user, current: "edit"
   .main
     .row
       .col-md-6
         %h4 Account
-        = render "form", user: @user
+        = render "account_form", user: @user
       .col-md-6
         %h4 Profile
-        = render "admin/profiles/form", user: @user, profile: @user.profile
+        = render "profile_form", user: @user

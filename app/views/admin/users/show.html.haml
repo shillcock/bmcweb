@@ -8,12 +8,7 @@
   %header
     %h2= fa_icon("user", text: "User : #{@user.name} : #{@user.email}")
   %hr
-  .tabbable
-    %ul.nav.nav-tabs
-      %li.active= link_to fa_icon("info-circle", text: "Show"), [:admin, @user]
-      %li= link_to fa_icon("pencil", text: "Edit"), [:edit, :admin, @user]
-      %li= link_to fa_icon("times", text: "Delete"), [:admin, @user], method: :delete, data: { confirm: "Are you sure you want to delete this user?" }
-      %li= link_to fa_icon("chevron-left", text: "Back"), [:admin, :users]
+  = render "tabs", user: @user, current: "show"
   .main[@user]
     .row
       .col-md-6
@@ -23,8 +18,10 @@
       .col-md-6
         %br/
         %h4 Profile
-        = render "profile", profile: @user.profile
+        = render "profile", user: @user
     .row
       .col-md-6
-        %h4 Membership
-        = render "membership", user: @user
+        - unless @user.alumni?
+          = link_to "Join Alumni", [:new, :admin, @user, :alumni_membership], class: "btn btn-default pull-right"
+        %h4 Alumni Membership
+        = render "alumni", membership: @user.alumni_membership

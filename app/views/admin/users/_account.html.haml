@@ -12,10 +12,14 @@
       %td= @user.email
     %tr{class: "#{'warning' if @user.admin?}"}
       %td Role:
-      %td= "Admin" if @user.admin?
+      %td
+        - if user.admin?
+          %span.label.label-default Admin
+        - if user.alumni?
+          %span.label.label-primary Alumni
     %tr
       %td Stripe Customer:
-      %td
+      %td= link_to @user.stripe_customer_id, stripe_customer_url(@user.stripe_customer_id), target: "_blank"
     %tr
       %td Created at:
       %td= @user.created_at

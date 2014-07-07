@@ -1,0 +1,62 @@
+- content_for :javascript do
+  = javascript_include_tag 'https://checkout.stripe.com/checkout.js'
+  = javascript_include_tag 'admin/alumni_membership'
+
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li= link_to "Users", [:admin, :users]
+    %li= link_to @user.email, [:admin, @user]
+    %li= link_to "Alumni", [:admin, @user, :alumni_membership]
+    %li.active New
+
+.container.alumni
+  %header
+    %h2= fa_icon("users", text: "Alumni : #{@user.name}")
+  %hr
+  = render 'tabs', user: @user, current: 'edit'
+  .main
+    %h1 Alumni Association Membership
+
+    #subscription{"data-stripe-key" => "#{Rails.configuration.stripe[:publishable_key]}", |
+                  "data-user-email" => "#{@user.email}"}
+
+    =form_tag [:update_credit_card, :admin, @user] do
+      %script.stripe-button{"src"=>"https://checkout.stripe.com/checkout.js", |
+        "data-key"=>"#{Rails.configuration.stripe[:publishable_key]}", |
+        "data-name"=>"Alumni Membership", |
+        "data-email"=>"#{@user.email}", |
+        "data-panel-label"=>"Update Credit Card", |
+        "data-label"=>"Update Credit Card", |
+        "data-allow-remember-me"=>"false"}
+
+    %h3 Membership level?
+    #alumni_membership{"data-stripe-key" => "#{Rails.configuration.stripe[:publishable_key]}", |
+                       "data-user-email" => "#{@user.email}"}
+    = render 'form', user: @user, membership: @membership
+    %br/
+    .well
+      %p
+        To ensure your data is safe, we use
+        = link_to "Stripe", "http://stripe.com"
+        to process the payments and store your information. Your data is sent encrypted using HTTPS.
+        Breakthrough Men's Community does not directly process or store your credit card information at any time.
+
+    /%button#stripe-demo.btn.btn-primary.btn-large Subscribe
+    / %script{src: "https://checkout.stripe.com/checkout.js"}
+    / :javascript
+    /   var handler = StripeCheckout.configure({
+    /     key: "#{Rails.configuration.stripe[:publishable_key]}",
+    /     name: "BMC",
+    /     description: "Alumni Membership",
+    /     panelLabel: "Update Credit Card",
+    /     allowRememberMe: false
+    /   });
+
+    /   document.getElementById('stripe-demo').addEventListener('click', function(e) {
+    /     handler.open({
+    /       email: "#{@user.email}"
+    /     });
+
+    /     e.preventDefault();
+    /   });

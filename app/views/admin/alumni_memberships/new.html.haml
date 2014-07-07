@@ -1,0 +1,34 @@
+- content_for :javascript do
+  = javascript_include_tag 'https://checkout.stripe.com/checkout.js'
+  = javascript_include_tag 'admin/alumni_membership'
+
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li= link_to "Users", [:admin, :users]
+    %li= link_to @user.email, [:admin, @user]
+    %li= link_to "Alumni", [:admin, @user, :alumni_membership]
+    %li.active New
+
+.container.alumni
+  %header
+    %h2= fa_icon("users", text: "Alumni : #{@user.name}")
+  %hr
+  = render 'tabs', user: @user, current: 'new'
+  .main
+    %h1 Alumni Association Membership
+    %p
+      We want to make Breakthrough available to all men who want to make positive change in their lives.
+      %br/
+      Please consider making a donation to support scholarships for lower income men.
+    %h3 Membership level?
+    #alumni_membership{"data-stripe-key" => "#{Rails.configuration.stripe[:publishable_key]}", |
+                       "data-user-email" => "#{@user.email}"}
+    = render 'form', user: @user, membership: @membership
+    %br/
+    .well
+      %p
+        To ensure your data is safe, we use
+        = link_to "Stripe", "http://stripe.com"
+        to process the payments and store your information. Your data is sent encrypted using HTTPS.
+        Breakthrough Men's Community does not directly process or store your credit card information at any time.

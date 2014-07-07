@@ -9,6 +9,8 @@ BreakthroughForMen::Application.routes.draw do
   get "contact", to: "contact#new"
   resource "contact", controller: :contact, only: [:create]
 
+  resource :profile, only: [:show, :update]
+
   resources :intro_meetings, only: [:index] do
     resources :registrations, controller: "intro_meeting_registrations", only: [:new, :create]
   end
@@ -19,7 +21,10 @@ BreakthroughForMen::Application.routes.draw do
   namespace :admin do
 
     resources :users do
-      resource :profile
+      resource :alumni_membership
+      member do
+        post :update_credit_card
+      end
     end
 
     resources :intro_meetings, only: [:index, :new, :create, :destroy] do
@@ -30,6 +35,8 @@ BreakthroughForMen::Application.routes.draw do
       resources :lessons
       resources :sections
     end
+
+    resources :donations, only: [:index, :show]
 
     resources :sections, only: [] do
       resources :meetings, only: [:index, :update]
