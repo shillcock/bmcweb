@@ -42,4 +42,6 @@ BreakthroughForMen::Application.routes.draw do
   constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
     mount Sidekiq::Web, at: "/admin/sidekiq", as: "admin_sidekiq"
   end
+
+  mount StripeEvent::Engine, at: "/stripe-webhook"
 end
