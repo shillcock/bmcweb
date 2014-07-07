@@ -18,8 +18,6 @@ describe User do
   let(:user) { create(:user) }
   subject { user }
 
-  it { should have_one(:profile) }
-
   it { should validate_presence_of :name }
 
   context "#first_name" do

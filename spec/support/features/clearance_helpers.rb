@@ -1,11 +1,11 @@
 module Features
   module ClearanceHelpers
-    def sign_up_with(email, password)
-      visit sign_up_path
-      fill_in 'user_email', :with => email
-      fill_in 'user_password', :with => password
-      click_button I18n.t('helpers.submit.user.create')
-    end
+    # def sign_up_with(email, password)
+    #   visit sign_up_path
+    #   fill_in 'user_email', :with => email
+    #   fill_in 'user_password', :with => password
+    #   click_button I18n.t('helpers.submit.user.create')
+    # end
 
     def sign_in_with(email, password)
       visit sign_in_path

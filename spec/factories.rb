@@ -18,13 +18,10 @@ FactoryGirl.define do
   sequence :lesson_number
 
   factory :donation do
-    name
     email
-    comment "Keep up the good work."
     amount 75
     stripe_token "stripe"
     stripe_charge_id "CHARGE-ID"
-    stripe_processing_fee_cents (75 * 100 * 0.029 + 30)
   end
 
   factory :intro_meeting do
@@ -95,7 +92,11 @@ FactoryGirl.define do
     lesson
   end
 
-  factory :profile do
+  factory :user do
+    name
+    email
+    password 'password'
+
     phone_number "123-444-5678"
     address1 "123 My Street"
     address2 "PO Box 888"
@@ -103,13 +104,10 @@ FactoryGirl.define do
     state "CA"
     zip_code "98765"
     birthday "1974-02-12"
-  end
 
-  factory :user do
-    name
-    email
-    password 'password'
-    profile
+    #stripe_token 'tok_123'
+    stripe_customer_id 'cus_123'
+    #stripe_subscription_id 'sub_123'
 
     factory :admin do
       admin true

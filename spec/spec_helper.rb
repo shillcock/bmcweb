@@ -16,6 +16,9 @@ require 'rspec/autorun'
 require 'capybara/rspec'
 require 'shoulda/matchers/integrations/rspec'
 
+require 'sidekiq/testing'
+Sidekiq::Logging.logger = nil
+
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)

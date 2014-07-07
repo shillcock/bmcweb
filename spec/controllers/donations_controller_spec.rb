@@ -7,12 +7,11 @@ describe DonationsController do
 
   describe "POST 'create'" do
     it "charges credit card" do
-      donation = build(:donation, stripe_charge_id: nil, stripe_processing_fee_cents: nil)
+      donation = build(:donation, id: 1, stripe_charge_id: nil)
       charge_id = "CHARGE-ID"
-      transaction_id = "TRX-ID"
-      fee_cents = 247
 
-      charge = stub("charge", id: charge_id, balance_transaction: transaction_id)
+      card = stub("card", brand: 'visa', last4: 1234, exp_year: 15, exp_month: 2)
+      charge = stub("charge", id: charge_id, card: card)
       Stripe::Charge.expects(:create).
         with(
           currency: 'usd',
@@ -20,21 +19,15 @@ describe DonationsController do
           card: donation.stripe_token,
           description: "Donation from #{donation.email}",
           metadata: {
-            name: donation.name,
-            email: donation.email,
-            comment: donation.comment
+            donation_id: donation.id
           }
         ).returns(charge)
 
-      balance_transaction = stub("balance transaction", fee: fee_cents)
-      Stripe::BalanceTransaction.expects(:retrieve).with(transaction_id).returns(balance_transaction)
-
       post :create, donation: {
-        name: donation.name,
         email: donation.email,
         amount: donation.amount,
-        comment: donation.comment,
-        stripe_token: donation.stripe_token }
+        stripe_token: donation.stripe_token
+      }
 
       assert_redirected_to root_path
       assert_equal "Thank you for your donation.", flash[:notice]
@@ -42,7 +35,6 @@ describe DonationsController do
       #assert_not_nil assigns(:donation)
       assert_equal donation.email, assigns(:donation).email
       assert_equal charge_id, assigns(:donation).stripe_charge_id
-      assert_equal fee_cents, assigns(:donation).stripe_processing_fee_cents
     end
   end
 end

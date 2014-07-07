@@ -7,12 +7,11 @@ describe DonationProcessor do
 
   context '#process' do
     it 'charges the donors card the amount of donation' do
-      donation = build(:donation, stripe_charge_id: nil, stripe_processing_fee_cents: nil)
+      donation = build(:donation, id: 1, stripe_charge_id: nil)
       charge_id = "CHARGE-ID"
-      transaction_id = "TRX-ID"
-      fee_cents = 247
 
-      charge = stub("charge", id: charge_id, balance_transaction: transaction_id)
+      card = stub("card", brand: 'visa', last4: 1234, exp_year: 15, exp_month: 2)
+      charge = stub("charge", id: charge_id, card: card)
       Stripe::Charge.expects(:create).
         with(
           currency: 'usd',
@@ -20,21 +19,15 @@ describe DonationProcessor do
           card: donation.stripe_token,
           description: "Donation from #{donation.email}",
           metadata: {
-            name: donation.name,
-            email: donation.email,
-            comment: donation.comment
+            donation_id: donation.id
           }
         ).returns(charge)
-
-      balance_transaction = stub("balance transaction", fee: fee_cents)
-      Stripe::BalanceTransaction.expects(:retrieve).with(transaction_id).returns(balance_transaction)
 
       processor = DonationProcessor.new(donation)
       result = processor.process
 
       result.should be_true
       donation.stripe_charge_id.should == charge_id
-      donation.stripe_processing_fee_cents.should == fee_cents
     end
 
     # it 'expects an error message when processing a bad card' do
