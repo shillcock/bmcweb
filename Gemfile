@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.1'
 
-gem 'rails', '4.1.0'
+gem 'rails', '4.1.3'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '~> 1.3.0'
@@ -67,7 +67,7 @@ group :development, :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'factory_girl_rails'
-  gem 'debugger', '~> 1.6.6'
+  # gem 'debugger', '~> 1.6.6'
   gem 'awesome_print'
   gem 'jazz_hands'
   gem 'spring-commands-rspec'
