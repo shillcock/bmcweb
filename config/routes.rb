@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 BreakthroughForMen::Application.routes.draw do
   root to: "welcome#index"
 
@@ -35,5 +37,9 @@ BreakthroughForMen::Application.routes.draw do
 
     root to: "dashboard#index"
     get "dashboard", to: "dashboard#index"
+  end
+
+  constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
+    mount Sidekiq::Web, at: "/admin/sidekiq", as: "admin_sidekiq"
   end
 end

@@ -37,6 +37,9 @@ gem 'stripe'
 # gem 'bourbon'
 gem 'font-awesome-rails'
 gem 'kaminari'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 
 group :test do
   gem 'bourne'
