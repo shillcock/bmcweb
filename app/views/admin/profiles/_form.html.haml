@@ -1,9 +1,0 @@
-= simple_form_for [:admin, user, profile] do |f|
-  = f.input :address1
-  = f.input :address2
-  = f.input :city
-  = f.input :state
-  = f.input :zip_code
-  = f.input :phone_number
-  = f.input :birthday, discard_year: true, order: [:month, :day]
-  = f.submit class: "btn btn-primary"

@@ -9,6 +9,7 @@
   %hr
   .tabbable
     %ul.nav.nav-tabs
+      %li= link_to fa_icon("chevron-left"), [:admin, :dashboard]
       %li.active= link_to fa_icon("list", text: "List"), [:admin, :intro_meetings]
       %li= link_to fa_icon("plus", text: "Add new meeting"), [:new, :admin, :intro_meeting]
 

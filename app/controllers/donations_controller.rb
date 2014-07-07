@@ -20,6 +20,7 @@ class DonationsController < ApplicationController
     if process_donation
       redirect_to root_path, notice: "Thank you for your donation."
     else
+      # flash.now[:alert] = @donation.errors
       render :new
     end
   end
@@ -39,10 +40,6 @@ class DonationsController < ApplicationController
 
     def donation_params
       params.require(:donation).permit(:name, :email, :comment, :amount, :stripe_token)
-    end
-
-    def strip_iframe_protection
-      response.headers.delete('X-Frame-Options')
     end
 
     def process_donation

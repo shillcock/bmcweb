@@ -12,9 +12,9 @@
   .row
     .tabbable.col-md-9
       %ul.nav.nav-tabs
+        %li= link_to fa_icon("chevron-left"), [:admin, @workshop]
         %li.active= link_to fa_icon("calendar", text: "Calendar"), [:admin, @workshop, @section]
         %li= link_to fa_icon("times", text: "Delete Section"), [:admin, @workshop, @section], method: :delete, data: { confirm: "Are you sure you want to delete this workshop?" }
-        %li= link_to fa_icon("chevron-left", text: "Back"), [:admin, @workshop]
       .main
         %br/
         #sectionCalendar{"data-meetings-url" => @meetings_url, "data-start-date" => @first_meeting_date}

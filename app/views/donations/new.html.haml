@@ -11,15 +11,13 @@
 
 %h3 How much would you like to donate?
 #donation{"data-stripe-key" => "#{Rails.configuration.stripe[:publishable_key]}"}
-/= link_to donate_path, id: "donation_button", class: "btn btn-lg btn-success" do
-/  Donate Now
-/  %span.glyphicon.glyphicon-heart
 
 = render 'form', donation: @donation
 
 %br/
-%p
-  To ensure your data is safe, we use
-  = link_to "Stripe", "http://stripe.com"
-  to process the payments and store your information. Your data is sent encrypted using HTTPS.
-  Breakthrough Men's Community does not directly process or store your credit card information at any time.
+.well
+  %p
+    To ensure your data is safe, we use
+    = link_to "Stripe", "http://stripe.com"
+    to process the payments and store your information. Your data is sent encrypted using HTTPS.
+    Breakthrough Men's Community does not directly process or store your credit card information at any time.

@@ -15,8 +15,10 @@
         %td= link_to user.email, [:admin, user]
         %td= user.created_at
         %td
+          - if user.alumni?
+            %span.label.label-primary Alumni
           - if user.admin?
-            %span.label.label-primary Admin
+            %span.label.label-default Admin
         %td
           .btn-group.btn-group-xs
             %button.btn.btn-default{type: "button"}= link_to fa_icon("info-circle"), [:admin, user]
