@@ -8,7 +8,6 @@ class CreateDonations < ActiveRecord::Migration
 
       t.string :stripe_token
       t.string :stripe_charge_id
-      t.integer :stripe_processing_fee_cents
 
       t.timestamps
     end

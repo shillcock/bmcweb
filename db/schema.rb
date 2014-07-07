@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611022333) do
+ActiveRecord::Schema.define(version: 20140706012149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "alumni_memberships", force: true do |t|
+    t.integer  "user_id"
+    t.string   "stripe_subscription_id"
+    t.string   "stripe_token"
+    t.integer  "amount"
+    t.string   "interval",               default: "month"
+    t.date     "deactivated_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "status",                 default: "pending"
+  end
+
+  add_index "alumni_memberships", ["user_id"], name: "index_alumni_memberships_on_user_id", using: :btree
 
   create_table "donations", force: true do |t|
     t.string   "name"
@@ -23,9 +37,11 @@ ActiveRecord::Schema.define(version: 20140611022333) do
     t.integer  "amount_cents"
     t.string   "stripe_token"
     t.string   "stripe_charge_id"
-    t.integer  "stripe_processing_fee_cents"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "card_type"
+    t.string   "card_last4"
+    t.date     "card_expiration"
   end
 
   create_table "intro_meeting_registrations", force: true do |t|
@@ -70,8 +86,18 @@ ActiveRecord::Schema.define(version: 20140611022333) do
   add_index "meetings", ["lesson_id"], name: "index_meetings_on_lesson_id", using: :btree
   add_index "meetings", ["section_id"], name: "index_meetings_on_section_id", using: :btree
 
-  create_table "profiles", force: true do |t|
-    t.integer  "user_id"
+  create_table "sections", force: true do |t|
+    t.integer  "workshop_id"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sections", ["workshop_id"], name: "index_sections_on_workshop_id", using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "email"
+    t.string   "name"
     t.string   "phone_number"
     t.string   "address1"
     t.string   "address2"
@@ -81,28 +107,15 @@ ActiveRecord::Schema.define(version: 20140611022333) do
     t.date     "birthday"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
-
-  create_table "sections", force: true do |t|
-    t.integer  "workshop_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "title"
-  end
-
-  add_index "sections", ["workshop_id"], name: "index_sections_on_workshop_id", using: :btree
-
-  create_table "users", force: true do |t|
-    t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "encrypted_password", limit: 128
     t.string   "confirmation_token", limit: 128
     t.string   "remember_token",     limit: 128
     t.boolean  "admin",                          default: false
-    t.string   "name"
+    t.string   "stripe_customer_id"
+    t.string   "stripe_token"
+    t.string   "card_type"
+    t.string   "card_last4"
+    t.date     "card_expiration"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
