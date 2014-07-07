@@ -1,0 +1,40 @@
+class UpdateStripeSubscription
+  include Sidekiq::Worker
+
+  def perform(alumni_id)
+    ActiveRecord::Base.connection_pool.with_connection do
+      find_alumni(alumni_id)
+      return unless subscription_exists?
+      update_subscription
+      update_alumni
+    end
+  end
+
+  private
+    def find_alumni(alumni_id)
+      @alumni = AlumniMembership.find(alumni_id)
+    end
+
+    def subscription_exists?
+      @alumni.user.stripe_customer_id.present? && @alumni.stripe_subscription_id.present?
+    end
+
+    def update_subscription
+      subscription.card = @alumni.stripe_token if @alumni.stripe_token.present?
+      subscription.plan = @alumni.plan
+      subscription.quantity = @alumni.amount
+      subscription.save
+    end
+
+    def update_alumni
+      @alumni.update(stripe_token: nil, deactivated_on: nil, status: subscription.status)
+    end
+
+    def customer
+      @customer ||= Stripe::Customer.retrieve(@alumni.user.stripe_customer_id)
+    end
+
+    def subscription
+      @subscription ||= customer.subscriptions.retrieve(@alumni.stripe_subscription_id)
+    end
+end
