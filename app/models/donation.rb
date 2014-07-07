@@ -16,5 +16,5 @@
 class Donation < ActiveRecord::Base
   monetize :amount_cents, numericality: { greater_than: 0 }
   validates :amount_cents, presence: true, numericality: { greater_than: 0 }
-  validates :email, presence: true, format: { with: %r{.+@.+\..+} }
+  validates :email, presence: true, format: { with: %r{\A.+@.+\..+\z} }
 end

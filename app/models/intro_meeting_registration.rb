@@ -16,7 +16,7 @@ class IntroMeetingRegistration < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :email, presence: true, format: { with: %r{.+@.+\..+} }
+  validates :email, presence: true, format: { with: %r{\A.+@.+\..+\z} }
   validates :intro_meeting_id, presence: true
   validates_presence_of :intro_meeting_id
 
