@@ -26,7 +26,11 @@ class IntroMeeting < ActiveRecord::Base
   end
 
   def self.upcoming(limit=3)
-    where('date >= ?', Time.now).order(:date).limit(limit)
+    where('date >= ?', Time.zone.today).order(:date).limit(limit)
+  end
+
+  def self.past
+    where('date <= ?', Time.zone.today)
   end
 
   def time_range
