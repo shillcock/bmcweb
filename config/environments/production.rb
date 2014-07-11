@@ -65,6 +65,7 @@ BreakthroughForMen::Application.configure do
     admin.css
     admin.js
     donations.js
+    admin/alumni_membership.js
   )
 
   # Ignore bad email addresses and do not raise email delivery errors.
