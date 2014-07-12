@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
   end
 
   def schedule
-    @sections = Section.all
+    @sections = Section.includes(:workshop, meetings: [:lesson])
   end
 
   private
