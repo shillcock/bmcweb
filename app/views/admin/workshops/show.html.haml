@@ -15,6 +15,6 @@
         %li.active= link_to fa_icon("list", text: "Sections"), [:admin, @workshop]
       .main
         = render "sections_table", workshop: @workshop, sections: @sections
-    %aside.col-md-3
+    %aside.well.col-md-3
       %h4= fa_icon("plus", text: "New Section")
       = render "new_section", workshop: @workshop, section: @workshop.sections.build

@@ -6,6 +6,7 @@
 //= require bootstrap-datepicker
 //= require jquery.ptTimeSelect
 //= require fullcalendar
+//= require select2
 //= require admin/intro_meetings
 //= require admin/workshops
 //= require admin/sections
