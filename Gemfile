@@ -38,6 +38,7 @@ gem 'kaminari'
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
+gem 'select2-rails'
 
 group :test do
   gem 'bourne'
@@ -60,6 +61,7 @@ group :development do
   gem 'spring'
   gem 'rails-erd'
   # gem 'sass-rails-source-maps'
+  gem 'bullet'
 end
 
 group :development, :test do
