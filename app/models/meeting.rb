@@ -30,6 +30,15 @@ class Meeting < ActiveRecord::Base
   end
 
   def short_name
-    "BT#{section.workshop.id} - M#{meeting_number}"
+    "#{workshop_short_name} - #{meeting_short_name}"
   end
+
+  private
+    def workshop_short_name
+      "#{section.workshop.short_name}"
+    end
+
+    def meeting_short_name
+      "M#{meeting_number}"
+    end
 end
