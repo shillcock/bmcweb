@@ -10,27 +10,22 @@
 #
 
 class Workshop < ActiveRecord::Base
-
-  BASE_TITLE="Breakthrough"
-  BT1_TITLE="#{BASE_TITLE} 1"
-  BT2_TITLE="#{BASE_TITLE} 2"
-
   has_many :lessons, dependent: :destroy
   has_many :sections, dependent: :destroy
 
-  scope :bt1, -> { where(title: Workshop::BT1_TITLE) }
-  scope :bt2, -> { where(title: Workshop::BT2_TITLE) }
+  scope :bt1, -> { find(1) }
+  scope :bt2, -> { find(2) }
 
   def short_name
-    title.sub(Workshop::BASE_TITLE, "BT").delete(" ")
+    "BT#{id}"
   end
 
   def bt1?
-    title == Workshop::BT1_TITLE
+    id == 1
   end
 
   def bt2?
-    title == Workshop::BT2_TITLE
+    id == 2
   end
 
   def active_sections

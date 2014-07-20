@@ -11,10 +11,17 @@ class Dashboard
   end
 
   def bt1
-    @bt1 ||= Workshop.find(1)
+    @bt1 ||= begin Workshop.find(1) rescue NullWorkshop.new end
   end
 
   def bt2
-    @bt2 ||= Workshop.find(2)
+    @bt2 ||= begin Workshop.find(2) rescue NullWorkshop.new end
   end
+
+  private
+
+    class NullWorkshop
+      def title; ""; end
+      def sections; []; end
+    end
 end

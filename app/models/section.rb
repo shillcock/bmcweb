@@ -21,17 +21,17 @@ class Section < ActiveRecord::Base
   scope :bt1, -> { joins(:workshop).merge(Workshop.bt1) }
   scope :bt2, -> { joins(:workshop).merge(Workshop.bt2) }
 
-  def self.active
-    where(active: true)
-  end
+  # def self.active
+  #   where(active: true)
+  # end
 
-  def self.upcoming
-    where('date >= ?', Time.zone.today).order(:date)
-  end
+  # def self.upcoming
+  #   where('date >= ?', Time.zone.today).order(:date)
+  # end
 
-  def self.past
-    where('date <= ?', Time.zone.today).order(:date)
-  end
+  # def self.past
+  #   where('date <= ?', Time.zone.today).order(:date)
+  # end
 
   def enrolled?(user)
     enrollments.include?(user) if user
