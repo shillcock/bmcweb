@@ -1,0 +1,23 @@
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li= link_to "Workshops", [:admin, :workshops]
+    %li= link_to @workshop.title, [:admin, @workshop]
+    %li= link_to @section.title, [:admin, @workshop, @section]
+    %li.active Roster
+
+.container.workshops
+  %header
+    %h2= fa_icon("users", text: "#{@section.title} Roster")
+  %hr
+  .row
+    .tabbable.col-md-9
+      %ul.nav.nav-tabs
+        %li= link_to fa_icon("chevron-left"), [:admin, @workshop, @section]
+        %li.active= link_to fa_icon("list", text: "Roster"), [:admin, @section, :roster]
+        %li= link_to fa_icon("pencil", text: "Edit"), [:edit, :admin, @section, :roster]
+      .main
+        =render "participants_table", participants: @section.roster
+    %aside.col-md-3
+      %h4= fa_icon("plus", text: "Add Participant")
+      .well= render "add_participant_form", section: @section, users: @users, roles: [["Student", :student], ["Educator", :educator]]

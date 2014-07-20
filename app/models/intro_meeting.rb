@@ -17,8 +17,8 @@ class IntroMeeting < ActiveRecord::Base
 
   has_many :registrations, dependent: :destroy, class_name: "IntroMeetingRegistration"
 
-  #scope :past, -> { where('date < ?', TIme.now).order(:date) }
-  #scope :upcoming, -> { where('date >= ?', TIme.now).order(:date) }
+  #scope :past, -> { where('date < ?', Time.now).order(:date) }
+  #scope :upcoming, -> { where('date >= ?', Time.now).order(:date) }
 
   after_initialize do
     self.starts_at ||= Time.parse("19:00")

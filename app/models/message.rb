@@ -1,25 +1,18 @@
-class Message
-  include Virtus.model
-  include ActiveModel::Validations
-  include ActiveModel::Conversion
-  extend ActiveModel::Naming
+class Message < PlainModel
 
   attribute :name, String
   attribute :email, String
   attribute :message, String
-  attribute :remote_ip, String
-  attribute :user_agent, String
 
   validates :name, presence: true
   validates :email, presence: true, format: { with: %r{.+@.+\..+} }
   validates :message, presence: true
 
-  def process
-    valid? ? ContactMailer.new_message(self).deliver : false
-  end
+  set_callback :save, :after, :send_message
 
   private
-    def persisted?
-      false
+
+    def send_message
+      ContactMailer.new_message(self).deliver
     end
 end

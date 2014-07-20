@@ -4,7 +4,12 @@ class Participant
 
   attr_accessor :user, :section
 
-  delegate :id, :name, :email, :phone_number, :birthday, to: :user
+  class NullEnrollment
+    def student?; false; end
+    def educator?; false; end
+  end
+
+  delegate :id, :name, :email, :phone_number, to: :user
 
   def initialize(user, section)
     @user = user
@@ -15,10 +20,9 @@ class Participant
     user.enrolled?(section)
   end
 
-  def enroll(role: "student")
+  def enroll(role: :student)
     return false if enrolled?
-    new_enrollment = SectionEnrollment.new(user_id: user.id, section_id: section.id)
-    new_enrollment.add_role(role)
+    new_enrollment = SectionEnrollment.new(user_id: user.id, section_id: section.id, role: role)
     new_enrollment.save
   end
 
@@ -28,11 +32,15 @@ class Participant
   end
 
   def student?
-    has_role?(:student)
+    enrollment.student?
   end
 
   def educator?
-    has_role?(:educator)
+    enrollment.educator?
+  end
+
+  def birthday
+    user.birthday.strftime("%B %e") if user.birthday?
   end
 
   def persisted?
@@ -45,11 +53,7 @@ class Participant
 
   private
 
-    def has_role?(role)
-      enrollment.has_role?(role) if enrolled?
-    end
-
     def enrollment
-      @enrollment ||= section.section_enrollments.find_by(user_id: user.id, section_id: section.id)
+      @enrollment ||= section.section_enrollments.find_by(user_id: user.id, section_id: section.id) :: NullEnrollment.new
     end
 end

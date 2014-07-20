@@ -14,6 +14,7 @@
       %ul.nav.nav-tabs
         %li= link_to fa_icon("chevron-left"), [:admin, @workshop]
         %li.active= link_to fa_icon("calendar", text: "Calendar"), [:admin, @workshop, @section]
+        %li= link_to fa_icon("list", text: "Roster"), [:admin, @section, :roster]
         %li= link_to fa_icon("times", text: "Delete Section"), [:admin, @workshop, @section], method: :delete, data: { confirm: "Are you sure you want to delete this workshop?" }
       .main
         %br/

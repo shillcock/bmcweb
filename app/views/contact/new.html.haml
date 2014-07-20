@@ -6,7 +6,7 @@
     %p
       Please fill out this form and we will get in touch with you shortly.
     #contact
-      = render partial: "form"
+      = render "form", message: @message
   .col-md-4
     %aside
       %address

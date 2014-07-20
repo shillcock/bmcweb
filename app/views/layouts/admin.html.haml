@@ -1,6 +1,7 @@
 !!!
 %html{lang: "en"}
   %head
+    = render 'shared/typekit'
     %meta{charset: "utf-8"}/
     %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
     %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
@@ -16,8 +17,6 @@
   %body{class: page_class}
     = render 'admin/shared/navigation'
     .container.main
-      - if content_for?(:breadcrumbs)
-        = yield(:brea)
       = render 'admin/shared/breadcrumbs'
       = render 'shared/messages'
       .main

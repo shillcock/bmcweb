@@ -1,26 +1,23 @@
-%table.table.table-hover#users
+%br/
+%table.table.table-hover#users{data: { source: admin_users_url(format: 'json')}}
   %thead
     %tr
       %th ID
       %th Name
       %th Email
-      %th Created at
-      %th Role
-      %th Actions
+      %th Birthday
+      - if nil
+        %th Role
   %tbody
-    - users.each do |user|
-      %tr[user]
-        %td= user.id
-        %td= user.name
-        %td= link_to user.email, [:admin, user]
-        %td= user.created_at
-        %td
-          - if user.alumni?
-            %span.label.label-primary Alumni
-          - if user.admin?
-            %span.label.label-default Admin
-        %td
-          .btn-group.btn-group-xs
-            %button.btn.btn-default{type: "button"}= link_to fa_icon("info-circle"), [:admin, user]
-            %button.btn.btn-default{type: "button"}= link_to fa_icon("pencil"), [:edit, :admin, user]
-            %button.btn.btn-default{type: "button"}= link_to fa_icon("times"), [:admin, user], method: :delete, data: { confirm: "Are you sure you want to delete this user?" }
+    - if nil
+      - users.each do |user|
+        %tr[user]{class: "#{'warning' if user.admin?}"}
+          %td= user.id
+          %td= link_to user.name, [:admin, user]
+          %td= user.email
+          %td= user.birthday
+          %td
+            - if user.alumni?
+              %span.label.label-primary Alumni
+            - if user.admin?
+              %span.label.label-default Admin

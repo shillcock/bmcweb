@@ -40,6 +40,12 @@ BreakthroughForMen::Application.routes.draw do
 
     resources :sections, only: [] do
       resources :meetings, only: [:index, :update]
+      resource :roster do
+        member do
+          post :add
+          delete :remove
+        end
+      end
     end
 
     root to: "dashboard#index"

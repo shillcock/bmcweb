@@ -5,5 +5,6 @@
 //= require jquery.payment
 
 $(function() {
+  try { Typekit.load(); } catch(e) {}
 });
 

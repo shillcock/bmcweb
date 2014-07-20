@@ -1,0 +1,20 @@
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li= link_to "Workshops", [:admin, :workshops]
+    %li= link_to @workshop.title, [:admin, @workshop]
+    %li= link_to @section.title, [:admin, @workshop, @section]
+    %li= link_to "Roster", [:admin, @section, :roster]
+    %li.active Edit
+
+.container.workshops
+  %header
+    %h2= fa_icon("users", text: "Edit #{@section.title} Roster")
+  %hr
+  .row
+    .tabbable.col-md-12
+      %ul.nav.nav-tabs
+        %li= link_to fa_icon("chevron-left"), [:admin, @workshop, @section]
+        %li= link_to fa_icon("list", text: "Roster"), [:admin, @section, :roster]
+        %li.active= link_to fa_icon("pencil", text: "Edit"), [:edit, :admin, @section, :roster]
+      .main

@@ -1,10 +1,14 @@
 class ContactController < ApplicationController
   skip_before_action :authorize, only: [:new, :create]
 
+  def new
+    build_message
+  end
+
   def create
-    if message.process
+    build_message
+    if @message.save
       flash[:notice] = "Ok, we've got it! We will get in touch with you shortly."
-      @message = Message.new
       redirect_to contact_path
     else
       flash[:alert] = "Unable to send your message."
@@ -13,11 +17,7 @@ class ContactController < ApplicationController
   end
 
   private
-    def message
-      @message ||= Message.new(params[:message] || {})
-      @message.remote_ip = request.remote_ip
-      @message.user_agent = request.user_agent
-      @message
+    def build_message
+      @message ||= Message.new(params[:message])
     end
-    helper_method :message
 end

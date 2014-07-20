@@ -6,7 +6,7 @@ class Admin::UsersController < Clearance::UsersController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :update_credit_card]
 
   def index
-    @users = User.all
+    @users = User.all.includes(:alumni_membership)
   end
 
   def new
@@ -19,6 +19,7 @@ class Admin::UsersController < Clearance::UsersController
 
     if @user.save
       CreateStripeCustomer.perform_async(@user.id)
+      #SubscribeToNewsletter.perform_async(@user.id)
       flash[:notice] = "User has been created."
       redirect_to [:edit, :admin, @user]
     else

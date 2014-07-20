@@ -15,15 +15,17 @@ gem 'jbuilder', '~> 2.0'
 gem 'haml-rails'
 
 gem 'passenger'
-gem 'virtus'
+gem 'virtus', '~> 1.0.2'
+# gem 'active_type', '~> 0.1.2'
 gem 'clearance', '~> 1.3.0'
-gem 'rolify'
-gem 'simple_form', '~> 3.1.0.rc1'
+# gem 'rolify'
+gem 'simple_form', '~> 3.1.0.rc2'
 gem 'money', '~> 6.1.1'
-gem 'money-rails', '~> 0.10.0'
+gem 'money-rails', '~> 0.12.0'
 gem 'paper_trail', '~> 3.0.1'
 # gem 'destroyed_at'
 # gem 'mailchimp'
+gem 'gibbon'
 # gem 'uuidtools'
 # gem 'analytics-ruby'
 # gem 'newrelic_rpm'
@@ -33,12 +35,14 @@ gem 'coveralls', require: false
 gem 'aasm'
 gem 'stripe'
 gem 'stripe_event'
+#gem 'stripe-ruby-mock', '~> 1.10.1.7'
 gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'select2-rails'
+gem 'jquery-datatables-rails', '~> 2.1.10.0.3'
 
 group :test do
   gem 'bourne'
@@ -52,6 +56,7 @@ group :test do
 end
 
 group :development do
+  # gem 'sass-rails-source-maps'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
@@ -60,17 +65,16 @@ group :development do
   gem 'annotate'
   gem 'spring'
   gem 'rails-erd'
-  # gem 'sass-rails-source-maps'
   gem 'bullet'
 end
 
 group :development, :test do
+  # gem 'debugger', '~> 1.6.6'
   gem 'dotenv-rails'
-  gem 'rspec-rails', '~> 2.14.2'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'rspec-rails', '~> 2.14.2'
   gem 'factory_girl_rails'
-  # gem 'debugger', '~> 1.6.6'
   gem 'awesome_print'
   gem 'jazz_hands'
   gem 'spring-commands-rspec'

@@ -2,11 +2,11 @@
   %ol.breadcrumb
     %li= link_to "Dashboard", [:admin, :root]
     %li= link_to "Users", [:admin, :users]
-    %li.active= @user.email
+    %li.active= @user.name
 
 .container.user
   %header
-    %h2= fa_icon("user", text: "User : #{@user.name} : #{@user.email}")
+    %h2= fa_icon("user", text: "User : #{@user.name}")
   %hr
   = render "tabs", user: @user, current: "show"
   .main[@user]

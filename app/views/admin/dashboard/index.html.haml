@@ -5,19 +5,33 @@
   %header
     %h2= fa_icon("dashboard", text: "Admin Dashboard")
   %hr
-  .row
-    .col-md-6
-      .panel.panel-info
-        .panel-heading
-          .div.pull-right
-            = link_to fa_icon("list", text: "List"), [:admin, :users], class: "btn btn-primary"
-            = link_to fa_icon("plus", text: "Add new user"), [:new, :admin, :user], class: "btn btn-primary"
-          %h4 Users
-        .panel-body
-          = "Total Users: #{@dashboard.user_count}"
-    .col-md-6
-      .panel.panel-info
-        .panel-heading
-          %h4 Alumni Association Membership
-        .panel-body
-          = "Total Members: #{@dashboard.alumni_membership_count}"
+  - if nil # disable for now
+    .row
+      .col-md-6
+        .panel.panel-info
+          .panel-heading
+            .div.pull-right
+              = link_to fa_icon("list", text: "List"), [:admin, :users], class: "btn btn-primary"
+              = link_to fa_icon("plus", text: "Add new user"), [:new, :admin, :user], class: "btn btn-primary"
+            %h4 Users
+          .panel-body
+            = "Total Users: #{@dashboard.user_count}"
+      .col-md-6
+        .panel.panel-info
+          .panel-heading
+            %h4 Alumni Association Membership
+          .panel-body
+            = "Total Members: #{@dashboard.alumni_membership_count}"
+    .row
+      .col-md-6
+        .panel.panel-info
+          .panel-heading
+            %h4= @dashboard.bt1.title
+          .panel-body
+            = render "admin/workshops/sections_table", workshop: @dashboard.bt1, sections: @dashboard.bt1.sections
+      .col-md-6
+        .panel.panel-info
+          .panel-heading
+            %h4= @dashboard.bt2.title
+          .panel-body
+            = render "admin/workshops/sections_table", workshop: @dashboard.bt2, sections: @dashboard.bt2.sections

@@ -3,6 +3,7 @@ class CreateSectionEnrollments < ActiveRecord::Migration
     create_table :section_enrollments do |t|
       t.integer :user_id, null: false
       t.integer :section_id, null: false
+      t.column :role, :integer, default: 0
 
       t.timestamps
     end

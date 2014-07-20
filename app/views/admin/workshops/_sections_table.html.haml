@@ -4,6 +4,8 @@
       %th ID
       %th Title
       %th Starts
+      %th Participants
+      %th Educators
       %th Actions
   %tbody
     - sections.each do |section|
@@ -12,6 +14,11 @@
         %td= link_to section.title, [:admin, workshop, section]
         %td= section.start_date
         %td
+          %span.badge= section.students.count
+        %td
+          %span.badge= section.educators.count
+        %td
           .btn-group.btn-group-xs
             %button.btn.btn-default{type: "button"}= link_to fa_icon("info-circle"), [:admin, workshop, section]
+            %button.btn.btn-default{type: "button"}= link_to fa_icon("list"), [:admin, section, :roster]
             %button.btn.btn-default{type: "button"}= link_to fa_icon("times"), [:admin, workshop, section], method: :delete, data: { confirm: "Are you sure you want to delete this user?" }

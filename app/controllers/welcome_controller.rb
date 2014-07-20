@@ -11,7 +11,4 @@ class WelcomeController < ApplicationController
   def schedule
     @sections = Section.includes(:workshop, meetings: [:lesson])
   end
-
-  private
-
 end

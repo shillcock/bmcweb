@@ -13,10 +13,15 @@ class CreateStripeSubscription
   private
     def find_alumni(alumni_id)
       @alumni = AlumniMembership.find(alumni_id)
+      @user = @alumni.user
     end
 
     def subscription_exists?
       @alumni.stripe_subscription_id.present?
+    end
+
+    def customer_exists?
+      @user.stripe_customer_id.present?
     end
 
     def update_alumni
@@ -29,7 +34,19 @@ class CreateStripeSubscription
     end
 
     def customer
-      @customer ||= Stripe::Customer.retrieve(@alumni.user.stripe_customer_id)
+      ensure_customer_exists
+      @customer ||= retrieve_customer
+    end
+
+    def ensure_customer_exists
+      unless customer_exists?
+        CreateStripeCustomer.new.perform(@user.id)
+        @user = @alumni.user(true) # reload user to reflect updates
+      end
+    end
+
+    def retrieve_customer
+      Stripe::Customer.retrieve(@user.stripe_customer_id)
     end
 
     def create_subscription

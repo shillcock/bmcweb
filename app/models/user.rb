@@ -17,9 +17,21 @@ class User < ActiveRecord::Base
 
   has_one :alumni_membership, dependent: :destroy
 
+  has_many :section_enrollments, dependent: :destroy
+  has_many :sections, through: :section_enrollments
+  # has_many :bt1_sections, source: :section, through: :section_enrollments, -> {}
+
   validates :name, presence: true
 
-  # after_save :create_stripe_customer
+  scope :students, -> { joins(:section_enrollments).merge(SectionEnrollment.students) }
+  scope :educators, -> { joins(:section_enrollments).merge(SectionEnrollment.educators) }
+
+  # scope :the_students, -> { where()}
+
+  scope :bt1, -> { joins(:sections).merge(Section.bt1) }
+  scope :bt2, -> { joins(:sections).merge(Section.bt2) }
+
+  # after_save :create_stripe_customer, on: :create
   # before_destroy :delete_stripe_customer
 
   def first_name
@@ -32,6 +44,18 @@ class User < ActiveRecord::Base
 
   def alumni?
     alumni_membership.present? and alumni_membership.active?
+  end
+
+  def enrolled?(section)
+    sections.include?(section) if section
+  end
+
+  def bt1
+    sections.bt1.last
+  end
+
+  def bt2
+    sections.bt2.last
   end
 
   private
