@@ -54,6 +54,6 @@ class Participant
   private
 
     def enrollment
-      @enrollment ||= section.section_enrollments.find_by(user_id: user.id, section_id: section.id) :: NullEnrollment.new
+      @enrollment ||= section.section_enrollments.find_by(user_id: user.id, section_id: section.id) || NullEnrollment.new
     end
 end
