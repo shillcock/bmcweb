@@ -1,10 +1,10 @@
-![Breakthrough Men's Community](https://raw.github.com/breakthroughformen/breakthroughformen/267df30366c7ca48cb5b7a76bced98a7e30e5aeb/app/assets/images/bmc_banner.png)
+![Breakthrough Men's Community](https://raw.github.com/breakthroughmenscommunity/bmc/267df30366c7ca48cb5b7a76bced98a7e30e5aeb/app/assets/images/bmc_banner.png)
 
-**Website:** http://breakthroughformen.org
+**Website:** http://breakthroughmenscommunity.org
 
 [ ![Codeship Status for
-breakthroughformen/breakthroughformen](https://www.codeship.io/projects/4ddd2200-2419-0131-525e-2ab15a461804/status?branch=master)](https://www.codeship.io/projects/8841) [![Coverage
-Status](https://coveralls.io/repos/breakthroughformen/breakthroughformen/badge.png)](https://coveralls.io/r/breakthroughformen/breakthroughformen) [![Code Climate](https://codeclimate.com/github/breakthroughformen/breakthroughformen.png)](https://codeclimate.com/github/breakthroughformen/breakthroughformen)
+breakthroughmenscommunity/bmc](https://www.codeship.io/projects/4ddd2200-2419-0131-525e-2ab15a461804/status?branch=master)](https://www.codeship.io/projects/8841) [![Coverage
+Status](https://coveralls.io/repos/breakthroughmenscommunity/bmc/badge.png)](https://coveralls.io/r/breakthroughformen/breakthroughformen) [![Code Climate](https://codeclimate.com/github/breakthroughmenscommunity/bmc.png)](https://codeclimate.com/github/breakthroughmenscommunity/bmc)
 
 ## README
 
