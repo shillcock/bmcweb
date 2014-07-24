@@ -3,8 +3,7 @@
 **Website:** http://breakthroughmenscommunity.org
 
 [ ![Codeship Status for
-breakthroughmenscommunity/bmc](https://www.codeship.io/projects/4ddd2200-2419-0131-525e-2ab15a461804/status?branch=master)](https://www.codeship.io/projects/8841) [![Coverage
-Status](https://coveralls.io/repos/breakthroughmenscommunity/bmc/badge.png)](https://coveralls.io/r/breakthroughformen/breakthroughformen) [![Code Climate](https://codeclimate.com/github/breakthroughmenscommunity/bmc.png)](https://codeclimate.com/github/breakthroughmenscommunity/bmc)
+breakthroughmenscommunity/bmc](https://www.codeship.io/projects/4ddd2200-2419-0131-525e-2ab15a461804/status?branch=master)](https://www.codeship.io/projects/8841) [![Coverage Status](https://coveralls.io/repos/breakthroughmenscommunity/bmc/badge.png)](https://coveralls.io/r/breakthroughmenscommunity/bmc) [![Code Climate](https://codeclimate.com/github/breakthroughmenscommunity/bmc.png)](https://codeclimate.com/github/breakthroughmenscommunity/bmc)
 
 ## README
 
