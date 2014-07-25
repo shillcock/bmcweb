@@ -1,7 +1,7 @@
-class DiscourseSsoController < ApplicationController
+class InTouchSsoController < ApplicationController
   def sso
     secret = ENV["DISCOURSE_SECRET"]
-    sso = Discourse::SingleSignOn.parse(request.query_string, secret)
+    sso = SingleSignOn.parse(request.query_string, secret)
     sso.email = current_user.email
     sso.name = current_user.name
     # sso.username = current_user.nickname
