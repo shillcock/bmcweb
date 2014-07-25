@@ -3,7 +3,7 @@ require 'sidekiq/web'
 BreakthroughForMen::Application.routes.draw do
   root to: "welcome#index"
 
-  get "/discourse/sso", to: "discourse_sso#sso"
+  get "intouch/sso", to: "in_touch_sso#sso"
 
   get "what_is_breakthrough", to: "welcome#info"
   get "schedule", to: "welcome#schedule"
