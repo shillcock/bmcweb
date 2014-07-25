@@ -21,7 +21,7 @@ BreakthroughForMen::Application.configure do
   config.assets.digest = true
   config.assets.version = '1.0'
 
-  config.force_ssl = true
+  #config.force_ssl = true
 
   config.log_level = :info
   config.log_formatter = ::Logger::Formatter.new
