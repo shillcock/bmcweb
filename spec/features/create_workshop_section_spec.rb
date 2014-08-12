@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 feature 'Creating New Section' do
+  before { pending }
   let(:admin) { create(:admin) }
   let!(:workshop) { create(:workshop) }
   let!(:lesson) { create(:lesson, workshop: workshop)}

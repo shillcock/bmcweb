@@ -14,10 +14,13 @@
 class Workshop < ActiveRecord::Base
   has_many :meetings, -> { order("position ASC") }, dependent: :destroy
 
+  #has_many :workshop_enrollments, dependent: :destroy
+  #has_many :enrollments, through: :workshop_enrollments, source: :user
+
   has_paper_trail
 
-  validates :title, presence: true
   validates :name, presence: true
+  validates :title, presence: true
 
   scope :bt1_or_bt2, -> { where(name: ["BT1", "BT2"]) }
   scope :active, -> { where(active: true) }

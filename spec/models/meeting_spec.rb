@@ -20,11 +20,8 @@ require 'spec_helper'
 
 describe Meeting do
   let(:workshop) { create(:workshop) }
-  let(:lesson) { create(:lesson, workshop: workshop) }
-  let(:section) { create(:section, workshop: workshop) }
-  let(:meeting) { create(:meeting, section: section, lesson: lesson) }
+  let(:meeting) { create(:meeting, workshop: workshop) }
   subject { meeting }
 
-  it { should belong_to(:section) }
-  it { should belong_to(:lesson) }
+  it { should belong_to(:workshop) }
 end

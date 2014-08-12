@@ -7,15 +7,19 @@ FactoryGirl.define do
     "first#{n} last#{n}"
   end
 
+  sequence :workshop_name do |n|
+    "ws#{n}"
+  end
+
   sequence :workshop_title do |n|
     "workshop #{n}"
   end
 
-  sequence :lesson_title do |n|
-    "lesson #{n}"
+  sequence :meeting_title do |n|
+    "meeting #{n}"
   end
 
-  sequence :lesson_number
+  sequence :meeting_number
 
   factory :donation do
     email
@@ -46,50 +50,52 @@ FactoryGirl.define do
   end
 
   factory :workshop do
+    name { generate(:workshop_name) }
     title { generate(:workshop_title) }
     description { "#{title} will rock your world." }
 
-    factory :workshop_with_lessons do
+    factory :workshop_with_meetings do
       ignore do
-        lesson_count 5
+        meeting_count 5
       end
 
       after(:create) do |instance, attributes|
-        attributes.lesson_count.times do
-          create(:lesson, workshop: instance)
+        attributes.meeting_count.times do
+          create(:meeting, workshop: instance)
         end
       end
     end
   end
 
-  factory :lesson do
-    title "Basic Assumption"
-    summary "What do you really know about telling the truth."
-    lesson_number
-    # workshop
-  end
+  # factory :lesson do
+  #   title "Basic Assumption"
+  #   summary "What do you really know about telling the truth."
+  #   lesson_number
+  #   # workshop
+  # end
 
-  factory :section do
-    workshop
+  # factory :section do
+  #   workshop
 
-    factory :section_with_meetings do
-      after(:create) do |instance, attributes|
-        attributes.workshop.lessons.each do |lesson|
-          create(:meeting, section: instance, lesson: lesson)
-        end
-      end
-    end
-  end
+  #   factory :section_with_meetings do
+  #     after(:create) do |instance, attributes|
+  #       attributes.workshop.lessons.each do |lesson|
+  #         create(:meeting, section: instance, lesson: lesson)
+  #       end
+  #     end
+  #   end
+  # end
 
   factory :meeting do
+    title "Basic Assumption"
     ignore do
       dd 2.day.from_now.to_date
     end
 
     starts_at { DateTime.new(dd.year, dd.month, dd.day, 18, 30) }
     ends_at { DateTime.new(dd.year, dd.month, dd.day, 20, 30) }
-    section
-    lesson
+
+    workshop
   end
 
   factory :user do

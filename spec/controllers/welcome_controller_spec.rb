@@ -17,6 +17,7 @@ describe WelcomeController do
   end
 
   describe "GET #schedule" do
+    before { pending }
     it "populates an array of sections" do
       section1 = create(:section_with_meetings)
       section2 = create(:section_with_meetings)
