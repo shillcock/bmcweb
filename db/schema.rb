@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140712045018) do
+ActiveRecord::Schema.define(version: 20140801060105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,47 +63,17 @@ ActiveRecord::Schema.define(version: 20140712045018) do
     t.datetime "updated_at"
   end
 
-  create_table "lessons", force: true do |t|
-    t.string   "title"
-    t.text     "summary"
-    t.integer  "lesson_number"
-    t.integer  "workshop_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "lessons", ["workshop_id"], name: "index_lessons_on_workshop_id", using: :btree
-
   create_table "meetings", force: true do |t|
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.integer  "lesson_id"
-    t.integer  "section_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  add_index "meetings", ["lesson_id"], name: "index_meetings_on_lesson_id", using: :btree
-  add_index "meetings", ["section_id"], name: "index_meetings_on_section_id", using: :btree
-
-  create_table "section_enrollments", force: true do |t|
-    t.integer  "user_id",                null: false
-    t.integer  "section_id",             null: false
-    t.integer  "role",       default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "section_enrollments", ["section_id", "user_id"], name: "index_section_enrollments_on_section_id_and_user_id", unique: true, using: :btree
-
-  create_table "sections", force: true do |t|
-    t.integer  "workshop_id"
     t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "position"
+    t.integer  "workshop_id"
   end
 
-  add_index "sections", ["workshop_id"], name: "index_sections_on_workshop_id", using: :btree
+  add_index "meetings", ["workshop_id"], name: "index_meetings_on_workshop_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"
@@ -131,11 +101,35 @@ ActiveRecord::Schema.define(version: 20140712045018) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
+  create_table "versions", force: true do |t|
+    t.string   "item_type",      null: false
+    t.integer  "item_id",        null: false
+    t.string   "event",          null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+    t.text     "object_changes"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+
+  create_table "workshop_enrollments", force: true do |t|
+    t.integer  "user_id",                  null: false
+    t.integer  "workhshop_id",             null: false
+    t.integer  "role",         default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "workshop_enrollments", ["workhshop_id", "user_id"], name: "index_workshop_enrollments_on_workhshop_id_and_user_id", unique: true, using: :btree
+
   create_table "workshops", force: true do |t|
     t.string   "title"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.boolean  "active",      default: false
   end
 
 end

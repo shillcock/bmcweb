@@ -10,4 +10,4 @@
 
 = simple_form_for donation, url: "/donate", html: { id: "donation_form" } do |f|
   = f.error_notification
-  = f.button :submit, "I would like to donate $100 to the Breakthrough Men's Community", id: "submit_button", class: "btn btn-block btn-lg btn-primary"
+  = f.submit "I would like to donate $100 to the Breakthrough Men's Community", id: "submit_button", class: "btn btn-block btn-lg btn-primary"

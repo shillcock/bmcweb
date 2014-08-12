@@ -2,14 +2,18 @@
 #
 # Table name: meetings
 #
-#  id         :integer          not null, primary key
-#  date       :date
-#  starts_at  :time
-#  ends_at    :time
-#  lesson_id  :integer
-#  section_id :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id          :integer          not null, primary key
+#  starts_at   :datetime
+#  ends_at     :datetime
+#  created_at  :datetime
+#  updated_at  :datetime
+#  title       :string(255)
+#  position    :integer
+#  workshop_id :integer
+#
+# Indexes
+#
+#  index_meetings_on_workshop_id  (workshop_id)
 #
 
 require 'spec_helper'

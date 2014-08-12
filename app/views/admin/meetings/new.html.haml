@@ -1,0 +1,22 @@
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li= link_to "Workshops", [:admin, :workshops]
+    %li= link_to @workshop.title, [:admin, @workshop]
+    %li= link_to "Meetings", [:admin, @workshop, :meetings]
+    %li.active New
+
+.container.users
+  %header
+    %h2= fa_icon("book", text: "Meetings")
+  %hr
+  .tabbable
+    %ul.nav.nav-tabs
+      %li= link_to fa_icon("chevron-left"), [:admin, @workshop]
+      %li= link_to fa_icon("list", text: "List"), [:admin, :workshop, :meetings]
+      %li.active= link_to fa_icon("plus", text: "Add new meeting"), [:new, :admin, :workshop, :meeting]
+  .main
+    .row
+      .col-md-6
+        %br/
+        = render "form", workshop: @workshop, meeting: @meeting

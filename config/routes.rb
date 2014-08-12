@@ -3,7 +3,7 @@ require 'sidekiq/web'
 BreakthroughForMen::Application.routes.draw do
   root to: "welcome#index"
 
-  get "intouch/sso", to: "in_touch_sso#sso"
+  get "/intouch/sso", to: "in_touch_sso#sso"
 
   get "what_is_breakthrough", to: "welcome#info"
   get "schedule", to: "welcome#schedule"
@@ -25,6 +25,7 @@ BreakthroughForMen::Application.routes.draw do
     resources :users do
       resource :alumni_membership
       member do
+        get :history
         post :update_credit_card
       end
     end
@@ -34,28 +35,30 @@ BreakthroughForMen::Application.routes.draw do
     end
 
     resources :workshops do
-      resources :lessons
-      resources :sections
+      resources :meetings
+      member do
+        get :history
+      end
     end
 
     resources :donations, only: [:index, :show]
 
-    resources :sections, only: [] do
-      resources :meetings, only: [:index, :update]
-      resource :roster do
-        member do
-          post :add
-          delete :remove
-        end
-      end
-    end
+    # resources :sections, only: [] do
+    #   resources :meetings, only: [:index, :update]
+    #   resource :roster do
+    #     member do
+    #       post :add
+    #       delete :remove
+    #     end
+    #   end
+    # end
 
     root to: "dashboard#index"
     get "dashboard", to: "dashboard#index"
   end
 
   constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
-    mount Sidekiq::Web, at: "/admin/sidekiq", as: "admin_sidekiq"
+    mount Sidekiq::Web, at: "/admin/jobs", as: "admin_jobs"
   end
 
   mount StripeEvent::Engine, at: "/stripe-webhook"

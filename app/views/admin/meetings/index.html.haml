@@ -1,0 +1,33 @@
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li= link_to "Workshops", [:admin, :workshops]
+    %li= link_to @workshop.title, [:admin, @workshop]
+    %li.active Meetings
+
+.container.workshops
+  %header
+    %h2= fa_icon("book", text: "Meetings")
+  %hr
+  .tabbable
+    %ul.nav.nav-tabs
+      %li= link_to fa_icon("chevron-left"), [:admin, @workshop]
+      %li.active= link_to fa_icon("list", text: "List"), [:admin, @workshop, :meetings]
+      %li= link_to fa_icon("plus", text: "Add new meeting"), [:new, :admin, :workshop, :meeting]
+  .main
+    %table.table.table-hover#meetings
+      %thead
+        %tr
+          %th ID
+          %th Number
+          %th Title
+          %th Starts at
+          %th Ends at
+      %tbody
+        - @meetings.each do |meeting|
+          %tr[meeting]
+            %td= meeting.id
+            %td= meeting.short_title
+            %td= link_to meeting.title, [:admin, @workshop, meeting]
+            %td= meeting.starts_at.strftime("%l:%M %p")
+            %td= meeting.ends_at.strftime("%l:%M %p")

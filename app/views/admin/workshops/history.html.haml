@@ -1,0 +1,17 @@
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li= link_to "Workshops", [:admin, :workshops]
+    %li.active= link_to @workshop.title, [:admin, @workshop]
+    %li.active History
+
+.container.user
+  %header
+    %h2= fa_icon("history", text: "History : #{@history.count} versions")
+  %hr
+  = render "tabs", workshop: @workshop, current: "history"
+  .main[@workshop]
+    .row
+      .col-md-12
+        %br/
+        = render "admin/shared/versions", versions: @history, user_name: @user_name

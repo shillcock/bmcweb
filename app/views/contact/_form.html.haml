@@ -3,4 +3,4 @@
     = f.input :name, placeholder: "Your Name"
     = f.input :email, placeholder: "Your Email"
     = f.input :message, as: :text, placeholder: "Your Message", input_html: { rows: '10' }
-    = f.submit 'Send Message', class: "btn btn-primary"
+    = f.button :button, 'Send Message'.html_safe, class: "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending message..."}

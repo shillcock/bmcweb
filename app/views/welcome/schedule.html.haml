@@ -2,14 +2,14 @@
   .col-md-4
     %ul.nav.nav-pills.nav-stacked
       - is_first = true
-      - @sections.each do |section|
-        %li{class: is_first ? "active" : ""}= link_to section.title, "#section-#{section.id}", "data-toggle" => "pill"
+      - @workshops.each do |workshop|
+        %li{class: is_first ? "active" : ""}= link_to workshop.title, "#workshop-#{workshop.id}", "data-toggle" => "pill"
         - is_first = false
   .col-md-8
     .tab-content
       - is_first = true
-      - @sections.each do |section|
-        .tab-pane{id: "section-#{section.id}", class: is_first ? "active" : ""}
+      - @workshops.each do |workshop|
+        .tab-pane{id: "workshop-#{workshop.id}", class: is_first ? "active" : ""}
           - is_first = false
           %section
-            = render "schedule", section: section, meetings: section.meetings.order(:created_at)
+            = render "schedule", workshop: workshop, meetings: workshop.meetings

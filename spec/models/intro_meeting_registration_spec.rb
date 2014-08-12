@@ -10,6 +10,10 @@
 #  created_at       :datetime
 #  updated_at       :datetime
 #
+# Indexes
+#
+#  index_intro_meeting_registrations_on_intro_meeting_id  (intro_meeting_id)
+#
 
 require 'spec_helper'
 

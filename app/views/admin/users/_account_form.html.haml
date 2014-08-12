@@ -1,6 +1,15 @@
-= simple_form_for [:admin, user] do |f|
-  = f.input :name
-  = f.input :email
-  = f.input :password
-  = f.input :admin, label: "Is an admin?", wrapper: :vertical_boolean
-  = f.submit (user.persisted? ? "Update" : "Create") + " User", class: "btn btn-primary"
+= simple_form_for [:admin, user], html: { class: "form-horizontal" }, |
+  wrapper: :horizontal_form, |
+  wrapper_mappings: { |
+    check_boxes: :horizontal_radio_and_checkboxes, |
+    radio_buttons: :horizontal_radio_and_checkboxes, |
+    file: :horizontal_file_input, |
+    boolean: :horizontal_boolean |
+  } do |f| |
+  .form-inputs
+    = f.input :name
+    = f.input :email
+    = f.input :password
+    = f.input :admin, label: "Is an admin?"
+  .form-actions.col-md-offset-3
+    = f.submit (user.persisted? ? "Update" : "Create") + " User", class: "btn btn-primary"

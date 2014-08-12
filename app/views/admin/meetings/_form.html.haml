@@ -1,0 +1,12 @@
+= simple_form_for [:admin, workshop, meeting], html: { class: "form-horizontal" }, |
+  wrapper: :horizontal_form do |f|
+  .form-inputs
+    = f.input :title
+    = f.input :starts_at, wrapper: :horizontal_input_group do
+      = f.input_field :starts_at, as: :string, class: "form-control"
+      %span.input-group-addon= fa_icon("calendar")
+    = f.input :ends_at, wrapper: :horizontal_input_group do
+      = f.input_field :ends_at, as: :string, class: "form-control"
+      %span.input-group-addon= fa_icon("calendar")
+  .form-actions.col-md-offset-3
+    = f.submit class: "btn btn-primary"

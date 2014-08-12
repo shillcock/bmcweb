@@ -1,0 +1,11 @@
+.tabbable
+  %ul.nav.nav-tabs
+    %li= link_to fa_icon("chevron-left"), [:admin, :workshops]
+    %li{class: ("active" if current == "show")}
+      = link_to fa_icon("info-circle", text: "Show"), [:admin, @workshop]
+    %li{class: ("active" if current == "edit")}
+      = link_to fa_icon("pencil", text: "Edit"), [:edit, :admin, @workshop]
+    %li= link_to fa_icon("users", text: "Meetings"), [:admin, @workshop, :meetings]
+    %li{class: ("active" if current == "history")}
+      = link_to  fa_icon("history", text: "History"), [:history, :admin, @workshop]
+    %li= link_to fa_icon("times", text: "Delete"), [:admin, @workshop], method: :delete, data: { confirm: "Are you sure you want to delete this workshop?" }

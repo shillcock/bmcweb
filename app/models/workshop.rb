@@ -7,36 +7,22 @@
 #  description :text
 #  created_at  :datetime
 #  updated_at  :datetime
+#  name        :string(255)
+#  active      :boolean          default(FALSE)
 #
 
 class Workshop < ActiveRecord::Base
-  has_many :lessons, dependent: :destroy
-  has_many :sections, dependent: :destroy
+  has_many :meetings, -> { order("position ASC") }, dependent: :destroy
 
-  scope :bt1, -> { find(1) }
-  scope :bt2, -> { find(2) }
+  has_paper_trail
 
-  def short_name
-    "BT#{id}"
-  end
+  validates :title, presence: true
+  validates :name, presence: true
 
-  def bt1?
-    id == 1
-  end
-
-  def bt2?
-    id == 2
-  end
-
-  def active_sections
-    sections.where(active: true).order(:date)
-  end
-
-  def upcoming_sections
-    sections.where('date >= ?', Time.zone.today).order(:date)
-  end
-
-  def past_sections
-    sections.where('date <= ?', Time.zone.today).order(:date)
-  end
+  scope :bt1_or_bt2, -> { where(name: ["BT1", "BT2"]) }
+  scope :active, -> { where(active: true) }
+  scope :upcoming, -> { joins(:meetings).merge(Meeting.upcoming) }
+  scope :past, -> { joins(:meetings).merge(Meeting.past) }
 end
+
+# self.created_on.strftime("%B %d, %Y")

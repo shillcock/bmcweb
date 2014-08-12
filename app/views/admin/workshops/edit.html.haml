@@ -1,12 +1,16 @@
-.row
-  .large-6.columns
-    %p
-      %h2 Edit Workshop
-  .large-6.columns
-    %p
-      %ul.inline-list.right
-        %li= link_to fa_icon("plus-circle", text: "New Workshop"), new_admin_workshop_path, class: "button secondary round"
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li= link_to "Workshops", [:admin, :workshops]
+    %li= link_to @workshop.title, [:admin, @workshop]
+    %li.actvie Edit
 
-.row
-  .large-9.columns
-    = render "form", workshop: @workshop
+.container.workshops
+  %header
+    %h2= fa_icon("book", text: @workshop.title)
+  %hr
+  = render "tabs", workshop: @workshop, current: "edit"
+  .main[@workshop]
+    .col-md-6
+      %br/
+      = render "form", workshop: @workshop

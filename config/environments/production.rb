@@ -37,7 +37,7 @@ BreakthroughForMen::Application.configure do
     admin/alumni_membership.js
   )
 
-  HOST = ENV['DOMAIN'] || 'breakthroughformen.org'
+  HOST = ENV['DOMAIN'] || 'breakthroughmenscommunity.org'
   config.action_mailer.default_url_options = { :host => HOST }
 
   config.i18n.fallbacks = true

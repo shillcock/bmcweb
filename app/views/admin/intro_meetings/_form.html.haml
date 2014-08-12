@@ -1,5 +1,17 @@
-= simple_form_for [:admin, intro_meeting] do |f|
-  = f.input :date, as: :string
-  = f.input :starts_at, as: :string, input_html: { value: f.object.starts_at.strftime("%l:%M %p") }
-  = f.input :ends_at, as: :string, input_html: { value: f.object.ends_at.strftime("%l:%M %p") }
-  = f.button :submit, class: "btn btn-primary"
+= simple_form_for [:admin, intro_meeting], html: { class: "form-horizontal" }, |
+  wrapper: :horizontal_form, |
+  wrapper_mappings: { |
+    check_boxes: :horizontal_radio_and_checkboxes, |
+    radio_buttons: :horizontal_radio_and_checkboxes, |
+    file: :horizontal_file_input, |
+    boolean: :horizontal_boolean |
+  } do |f| |
+  = f.error_notification
+  .form-inputs
+    = f.input :date, wrapper: :horizontal_input_group do
+      = f.input_field :date, as: :string, class: "form-control", data: { "date-format" => "YYYY/MM/DD" }
+      %span.input-group-addon= fa_icon("calendar")
+    = f.input :starts_at, as: :string, input_html: { value: f.object.starts_at.strftime("%l:%M %p") }
+    = f.input :ends_at, as: :string, input_html: { value: f.object.ends_at.strftime("%l:%M %p") }
+  .form-actions.col-md-offset-3
+    = f.button :submit, class: "btn btn-primary"

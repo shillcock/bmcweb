@@ -11,16 +11,19 @@
     %ul.nav.nav-tabs
       %li= link_to fa_icon("chevron-left"), [:admin, :dashboard]
       %li.active= link_to fa_icon("list", text: "List"), [:admin, :workshops]
+      %li= link_to fa_icon("plus", text: "Add new workshop"), [:new, :admin, :workshop]
   .main
     %table.table.table-hover#workshops
       %thead
         %tr
           %th ID
+          %th Name
           %th Title
           %th Created at
       %tbody
         - @workshops.each do |workshop|
           %tr[workshop]
             %td= workshop.id
+            %td= link_to workshop.name, [:admin, workshop]
             %td= link_to workshop.title, [:admin, workshop]
             %td= workshop.created_at

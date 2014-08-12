@@ -45,11 +45,11 @@ module ApplicationHelper
     end
   end
 
-  # def formatted_date(date)
-  #   date.strftime("%A, %B %e, %Y")
-  # end
+  def formatted_date(date)
+    date ? date.strftime("%A, %B %e, %Y") : ""
+  end
 
-  # def formatted_time(time)
-  #   time.strftime("%l:%M %p")
-  # end
+  def formatted_time(time)
+    time ? time.strftime("%l:%M %p") : ""
+  end
 end

@@ -2,43 +2,36 @@
 #
 # Table name: meetings
 #
-#  id         :integer          not null, primary key
-#  date       :date
-#  starts_at  :time
-#  ends_at    :time
-#  lesson_id  :integer
-#  section_id :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id          :integer          not null, primary key
+#  starts_at   :datetime
+#  ends_at     :datetime
+#  created_at  :datetime
+#  updated_at  :datetime
+#  title       :string(255)
+#  position    :integer
+#  workshop_id :integer
+#
+# Indexes
+#
+#  index_meetings_on_workshop_id  (workshop_id)
 #
 
 class Meeting < ActiveRecord::Base
-  belongs_to :lesson
-  belongs_to :section
+  belongs_to :workshop
+  acts_as_list scope: :workshop
 
-  validate :lesson_id, presence: true
-  validate :section_id, presence: true
+  validates :workshop_id, presence: true
+  validates :title, presence: true
+  validates :starts_at, presence: true
+  validates :ends_at, presence: true
 
-  delegate :title, to: :lesson
+  alias_attribute :meeting_number, :position
 
-  # def self.ordered
-  #   order 'meeting_number ASC'
-  # end
+  scope :ordered, -> { order("position ASC") }
+  scope :upcoming, -> { where("starts_at >= ?", Time.zone.today) }
+  scope :past, -> { where("starts_at <= ?", Time.zone.today) }
 
-  def meeting_number
-    lesson.lesson_number
+  def short_title
+    "#{workshop.name} - M#{meeting_number}"
   end
-
-  def short_name
-    "#{workshop_short_name} - #{meeting_short_name}"
-  end
-
-  private
-    def workshop_short_name
-      "#{section.workshop.short_name}"
-    end
-
-    def meeting_short_name
-      "M#{meeting_number}"
-    end
 end

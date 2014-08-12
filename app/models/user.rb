@@ -4,16 +4,35 @@
 #
 #  id                 :integer          not null, primary key
 #  email              :string(255)
+#  name               :string(255)
+#  phone_number       :string(255)
+#  address1           :string(255)
+#  address2           :string(255)
+#  city               :string(255)
+#  state              :string(255)
+#  zip_code           :string(255)
+#  birthday           :date
 #  created_at         :datetime
 #  updated_at         :datetime
 #  encrypted_password :string(128)
 #  confirmation_token :string(128)
 #  remember_token     :string(128)
 #  admin              :boolean          default(FALSE)
+#  stripe_customer_id :string(255)
+#  stripe_token       :string(255)
+#  card_type          :string(255)
+#  card_last4         :string(255)
+#  card_expiration    :date
+#
+# Indexes
+#
+#  index_users_on_email           (email)
+#  index_users_on_remember_token  (remember_token)
 #
 
 class User < ActiveRecord::Base
   include Clearance::User
+  has_paper_trail
 
   has_one :alumni_membership, dependent: :destroy
 
@@ -50,13 +69,13 @@ class User < ActiveRecord::Base
     sections.include?(section) if section
   end
 
-  def bt1
-    sections.bt1.last
-  end
+  # def bt1
+  #   sections.bt1.last
+  # end
 
-  def bt2
-    sections.bt2.last
-  end
+  # def bt2
+  #   sections.bt2.last
+  # end
 
   private
 

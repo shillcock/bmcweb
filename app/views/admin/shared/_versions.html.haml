@@ -1,0 +1,19 @@
+%table.table#versions
+  %thead
+    %tr
+      %th Timestamp
+      %th Event
+      %th Changes
+      %th Whodunnit?
+  %tbody
+    - versions.each do |version|
+      %tr[version]
+        %td= version.created_at
+        %td= version.event
+        %td
+          - version.changeset.sort.each do |key, value|
+            - unless ["updated_at", "created_at"].include?(key)
+              %b= key
+              = "#{value[0]} to #{value[1]}"
+              %br/
+        %td= whodunnit(version)

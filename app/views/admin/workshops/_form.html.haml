@@ -1,6 +1,4 @@
-
 = simple_form_for [:admin, workshop] do |f|
-  .panel
-    = f.input :title
-  = f.submit class: "button round"
-  = link_to "Cancel", admin_workshops_path, class: "button secondary round"
+  = f.input :name
+  = f.input :title
+  = f.submit class: "btn btn-primary"

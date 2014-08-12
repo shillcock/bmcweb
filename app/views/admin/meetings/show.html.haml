@@ -1,0 +1,16 @@
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li= link_to "Workshops", [:admin, :workshops]
+    %li= link_to @workshop.title, [:admin, @workshop]
+    %li= link_to "Meetings", [:admin, @workshop, :meetings]
+    %li.active= @meeting.title
+
+.container.sections
+  %header
+    %h2= fa_icon("book", text: @meeting.title)
+  %hr
+  = render "tabs", workshop: @workshop, meeting: @meeting, current: "show"
+  .main
+    %br/
+    = render "meeting", meeting: @meeting

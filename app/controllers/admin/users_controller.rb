@@ -3,7 +3,7 @@ class Admin::UsersController < Clearance::UsersController
   before_action :redirect_unless_user_is_admin
   skip_before_filter :avoid_sign_in # clearance defaults to signing in user after create
 
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :update_credit_card]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :update_credit_card, :history]
 
   def index
     @users = User.all.includes(:alumni_membership)
@@ -72,6 +72,10 @@ class Admin::UsersController < Clearance::UsersController
     end
 
     redirect_to admin_users_path
+  end
+
+  def history
+    @history = @user.versions
   end
 
   private

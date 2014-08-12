@@ -8,13 +8,30 @@
   %header
     %h2= fa_icon("book", text: @workshop.title)
   %hr
-  .row
-    .tabbable.col-md-9
-      %ul.nav.nav-tabs
-        %li= link_to fa_icon("chevron-left"), [:admin, :workshops]
-        %li.active= link_to fa_icon("list", text: "Sections"), [:admin, @workshop]
-      .main
-        = render "sections_table", workshop: @workshop, sections: @sections
-    %aside.col-md-3
-      %h4= fa_icon("plus", text: "New Section")
-      .well= render "new_section", workshop: @workshop, section: @workshop.sections.build
+  = render "tabs", workshop: @workshop, current: "show"
+  .main[@workshop]
+    .col-md-6
+      %br/
+      %h4= "Workshop - #{@workshop.id}"
+      %table.table
+        %thead
+          %tr
+            %th.col-md-3
+            %th
+        %tbody
+          %tr
+            %td Name:
+            %td= @workshop.name
+          %tr
+            %td Title:
+            %td= @workshop.title
+          %tr
+            %td Created at:
+            %td= @workshop.created_at
+          %tr
+            %td Updated at:
+            %td= @workshop.updated_at
+    .col-md-6
+      %br/
+      %h4= "Meetings"
+      = render "meetings_table", workshop: @workshop, meetings: @workshop.meetings

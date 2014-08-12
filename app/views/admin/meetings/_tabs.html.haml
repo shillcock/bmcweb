@@ -1,0 +1,8 @@
+.tabbable.col-md-9
+  %ul.nav.nav-tabs
+    %li= link_to fa_icon("chevron-left"), [:admin, @workshop, :meetings]
+    %li{class: ("active" if current == "show")}
+      = link_to fa_icon("info-circle", text: "Show"), [:admin, @workshop, @meeting]
+    %li{class: ("active" if current == "edit")}
+      = link_to fa_icon("pencil", text: "Edit"), [:edit, :admin, @workshop, @meeting]
+    %li= link_to fa_icon("times", text: "Delete Meeting"), [:admin, @workshop, @meeting], method: :delete, data: { confirm: "Are you sure you want to delete this meeting?" }

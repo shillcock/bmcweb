@@ -1,0 +1,24 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-2
+      %th
+  %tbody
+    %tr
+      %td Short Title:
+      %td= meeting.short_title
+    %tr
+      %td Title:
+      %td= meeting.title
+    %tr
+      %td Starts at:
+      %td= meeting.starts_at.strftime("%l:%M %p")
+    %tr
+      %td Ends at:
+      %td= meeting.ends_at.strftime("%l:%M %p")
+    %tr
+      %td Created at:
+      %td= meeting.created_at
+    %tr
+      %td Updated at:
+      %td= meeting.updated_at

@@ -1,53 +1,90 @@
 class Admin::WorkshopsController < AdminController
-  before_action :set_workshop, only: [:show, :edit, :update, :destroy]
-  respond_to :html
+  #before_action :set_workshop, only: [:show, :edit, :update, :destroy]
+  #respond_to :html
 
   def index
-    @workshops = Workshop.all
-    respond_with(@workshops)
-  end
-
-  def new
-    @workshop = Workshop.new
-    respond_wth(@workshop)
-  end
-
-  def create
-    @workshop = Workshop.new(workshop_params)
-    if @workshop.save
-      flash[:notice] = "Workshop has been created."
-    end
-    respond_with(@workshop)
+    load_workshops
   end
 
   def show
-    @sections = @workshop.sections.order('created_at ASC')
-    respond_with(@workshop)
+    load_workshop
+    #@sections = @workshop.sections.order('created_at ASC')
+    #respond_with(@workshop)
+  end
+
+  def new
+    build_workshop
+  end
+
+  def create
+    build_workshop
+    save_workshop or render :new
+    # @workshop = Workshop.new(workshop_params)
+    # if @workshop.save
+    #   flash[:notice] = "Workshop has been created."
+    # end
+    # respond_with(@workshop)
   end
 
   def edit
-    respond_with(@workshop)
+    load_workshop
+    build_workshop
+    # respond_with(@workshop)
   end
 
   def update
-    if @workshop.update(workshop_params)
-      flash[:notice] = "Workshop has been updated."
-    end
-    respond_with(@workshop)
+    load_workshop
+    build_workshop
+    save_workshop or render :edit
+    # if @workshop.update(workshop_params)
+    #   flash[:notice] = "Workshop has been updated."
+    # end
+    # respond_with(@workshop)
   end
 
   def destroy
+    load_workshop
     @workshop.destroy
-    flash[:notice] = "Workshop has been deleted."
-    respond_with([:admin,  @workshop])
+    redirect_to [:admin, :workshops]
+    # flash[:notice] = "Workshop has been deleted."
+    # respond_with([:admin,  @workshop])
+  end
+
+  def history
+    load_workshop
+    load_history
   end
 
   private
-    def set_workshop
-      @workshop = Workshop.find(params[:id])
+    def load_workshops
+      @workshops ||= workshop_scoped.to_a
+    end
+
+    def load_workshop
+      @workshop ||= workshop_scoped.find(params[:id])
+    end
+
+    def build_workshop
+      @workshop ||= workshop_scoped.build
+      @workshop.attributes = workshop_params
+    end
+
+    def save_workshop
+      if @workshop.save
+        redirect_to [:admin, @workshop]
+      end
+    end
+
+    def load_history
+      @history ||= @workshop.versions
     end
 
     def workshop_params
-      params.require(:workshop).permit(:title)
+      workshop_params = params[:workshop]
+      workshop_params ? workshop_params.permit(:title, :name) : {}
+    end
+
+    def workshop_scoped
+      Workshop.all
     end
 end
