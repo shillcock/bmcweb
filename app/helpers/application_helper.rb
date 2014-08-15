@@ -45,11 +45,19 @@ module ApplicationHelper
     end
   end
 
+  def formatted_birthday(bday)
+    bday ? bday.strftime("%B %e") : ""
+  end
+
   def formatted_date(date)
     date ? date.strftime("%A, %B %e, %Y") : ""
   end
 
   def formatted_time(time)
     time ? time.strftime("%l:%M %p") : ""
+  end
+
+  def formatted_datetime(datetime)
+    datetime ? datetime.strftime("%m/%d/%Y %I:%M %p") : ""
   end
 end

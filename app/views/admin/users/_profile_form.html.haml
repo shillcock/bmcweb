@@ -13,6 +13,6 @@
     = f.input :state
     = f.input :zip_code
     = f.input :phone_number
-    = f.input :birthday, discard_year: true, order: [:month, :day]
+    = f.input :birthday, include_blank: true, discard_year: true, order: [:month, :day]
   .form-actions.col-md-offset-3
     = f.submit "Update Profile", class: "btn btn-primary"

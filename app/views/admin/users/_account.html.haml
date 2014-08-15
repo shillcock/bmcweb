@@ -22,7 +22,7 @@
       %td= link_to @user.stripe_customer_id, stripe_customer_url(@user.stripe_customer_id), target: "_blank"
     %tr
       %td Created at:
-      %td= @user.created_at
+      %td= l(@user.created_at)
     %tr
       %td Updated at:
-      %td= @user.updated_at
+      %td= l(@user.updated_at)

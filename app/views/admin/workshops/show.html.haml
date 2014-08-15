@@ -26,6 +26,12 @@
             %td Title:
             %td= @workshop.title
           %tr
+            %td Start date:
+            %td= formatted_date(@workshop.start_date)
+          %tr
+            %td End date:
+            %td= formatted_date(@workshop.end_date)
+          %tr
             %td Created at:
             %td= @workshop.created_at
           %tr
@@ -34,4 +40,4 @@
     .col-md-6
       %br/
       %h4= "Meetings"
-      = render "meetings_table", workshop: @workshop, meetings: @workshop.meetings
+      = render "admin/meetings/meetings_table", workshop: @workshop, meetings: @workshop.meetings

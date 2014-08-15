@@ -11,7 +11,7 @@
     = f.input :date, wrapper: :horizontal_input_group do
       = f.input_field :date, as: :string, class: "form-control", data: { "date-format" => "YYYY/MM/DD" }
       %span.input-group-addon= fa_icon("calendar")
-    = f.input :starts_at, as: :string, input_html: { value: f.object.starts_at.strftime("%l:%M %p") }
-    = f.input :ends_at, as: :string, input_html: { value: f.object.ends_at.strftime("%l:%M %p") }
+    = f.input :starts_at, as: :string, input_html: { value: formatted_time(f.object.starts_at) }
+    = f.input :ends_at, as: :string, input_html: { value: formatted_time(f.object.ends_at) }
   .form-actions.col-md-offset-3
     = f.button :submit, class: "btn btn-primary"

@@ -7,7 +7,7 @@ class IntroMeetingRegistrationsController < ApplicationController
   end
 
   def create
-    @registration = registration_from_params
+    @registration = @meeting.registrations.create(intro_meeting_registration_params)
 
     if @registration.save
       flash[:notice] = "Registration has been created."
@@ -26,9 +26,5 @@ class IntroMeetingRegistrationsController < ApplicationController
 
     def intro_meeting_registration_params
       params.require(:intro_meeting_registration).permit(:first_name, :last_name, :email)
-    end
-
-    def registration_from_params
-      @meeting.registrations.create(intro_meeting_registration_params)
     end
 end

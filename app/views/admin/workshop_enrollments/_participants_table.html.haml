@@ -19,8 +19,8 @@
         %td
           - if participant.student?
             %span.label.label-primary Student
-          - if participant.educator?
+          - elsif participant.educator?
             %span.label.label-default Educator
         %td
           .btn-group.btn-group-xs
-            = button_to "Remove", { action: "remove", user_id: participant.id }, class: "btn btn-default btn-xs", method: :delete, data: { confirm: "Are you sure you want to remove this user from the class?" }
+            = button_to "Remove", admin_workshop_enrollment_path(participant.workshop, participant.enrollment), class: "btn btn-default btn-xs", method: :delete, data: { confirm: "Are you sure you want to remove this user from the class?" }

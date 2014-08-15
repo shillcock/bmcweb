@@ -36,19 +36,16 @@ class User < ActiveRecord::Base
 
   has_one :alumni_membership, dependent: :destroy
 
-  has_many :section_enrollments, dependent: :destroy
-  has_many :sections, through: :section_enrollments
-  # has_many :bt1_sections, source: :section, through: :section_enrollments, -> {}
+  has_many :workshop_enrollments, dependent: :destroy
+  has_many :workshops, through: :workshop_enrollments
 
   validates :name, presence: true
 
-  scope :students, -> { joins(:section_enrollments).merge(SectionEnrollment.students) }
-  scope :educators, -> { joins(:section_enrollments).merge(SectionEnrollment.educators) }
+  scope :students, -> { joins(:workshop_enrollments).merge(WorkshopEnrollment.students) }
+  scope :educators, -> { joins(:workshop_enrollments).merge(WorkshopEnrollment.educators) }
 
-  # scope :the_students, -> { where()}
-
-  scope :bt1, -> { joins(:sections).merge(Section.bt1) }
-  scope :bt2, -> { joins(:sections).merge(Section.bt2) }
+  #scope :bt1, -> { joins(:sections).merge(Section.bt1) }
+  #scope :bt2, -> { joins(:sections).merge(Section.bt2) }
 
   # after_save :create_stripe_customer, on: :create
   # before_destroy :delete_stripe_customer
@@ -65,8 +62,8 @@ class User < ActiveRecord::Base
     alumni_membership.present? and alumni_membership.active?
   end
 
-  def enrolled?(section)
-    sections.include?(section) if section
+  def enrolled?(workshop)
+    workshops.include?(workshop) if workshop
   end
 
   # def bt1

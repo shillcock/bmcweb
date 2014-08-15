@@ -88,12 +88,12 @@ FactoryGirl.define do
 
   factory :meeting do
     title "Basic Assumption"
-    ignore do
-      dd 2.day.from_now.to_date
-    end
 
-    starts_at { DateTime.new(dd.year, dd.month, dd.day, 18, 30) }
-    ends_at { DateTime.new(dd.year, dd.month, dd.day, 20, 30) }
+    start_date { 2.days.from_now.to_date }
+    end_date { 2.days.from_now.to_date }
+
+    start_time { Time.parse("5:45 PM") }
+    end_time { Time.parse("8:45 PM") }
 
     workshop
   end

@@ -19,11 +19,13 @@
           %th ID
           %th Name
           %th Title
-          %th Created at
+          %th Start date
+          %th End date
       %tbody
         - @workshops.each do |workshop|
           %tr[workshop]
             %td= workshop.id
             %td= link_to workshop.name, [:admin, workshop]
             %td= link_to workshop.title, [:admin, workshop]
-            %td= workshop.created_at
+            %td= formatted_date workshop.start_date
+            %td= formatted_date workshop.end_date

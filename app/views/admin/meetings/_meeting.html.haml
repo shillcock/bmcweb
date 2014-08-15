@@ -11,11 +11,17 @@
       %td Title:
       %td= meeting.title
     %tr
-      %td Starts at:
-      %td= meeting.starts_at.strftime("%l:%M %p")
+      %td Start date:
+      %td= formatted_date(meeting.start_date)
     %tr
-      %td Ends at:
-      %td= meeting.ends_at.strftime("%l:%M %p")
+      %td Start time:
+      %td= formatted_time(meeting.start_time)
+    %tr
+      %td End date:
+      %td= formatted_date(meeting.end_date)
+    %tr
+      %td End time:
+      %td= formatted_time(meeting.end_date)
     %tr
       %td Created at:
       %td= meeting.created_at

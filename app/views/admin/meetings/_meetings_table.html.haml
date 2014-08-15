@@ -1,9 +1,10 @@
-%table.table.table-hover#sections
+%table.table.table-hover#meetings
   %thead
     %tr
       %th ID
       %th #
       %th Title
+      %th Date
       %th Starts at
       %th Ends at
   %tbody
@@ -12,5 +13,6 @@
         %td= meeting.id
         %td= meeting.short_title
         %td= link_to meeting.title, [:admin, workshop, meeting]
-        %td= meeting.starts_at.strftime("%l:%M %p")
-        %td= meeting.ends_at.strftime("%l:%M %p")
+        %td= formatted_date(meeting.start_date)
+        %td= formatted_time(meeting.start_time)
+        %td= formatted_time(meeting.end_time)

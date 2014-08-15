@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140801060105) do
+ActiveRecord::Schema.define(version: 20140815051400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,13 +64,15 @@ ActiveRecord::Schema.define(version: 20140801060105) do
   end
 
   create_table "meetings", force: true do |t|
-    t.datetime "starts_at"
-    t.datetime "ends_at"
+    t.time     "start_time"
+    t.time     "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
     t.integer  "position"
     t.integer  "workshop_id"
+    t.date     "start_date"
+    t.date     "end_date"
   end
 
   add_index "meetings", ["workshop_id"], name: "index_meetings_on_workshop_id", using: :btree
@@ -132,13 +134,13 @@ ActiveRecord::Schema.define(version: 20140801060105) do
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
   create_table "workshop_enrollments", force: true do |t|
-    t.integer  "user_id",      null: false
-    t.integer  "workhshop_id", null: false
+    t.integer  "user_id",     null: false
+    t.integer  "workshop_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "workshop_enrollments", ["workhshop_id", "user_id"], name: "index_workshop_enrollments_on_workhshop_id_and_user_id", unique: true, using: :btree
+  add_index "workshop_enrollments", ["workshop_id", "user_id"], name: "index_workshop_enrollments_on_workshop_id_and_user_id", unique: true, using: :btree
 
   create_table "workshops", force: true do |t|
     t.string   "title"

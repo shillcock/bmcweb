@@ -36,6 +36,7 @@ BreakthroughForMen::Application.routes.draw do
 
     resources :workshops do
       resources :meetings
+      resources :enrollments, controller: "workshop_enrollments", only: [:index, :create, :destroy]
       member do
         get :history
       end

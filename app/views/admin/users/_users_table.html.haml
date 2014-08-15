@@ -15,7 +15,7 @@
           %td= user.id
           %td= link_to user.name, [:admin, user]
           %td= user.email
-          %td= user.birthday
+          %td= formatted_birthday(user.birthday)
           %td
             - if user.alumni?
               %span.label.label-primary Alumni
