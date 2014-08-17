@@ -16,4 +16,10 @@
     .row
       .col-md-6
         %br/
-        = render "form", workshop: @workshop, meeting: @meeting
+        = simple_form_for @meeting_form, url: admin_workshop_meeting_path(@workshop, @meeting), method: :put, html: { class: "form-horizontal" }, |
+          wrapper: :horizontal_form do |f|
+          .form-inputs
+            = f.input :title
+            = f.input :date
+          .form-actions.col-md-offset-3
+            = f.button :button, "Update Meeting", class: "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Updating meeting..." }

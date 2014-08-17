@@ -14,4 +14,4 @@
     = f.input :starts_at, as: :string, input_html: { value: formatted_time(f.object.starts_at) }
     = f.input :ends_at, as: :string, input_html: { value: formatted_time(f.object.ends_at) }
   .form-actions.col-md-offset-3
-    = f.button :submit, class: "btn btn-primary"
+    = f.button :button, class: "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Creating Intro Meeting..." }

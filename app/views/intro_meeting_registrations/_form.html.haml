@@ -2,4 +2,4 @@
   = f.input :first_name
   = f.input :last_name
   = f.input :email
-  = f.submit "Register now", class: "btn btn-primary"
+  = f.button :button, "Register now".html_safe, class: "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Registering..." }

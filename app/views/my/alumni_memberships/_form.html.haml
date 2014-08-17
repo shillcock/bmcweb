@@ -1,0 +1,21 @@
+.row
+  .form-group.col-md-2
+    .input-group.input-group-lg
+      %span.input-group-addon
+        $
+      %input.form-control#alumni_membership_amount{type:"text", name:"alumni_membership[amount]", value: membership.amount}
+  .form-group.col-md-6
+    %br
+    #alumni_membership_amount_slider
+  .form-group.col-md-4
+    .radio
+      %label.radio-inline
+        %input#billing_cycle_monthly{type:"radio", value:"month", name:"alumni_membership[interval]", checked:true}
+        Monthly
+      %label.radio-inline
+        %input#billing_cycle_yearly{type:"radio", value:"year", name:"alumni_membership[interval]"}
+        Yearly
+
+= simple_form_for membership, url: my_alumni_membership_path, html: { id: "alumni_membership_form" } do |f|
+  = f.error_notification
+  = f.button :submit, "I would like to join at the Awesome level of $40 a month", id: "submit_button", class: "btn btn-block btn-lg btn-primary"

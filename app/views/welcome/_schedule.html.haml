@@ -1,13 +1,10 @@
-%h2 #{workshop.title} Schedule
-%table#meetings.table.table-striped
+%table#meetings.table.table-hover
   %thead
     %tr
-      %th #
-      %th Title
-      %th Date
+      %th Meeting #
+      %th Meeting Date
   %tbody
     - meetings.each do |meeting|
-      %tr
-        %td= meeting.meeting_number
-        %td= meeting.short_title
-        %td[meeting]= meeting.starts_at.strftime("%A, %B %e, %Y")
+      %tr{class: "#{'warning' if meeting.starts_at < Time.zone.now}"}
+        %td= "Meeting #{meeting.meeting_number}"
+        %td[meeting]= meeting.starts_at.strftime("%B %e, %Y")

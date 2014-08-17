@@ -11,7 +11,13 @@ BreakthroughForMen::Application.routes.draw do
   get "contact", to: "contact#new"
   resource "contact", controller: :contact, only: [:create]
 
-  resource :profile, only: [:show, :update]
+  namespace :my do
+    resource :profile, only: [:show, :edit, :update]
+    resource :alumni_membership, only: [:show, :new, :create, :edit, :update]
+    resource :credit_card, only: [:update]
+    resource :billing, only: [:show]
+    resource :invoices, only: [:show]
+  end
 
   resources :intro_meetings, only: [:index] do
     resources :registrations, controller: "intro_meeting_registrations", only: [:new, :create]
@@ -59,7 +65,7 @@ BreakthroughForMen::Application.routes.draw do
   end
 
   constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
-    mount Sidekiq::Web, at: "/admin/jobs", as: "admin_jobs"
+    mount Sidekiq::Web, at: "/admin/sidekiq", as: "admin_sidekiq"
   end
 
   mount StripeEvent::Engine, at: "/stripe-webhook"

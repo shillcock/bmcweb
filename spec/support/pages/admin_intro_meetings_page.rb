@@ -18,8 +18,8 @@ class AdminIntroMeetingsPage
 
   def complete_form(meeting_date)
     select_date meeting_date, from: 'intro_meeting_date'
-    select_time Time.parse("19:00"), from: 'intro_meeting_starts_at'
-    select_time Time.parse("21:00"), from: 'intro_meeting_ends_at'
+    select_time Time.zone.parse("19:00"), from: 'intro_meeting_starts_at'
+    select_time Time.zone.parse("21:00"), from: 'intro_meeting_ends_at'
   end
 
   def submit

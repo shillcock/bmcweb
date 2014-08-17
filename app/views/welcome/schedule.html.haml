@@ -3,7 +3,7 @@
     %ul.nav.nav-pills.nav-stacked
       - is_first = true
       - @workshops.each do |workshop|
-        %li{class: is_first ? "active" : ""}= link_to workshop.title, "#workshop-#{workshop.id}", "data-toggle" => "pill"
+        %li{class: is_first ? "active" : ""}= link_to "#{workshop.title} - #{workshop.start_date.strftime("%A %Y")}", "#workshop-#{workshop.id}", "data-toggle" => "pill"
         - is_first = false
   .col-md-8
     .tab-content
@@ -12,4 +12,6 @@
         .tab-pane{id: "workshop-#{workshop.id}", class: is_first ? "active" : ""}
           - is_first = false
           %section
+            %h2 #{workshop.title} Schedule
+            %h4 #{workshop.start_date.strftime("%As %Y")}
             = render "schedule", workshop: workshop, meetings: workshop.meetings

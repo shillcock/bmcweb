@@ -1,0 +1,16 @@
+- content_for :javascript do
+  = javascript_include_tag 'https://checkout.stripe.com/checkout.js'
+
+.container.alumni
+  %br
+  .main.row
+    .col-md-3
+      = render "my/shared/menu", current: "alumni"
+    .col-md-9
+      .panel.panel-default
+        .panel-heading
+          .div.pull-right
+            = link_to fa_icon("pencil", text: "Edit"), [:edit, :my, :alumni_membership], class: "btn btn-default"
+          %h4 Alumni Membership
+        .panel-body
+          = render "alumni", user: @user, membership: @membership

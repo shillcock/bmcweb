@@ -67,34 +67,10 @@ FactoryGirl.define do
     end
   end
 
-  # factory :lesson do
-  #   title "Basic Assumption"
-  #   summary "What do you really know about telling the truth."
-  #   lesson_number
-  #   # workshop
-  # end
-
-  # factory :section do
-  #   workshop
-
-  #   factory :section_with_meetings do
-  #     after(:create) do |instance, attributes|
-  #       attributes.workshop.lessons.each do |lesson|
-  #         create(:meeting, section: instance, lesson: lesson)
-  #       end
-  #     end
-  #   end
-  # end
-
   factory :meeting do
     title "Basic Assumption"
-
-    start_date { 2.days.from_now.to_date }
-    end_date { 2.days.from_now.to_date }
-
-    start_time { Time.parse("5:45 PM") }
-    end_time { Time.parse("8:45 PM") }
-
+    starts_at { "#{2.days.from_now.to_date} 5:45 PM" }
+    ends_at { "#{2.days.from_now.to_date} 8:45 PM" }
     workshop
   end
 

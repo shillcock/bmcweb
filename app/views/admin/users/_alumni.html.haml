@@ -15,5 +15,8 @@
         %td Member Since:
         %td= membership.member_since
       %tr
+        %td Credit Card:
+        %td= "#{user.card_type} ending in #{user.card_last4} which expires on #{user.card_expiration}"
+      %tr
         %td Stripe Subscription:
         %td= membership.stripe_subscription_id

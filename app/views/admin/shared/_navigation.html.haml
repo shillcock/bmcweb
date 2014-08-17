@@ -13,9 +13,7 @@
       %ul.nav.navbar-nav.navbar-right
         %li.dropdown
           %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-            =current_user.email
+            = current_user.email
             %b.caret
           %ul.dropdown-menu
-            %li= link_to fa_icon("dashboard", text: "Admin"), admin_root_path
-            %li= link_to "Jobs", admin_jobs_path, target: "blank"
-            %li= link_to "Sign out", sign_out_path, method: :delete
+            = render "shared/navigation_menu_links"

@@ -19,7 +19,7 @@ class DonatePage
     fill_in "CVC", with: "111"
 
     # select_date meeting_date, from: "intro_meeting_date"
-    select Date.today.year+1, :from => "card-year"
+    select Date.current.year+1, :from => "card-year"
   end
 
   def submit

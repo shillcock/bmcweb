@@ -24,4 +24,4 @@
         - unless @user.alumni?
           = link_to "Join Alumni", [:new, :admin, @user, :alumni_membership], class: "btn btn-default pull-right"
         %h4 Alumni Membership
-        = render "alumni", membership: @user.alumni_membership
+        = render "alumni", user: @user, membership: @user.alumni_membership

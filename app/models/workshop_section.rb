@@ -1,8 +1,8 @@
 class WorkshopSection
-  include Virtus.model
-  include ActiveModel::Validations
-  include ActiveModel::Conversion
   extend ActiveModel::Naming
+  include ActiveModel::Conversion
+  include ActiveModel::Validations
+  include Virtus.model
 
   attr_reader :section
 

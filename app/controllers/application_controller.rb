@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
     def redirect_unless_user_is_admin
       unless current_user_is_admin?
-        flash[:alert] = 'You do not have permission to view that page.'
+        flash[:alert] = "You do not have permission to view that page."
         redirect_to root_url
       end
     end

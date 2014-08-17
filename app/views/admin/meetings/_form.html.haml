@@ -1,14 +1,7 @@
-= simple_form_for [:admin, workshop, meeting], html: { class: "form-horizontal" }, |
+= simple_form_for meeting_form, url: [:admin, workshop, :meetings], html: { class: "form-horizontal" }, |
   wrapper: :horizontal_form do |f|
   .form-inputs
     = f.input :title
-    = f.input :start_date, as: :string
-    = f.input :start_time, as: :string, input_html: { value: formatted_time(f.object.start_time) }
-    = f.input :end_date, as: :string
-    = f.input :end_time, as: :string, input_html: { value: formatted_time(f.object.end_time) }
-    =# f.input :end_date, as: :string, input_html: { data: { "date-format" => "YYYY-MM-DD" } }
-    =# f.input :start_date, as: :string, input_html: { data: { "date-format" => "YYYY-MM-DD" } }
-    =# f.input :starts_at, as: :string, input_html: { value: formatted_datetime(f.object.starts_at) }
-    =#f.input :ends_at, as: :string, input_html: { value: formatted_datetime(f.object.ends_at) }
+    = f.input :date
   .form-actions.col-md-offset-3
-    = f.submit class: "btn btn-primary"
+    = f.button :button, "Create Meeting", class: "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Creating meeting..." }

@@ -10,28 +10,30 @@ class Admin::MeetingsController < AdminController
   end
 
   def new
-    @meeting = @workshop.meetings.build(start_time: Time.parse("6:30 PM"), end_time: Time.parse("9:30 PM"))
-    @meeting.start_time = Time.parse("6:30 PM")
-    @meeting.end_time = Time.parse("9:30 PM")
+    @meeting_form = MeetingForm.new(workshop: @workshop)
   end
 
   def create
-    @meeting = @workshop.meetings.build(meeting_params)
-    if @meeting.save
+    @meeting_form = MeetingForm.new(meeting_params.merge(workshop: @workshop))
+
+    if @meeting_form.save
       flash[:notice] = "Meeting was successfully created."
-      redirect_to [:admin, @workshop, @meeting]
+      redirect_to [:admin, @workshop, :meetings]
     else
       render :new
     end
   end
 
   def edit
+    @meeting_form = MeetingForm.new(workshop: @workshop, meeting: @meeting)
   end
 
   def update
-    if @meeting.update(meeting_params)
+    @meeting_form = MeetingForm.new(meeting_params.merge(workshop: @workshop, meeting: @meeting))
+
+    if @meeting_form.save
       flash[:notice] = "Meeting was successfully updated."
-      redirect_to [:admin, @workshop, @meeting]
+      redirect_to [:admin, @workshop, @meeting_form.meeting]
     else
       render :edit
     end
@@ -43,6 +45,7 @@ class Admin::MeetingsController < AdminController
   end
 
   private
+
     def set_workshop
       @workshop = Workshop.find(params[:workshop_id])
     end
@@ -52,16 +55,13 @@ class Admin::MeetingsController < AdminController
     end
 
     def meeting_params
-      meeting_params = params[:meeting]
+      meeting_params = params[:meeting_form]
       if meeting_params
-        meeting_params[:end_date] = meeting_params[:start_date] if meeting_params[:end_date].blank?
-        meeting_params.permit(:title, :start_date, :start_time, :end_date, :end_time)
+        # meeting_params[:end_date] = meeting_params[:start_date] if meeting_params[:end_date].blank?
+        # meeting_params.permit(:title, :start_date, :start_time, :end_date, :end_time)
+        meeting_params.permit(:title, :date)
       else
         {}
       end
-    end
-
-    def parse_datetime(value)
-      DateTime.strptime(value,"%m/%d/%Y %l:%M %p").to_time
     end
 end

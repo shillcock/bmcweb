@@ -29,13 +29,13 @@ BreakthroughForMen::Application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
-  config.assets.precompile += %w(
+  config.assets.precompile += %w{
     vendor/modernizr.js
     admin.css
     admin.js
     donations.js
     admin/alumni_membership.js
-  )
+  }
 
   HOST = ENV['DOMAIN'] || 'breakthroughmenscommunity.org'
   config.action_mailer.default_url_options = { :host => HOST }
@@ -49,11 +49,13 @@ BreakthroughForMen::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
 
-  # config.middleware.use ExceptionNotification::Rack,
-  #   email: {
-  #     sender_address: ENV["EMAIL_ADDRESS"],
-  #     exception_recipients: %w{scott@breakthroughformen.org}
-  # }
+  config.middleware.use ExceptionNotification::Rack,
+    email: {
+      email_prefix: "[BMC:ERROR] ",
+      sender_address: "noreply@breakthroughmenscommunity.org",
+      exception_recipients: %w{scott+exceptions@breakthroughmenscommunity.org
+    }
+  }
 
   #config.middleware.use Mixpanel::Middleware, ENV["MIXPANEL_API_TOKEN"]
 end

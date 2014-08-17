@@ -1,0 +1,23 @@
+= simple_form_for user, url: my_profile_path, html: { class: "form-horizontal" }, |
+  wrapper: :horizontal_form, |
+  wrapper_mappings: { |
+    check_boxes: :horizontal_radio_and_checkboxes, |
+    radio_buttons: :horizontal_radio_and_checkboxes, |
+    file: :horizontal_file_input, |
+    boolean: :horizontal_boolean |
+  } do |f| |
+  .form-inputs
+    = f.input :name
+    = f.input :email
+    = f.input :password
+  .form-inputs
+    = f.input :address1
+    = f.input :address2
+    = f.input :city
+    = f.input :state
+    = f.input :zip_code
+    = f.input :phone_number
+    = f.input :birthday, include_blank: true, discard_year: true, order: [:month, :day]
+  .form-actions.col-md-offset-3
+    = f.submit (user.persisted? ? "Update" : "Create") + " Profile", class: "btn btn-primary"
+    = link_to "Cancel", my_profile_path, class: "btn"

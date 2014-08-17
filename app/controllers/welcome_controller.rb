@@ -9,15 +9,6 @@ class WelcomeController < ApplicationController
   end
 
   def schedule
-    @workshops = Workshop.includes(:meetings).find_by(name: "BT1")
-    # @workshops = Workshop.includes(:meetings)
-    # @sections = Section.includes(:workshop, meetings: [:lesson])
+    @workshops = Workshop.includes(:meetings).bt1_or_bt2
   end
 end
-
-# Breakthrough I - 2014 Thursday Starting July 24
-# Breakthrough 2 - 2014 Thursday Starting October 30
-# Breakthrough I - 2015 Wednesday Starting February 4
-# Breakthrough 2 - 2015 Wednesday Starting May 20
-# Breakthrough I - 2015 Tuesday Starting May 26
-# Breakthrough 2 - 2015 Tuesday Starting September 8

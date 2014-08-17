@@ -1,0 +1,11 @@
+.container.profile
+  %br
+  .main.row
+    .col-md-3
+      = render "my/shared/menu", current: "profile"
+    .col-md-9
+      .panel.panel-info
+        .panel-heading
+          %h4 Profile
+        .panel-body
+          = render "form", user: @user

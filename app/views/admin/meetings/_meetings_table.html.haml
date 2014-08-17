@@ -1,7 +1,6 @@
 %table.table.table-hover#meetings
   %thead
     %tr
-      %th ID
       %th #
       %th Title
       %th Date
@@ -10,9 +9,8 @@
   %tbody
     - meetings.each do |meeting|
       %tr[meeting]
-        %td= meeting.id
         %td= meeting.short_title
         %td= link_to meeting.title, [:admin, workshop, meeting]
-        %td= formatted_date(meeting.start_date)
-        %td= formatted_time(meeting.start_time)
-        %td= formatted_time(meeting.end_time)
+        %td= formatted_date(meeting.starts_at)
+        %td= formatted_time(meeting.starts_at)
+        %td= formatted_time(meeting.ends_at)

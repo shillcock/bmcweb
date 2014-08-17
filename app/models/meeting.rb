@@ -21,16 +21,15 @@ class Meeting < ActiveRecord::Base
   acts_as_list scope: :workshop
   validates :workshop_id, presence: true
   validates :title, presence: true
-  validates :start_date, :start_time, :end_time, presence: true
+  validates :starts_at, :ends_at, presence: true
 
   alias_attribute :meeting_number, :position
 
-  scope :active, -> { where("date(?) BETWEEN start_date AND end_date", Date.current) }
-  scope :upcoming, -> { where("start_date >= ?", Date.current) }
-  scope :past, -> { where("end_date <= ?", Date.current) }
+  scope :active, -> { where("date(?) BETWEEN starts_at AND ends_at", Time.zone.now) }
+  scope :upcoming, -> { where("starts_at >= ?", Time.zone.now) }
+  scope :past, -> { where("ends_at <= ?", Time.zone.now) }
 
   def short_title
     "#{workshop.name} - M#{meeting_number}"
   end
 end
-

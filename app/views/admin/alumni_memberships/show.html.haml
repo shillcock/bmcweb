@@ -12,7 +12,7 @@
   = render 'tabs', user: @user, current: 'show'
   .main
     %h2 Membership
-    = render "admin/users/alumni", membership: @membership
+    = render "admin/users/alumni", user: @user, membership: @membership
     / - if @user.alumni?
     /   %table.table
     /     %thead

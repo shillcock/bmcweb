@@ -1,15 +1,12 @@
 %header
   %ul.nav.nav-pills
     = render "shared/navigation_links"
-    %li.dropdown.pull-right
-      = link_to "#", class: "dropdown-toggle", "data-toggle" => "dropdown" do
-        Members
-        %span.caret
-      %ul.dropdown-menu
-        - if signed_in?
-          - admins_only do
-            %li= link_to "Admin", [:admin, :root]
-          %li= link_to "Profile", [:admin, current_user]
-          %li= link_to 'Sign out', [:sign_out], :method => :delete
-        - else
-          %li= link_to 'Sign in', [:sign_in]
+    %li.dropdown.pull-right{class: active_page_class(:sign_in)}
+      - if signed_in?
+        = link_to "#", class: "dropdown-toggle", "data-toggle" => "dropdown" do
+          = current_user.email
+          %span.caret
+        %ul.dropdown-menu
+          = render "shared/navigation_menu_links"
+      - else
+        = link_to "Sign in", [:sign_in]

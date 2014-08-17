@@ -1,0 +1,25 @@
+!!!
+%html{lang: "en"}
+  %head
+    = render 'shared/typekit'
+    %meta{charset: "utf-8"}/
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
+    %title= content_for?(:title) ? yield(:title) : "Breakthrough Men's Community"
+    %meta{name: "description", content: content_for?(:description) ? yield(:description) : "Breakthrough Men's Community"}
+    = stylesheet_link_tag :my
+    / HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    /[if lt IE 9]
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    = yield :head
+    = csrf_meta_tags
+  %body{class: page_class}
+    = render 'my/shared/navigation'
+    .container.main
+      %br
+      = render 'shared/messages'
+      .main
+        = yield
+    = javascript_include_tag :my
+    = render 'shared/javascript'

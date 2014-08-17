@@ -11,8 +11,8 @@
   %hr
   .tabbable
     %ul.nav.nav-tabs
+      %li= link_to fa_icon("chevron-left"), [:admin, :intro_meetings]
       %li.active= link_to fa_icon("list", text: "List"), [:admin, @meeting, :registrations]
-      %li= link_to fa_icon("chevron-left", text: "Back"), [:admin, :intro_meetings]
 
   %h5
     Total Registered:

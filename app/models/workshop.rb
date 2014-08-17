@@ -28,15 +28,15 @@ class Workshop < ActiveRecord::Base
   scope :past, -> { joins(:meetings).merge(Meeting.past) }
 
   def active?
-    (start_date..end_date).cover?(Date.current)
+    (starts_at..ends_at).cover?(Time.zone.today)
   end
 
   def start_date
-    meetings.any? ? meetings.first.start_date : Date.new
+    meetings.any? ? meetings.first.starts_at.to_date : Date.new
   end
 
   def end_date
-    meetings.any? ? meetings.last.end_date : Date.new
+    meetings.any? ? meetings.last.ends_at.to_date : Date.new
   end
 
   def roster

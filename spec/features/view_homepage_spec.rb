@@ -7,7 +7,7 @@ feature 'View the homepage' do
   end
 
   scenario 'user sees a list of upcoming free introductory meetings' do
-    first_of_november = Time.parse "November 1st, 2013 16:00"
+    first_of_november = Time.zone.parse "November 1st, 2013 16:00"
     Timecop.freeze first_of_november do
       [-2.weeks, -1.week, 1.week, 2.weeks, 3.weeks].each do |days|
         create_intro_meeting_on first_of_november + days

@@ -7,6 +7,7 @@ class UpdateStripeSubscription
       return unless subscription_exists?
       update_subscription
       update_alumni
+      update_user
     end
   end
 
@@ -28,6 +29,16 @@ class UpdateStripeSubscription
 
     def update_alumni
       @alumni.update(stripe_token: nil, deactivated_on: nil, status: subscription.status)
+    end
+
+    def update_user
+      card = customer.cards.retrieve(customer.default_card)
+      user.update(
+        stripe_token: nil,
+        card_type: card.brand,
+        card_last4: card.last4,
+        card_expiration: Date.new(card.exp_year, card.exp_month, 1)
+      )
     end
 
     def customer
