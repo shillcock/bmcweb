@@ -39,7 +39,7 @@ namespace :bmc do
   end
 
   def create_meeting(workshop, title, date)
-    MeetingForm.new(workshop, title: title, date: "#{date.to_s} 6:30 PM - #{date.to_s} 10:00 PM").save
+    MeetingForm.new(workshop: workshop, title: title, date: "#{date.to_s} 6:30 PM - #{date.to_s} 10:00 PM").save
     # m = workshop.meetings.create({
     #   title: title,
     #   starts_at: "#{date.to_s} 6:30 PM",
