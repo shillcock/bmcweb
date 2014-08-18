@@ -40,12 +40,16 @@ class User < ActiveRecord::Base
   has_many :workshops, through: :workshop_enrollments
 
   validates :name, presence: true
+  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
 
   scope :students, -> { joins(:workshop_enrollments).merge(WorkshopEnrollment.students) }
   scope :educators, -> { joins(:workshop_enrollments).merge(WorkshopEnrollment.educators) }
 
   #scope :bt1, -> { joins(:sections).merge(Section.bt1) }
   #scope :bt2, -> { joins(:sections).merge(Section.bt2) }
+
+  before_validation :generate_username
 
   # after_save :create_stripe_customer, on: :create
   # before_destroy :delete_stripe_customer
@@ -55,7 +59,7 @@ class User < ActiveRecord::Base
   end
 
   def last_name
-    name.split(" ").last
+    name.split(" ").slice(1..-1).join(" ")
   end
 
   def alumni?
@@ -83,4 +87,8 @@ class User < ActiveRecord::Base
     # def delete_stripe_customer
     #  DeleteStripeCustomer.perform_async(stripe_customer_id) if stripe_customer_id.present?
     # end
+
+    def generate_username
+      self.username ||= name.parameterize("_")
+    end
 end

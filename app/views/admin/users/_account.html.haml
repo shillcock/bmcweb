@@ -6,11 +6,14 @@
   %tbody
     %tr
       %td Name:
-      %td= @user.name
+      %td= user.name
     %tr
       %td Email:
-      %td= @user.email
-    %tr{class: "#{'warning' if @user.admin?}"}
+      %td= user.email
+    %tr
+      %td Username:
+      %td= user.username
+    %tr{class: "#{'warning' if user.admin?}"}
       %td Role:
       %td
         - if user.admin?
@@ -19,10 +22,10 @@
           %span.label.label-primary Alumni
     %tr
       %td Stripe Customer:
-      %td= link_to @user.stripe_customer_id, stripe_customer_url(@user.stripe_customer_id), target: "_blank"
+      %td= link_to user.stripe_customer_id, stripe_customer_url(user.stripe_customer_id), target: "_blank"
     %tr
       %td Created at:
-      %td= l(@user.created_at)
+      %td= l(user.created_at)
     %tr
       %td Updated at:
-      %td= l(@user.updated_at)
+      %td= l(user.updated_at)
