@@ -31,10 +31,13 @@ BreakthroughForMen::Application.configure do
 
   config.assets.precompile += %w{
     vendor/modernizr.js
+    donations.js
     admin.css
     admin.js
-    donations.js
     admin/alumni_membership.js
+    my.css
+    my.js
+    my/alumni_membership.js
   }
 
   HOST = ENV['DOMAIN'] || 'breakthroughmenscommunity.org'
