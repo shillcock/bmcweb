@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 module ApplicationHelper
   def active_page_class(path)
     "active" if current_page?(path)
@@ -13,8 +15,8 @@ module ApplicationHelper
 
   def gravatar_url(email, size="32x32")
     return "" if email.nil?
-    hash = Digest::MD5.hexigest(email)
-    "http://www.gravatar.com/avatar/#{hash}?s=#{size}"
+    hash = Digest::MD5.hexdigest(email)
+    "http://www.gravatar.com/avatar/#{hash}?d=identicon&s=#{size}"
   end
 
   def stripe_customer_url(id)

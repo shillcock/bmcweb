@@ -8,6 +8,6 @@
         .panel-heading
           .div.pull-right
             = link_to fa_icon("pencil", text: "Edit"), [:edit, :my, :profile], class: "btn btn-default"
-          %h4 Profile
+          %h4= fa_icon("user", text: "Profile")
         .panel-body
           = render "profile", user: @user, membership: @user.alumni_membership

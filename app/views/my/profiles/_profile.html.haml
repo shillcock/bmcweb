@@ -1,40 +1,50 @@
-%table.table
-  %thead
-    %tr
-      %th.col-md-3
-      %th
-  %tbody
-    %tr
-      %td Name:
-      %td= user.name
-    %tr
-      %td Email:
-      %td= user.email
-    %tr{class: "#{'success' if user.alumni?}" }
-      %td Alumni:
-      %td
-        - if user.alumni?
-          = "#{alumni_level(membership.amount)} Level at $#{membership.amount} a #{membership.interval}"
-        - else
-          = link_to "Join Alumni Membership", new_my_alumni_membership_path, class: "btn btn-success"
-    %tr
-      %td Address1:
-      %td= user.address1
-    %tr
-      %td Address2:
-      %td= user.address2
-    %tr
-      %td City:
-      %td= user.city
-    %tr
-      %td State:
-      %td= user.state
-    %tr
-      %td Zip code:
-      %td= user.zip_code
-    %tr
-      %td Phone number:
-      %td= user.phone_number
-    %tr
-      %td Birthday:
-      %td= formatted_birthday(user.birthday)
+.row
+  .col-md-3
+    .thumbnail_image
+      = image_tag gravatar_url(user.email, "150x150"), alt: "#{user.name}", class: "img-rounded"
+      .caption
+        %p.text-center
+          %em
+            = user.name
+            = fa_icon("trophy") if user.admin?
+  .col-md-9
+    %table.table
+      %thead
+        %tr
+          %th.col-md-3
+          %th
+      %tbody
+        %tr
+          %td Name:
+          %td= user.name
+        %tr
+          %td Email:
+          %td= user.email
+        %tr{class: "#{'success' if user.alumni?}" }
+          %td Alumni:
+          %td
+            - if user.alumni?
+              = "#{alumni_level(membership.amount)} Level at $#{membership.amount} a #{membership.interval}"
+            - else
+              = link_to "Join Alumni Membership", new_my_alumni_membership_path, class: "btn btn-success"
+        %tr
+          %td Address1:
+          %td= user.address1
+        %tr
+          %td Address2:
+          %td= user.address2
+        %tr
+          %td City:
+          %td= user.city
+        %tr
+          %td State:
+          %td= user.state
+        %tr
+          %td Zip code:
+          %td= user.zip_code
+        %tr
+          %td Phone number:
+          %td= user.phone_number
+        %tr
+          %td Birthday:
+          %td= formatted_birthday(user.birthday)

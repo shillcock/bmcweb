@@ -11,7 +11,8 @@
     = render "upcoming_intro_meetings"
     #intro-meeting-register-dialog
   .col-md-6
-    = image_tag "board_of_directors.jpg", class: "img-rounded"
+    .thumbnail
+      = image_tag "board_of_directors.jpg"
     .events.alert.alert-block
       %h5 Registration Open To All Breakthrough Graduates
       = render "upcoming_events"

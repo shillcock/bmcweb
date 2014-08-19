@@ -1,0 +1,11 @@
+.container.profile
+  %br
+  .main.row
+    .col-md-3
+      = render "my/shared/menu", current: "profile"
+    .col-md-9
+      .panel.panel-default
+        .panel-heading
+          %h4= fa_icon("money", text: "Payments")
+        .panel-body
+          =# render "profile", user: @user, membership: @user.alumni_membership

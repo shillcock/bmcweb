@@ -12,11 +12,11 @@ BreakthroughForMen::Application.routes.draw do
   resource "contact", controller: :contact, only: [:create]
 
   namespace :my do
-    resource :profile, only: [:show, :edit, :update]
+    resource :account, only: [:show, :edit, :update]
     resource :alumni_membership, only: [:show, :new, :create, :edit, :update]
     resource :credit_card, only: [:update]
-    resource :billing, only: [:show]
-    resource :invoices, only: [:show]
+    resource :profile, only: [:show, :edit, :update]
+    resources :payments, only: [:index, :show]
   end
 
   resources :intro_meetings, only: [:index] do

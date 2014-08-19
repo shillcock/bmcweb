@@ -1,0 +1,13 @@
+.container.profile
+  %br
+  .main.row
+    .col-md-3
+      = render "my/shared/menu", current: "profile"
+    .col-md-9
+      .panel.panel-default
+        .panel-heading
+          .div.pull-right
+            = link_to fa_icon("pencil", text: "Edit"), [:edit, :my, :account], class: "btn btn-default"
+          %h4= fa_icon("key", text: "Account")
+        .panel-body
+          =# render "profile", user: @user, membership: @user.alumni_membership

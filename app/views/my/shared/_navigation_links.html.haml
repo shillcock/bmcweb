@@ -1,4 +1,4 @@
 %li{class: active_path_class(:learn)}
   = link_to fa_icon("graduation-cap", text: "Learn"), root_path
 
-%li= link_to fa_icon("comments-o", text: "InTouch"), root_url(subdomain: "intouch")
+%li= link_to fa_icon("comments-o", text: "InTouch"), "#{root_url(subdomain: "intouch")}session/sso"
