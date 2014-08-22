@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'rails', '4.1.4'
+gem 'rails', '4.1.5'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '~> 1.3.0'
@@ -46,6 +46,7 @@ gem 'slim'
 gem 'select2-rails', '~> 3.5.9'
 gem 'jquery-datatables-rails', '~> 2.2.1'
 gem 'acts_as_list', '~> 0.4.0'
+gem 'kronic', '~> 1.1.3'
 # gem 'momentjs-rails', '~> 2.8.1'
 # gem 'bootstrap3-datetimepicker-rails', '~> 3.0.2.1'
 
