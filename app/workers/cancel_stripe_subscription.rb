@@ -7,6 +7,7 @@ class CancelStripeSubscription
   end
 
   private
+
     def find_customer(customer_id)
       @customer = Stripe::Customer.retrieve(customer_id)
     end

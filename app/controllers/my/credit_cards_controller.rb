@@ -11,7 +11,7 @@ class My::CreditCardsController < MyController
     #   flash[:error] = "Unable to update credit card at this time. Please try again later."
     # end
 
-    redirect_to my_alumni_membership_path
+    redirect_to my_profile_path
   end
 
   # def status

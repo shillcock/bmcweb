@@ -1,0 +1,22 @@
+- content_for :javascript do
+  = javascript_include_tag 'my/alumni_membership'
+
+.container.alumni
+  %br
+  .main.row
+    .col-md-3
+      = render "my/shared/menu", current: "alumni"
+    .col-md-9
+      .panel.panel-default
+        .panel-heading
+          %div.pull-right
+            = link_to fa_icon("times", text: "Cancel"), [:my, :alumni_membership], class: "btn btn-default", method: :delete, data: { confirm: "Are you sure you want to cancel you Alumni Membership?" }
+          %h4= fa_icon("heart", text: "Alumni Association Membership")
+        .panel-body
+          %p
+            We want to make Breakthrough is available to all men who want to make positive change in their lives.
+            %br/
+            Please consider making a recurring donation to support scholarships for lower income men.
+            = render "alumni_levels"
+          %h3 Membership level?
+          = render 'form', user: @user, membership: @membership

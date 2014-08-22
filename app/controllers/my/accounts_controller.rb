@@ -14,7 +14,7 @@ class My::AccountsController < MyController
 
     if @user.update(user_params)
       flash[:notice] = "User has been updated."
-      redirect_to [:my, :profile]
+      redirect_to [:my, :account]
     else
       render :edit
     end

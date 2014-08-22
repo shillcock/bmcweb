@@ -1,8 +1,0 @@
-= form_tag [:my, :credit_card], method: :put do
-  %script.stripe-button{"src"=>"https://checkout.stripe.com/checkout.js", |
-    "data-key"=>"#{Rails.configuration.stripe[:publishable_key]}", |
-    "data-name"=>"Alumni Membership", |
-    "data-email"=>"#{@user.email}", |
-    "data-panel-label"=>"Update Credit Card", |
-    "data-label"=>"Update Credit Card", |
-    "data-allow-remember-me"=>"false"}

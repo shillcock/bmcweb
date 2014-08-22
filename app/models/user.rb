@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
   has_many :workshop_enrollments, dependent: :destroy
   has_many :workshops, through: :workshop_enrollments
 
+  has_many :payments
+
   validates :name, presence: true
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: { case_sensitive: false }
@@ -46,10 +48,9 @@ class User < ActiveRecord::Base
   scope :students, -> { joins(:workshop_enrollments).merge(WorkshopEnrollment.students) }
   scope :educators, -> { joins(:workshop_enrollments).merge(WorkshopEnrollment.educators) }
 
-  #scope :bt1, -> { joins(:sections).merge(Section.bt1) }
-  #scope :bt2, -> { joins(:sections).merge(Section.bt2) }
+  scope :card_expiring, -> (date) { where("card_expiration <= ?", date) }
 
-  before_validation :generate_username
+  before_validation :ensure_username
 
   # after_save :create_stripe_customer, on: :create
   # before_destroy :delete_stripe_customer
@@ -70,13 +71,13 @@ class User < ActiveRecord::Base
     workshops.include?(workshop) if workshop
   end
 
-  # def bt1
-  #   sections.bt1.last
-  # end
-
-  # def bt2
-  #   sections.bt2.last
-  # end
+  def update_credit_card(card)
+    update(
+      card_type: card.brand,
+      card_last4: card.last4,
+      card_expiration: Date.new(card.exp_year, card.exp_month, 1)
+    ) if card
+  end
 
   private
 
@@ -88,7 +89,7 @@ class User < ActiveRecord::Base
     #  DeleteStripeCustomer.perform_async(stripe_customer_id) if stripe_customer_id.present?
     # end
 
-    def generate_username
+    def ensure_username
       self.username ||= name.parameterize("_")
     end
 end

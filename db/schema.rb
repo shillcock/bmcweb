@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140818034243) do
+ActiveRecord::Schema.define(version: 20140822032917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,19 @@ ActiveRecord::Schema.define(version: 20140818034243) do
 
   add_index "meetings", ["workshop_id"], name: "index_meetings_on_workshop_id", using: :btree
 
+  create_table "payments", force: true do |t|
+    t.integer  "user_id"
+    t.date     "invoice_date"
+    t.decimal  "amount"
+    t.string   "stripe_invoice_id"
+    t.string   "card_last4"
+    t.boolean  "email_sent"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email"
     t.string   "name"
@@ -97,6 +110,8 @@ ActiveRecord::Schema.define(version: 20140818034243) do
     t.string   "card_last4"
     t.date     "card_expiration"
     t.string   "username"
+    t.integer  "sign_in_count",                  default: 0,     null: false
+    t.datetime "last_sign_in_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

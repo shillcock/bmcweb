@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
+    def sign_in(user)
+      update_tracked_fields(user) if user
+      super(user)
+    end
+
     def redirect_unless_user_is_admin
       unless current_user_is_admin?
         flash[:alert] = "You do not have permission to view that page."
@@ -22,4 +27,12 @@ class ApplicationController < ActionController::Base
       block.call if current_user_is_admin?
     end
     helper_method :admins_only
+
+
+    def update_tracked_fields(user)
+      user.sign_in_count ||= 0
+      user.sign_in_count += 1
+      user.last_sign_in_at = Time.now.utc
+      user.save(validate: false)
+    end
 end

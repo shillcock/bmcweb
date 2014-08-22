@@ -3,7 +3,10 @@ require 'sidekiq/web'
 BreakthroughForMen::Application.routes.draw do
   root to: "welcome#index"
 
-  get "/intouch/sso", to: "in_touch_sso#sso"
+  get "intouch/sso", to: "in_touch_sso#sso"
+
+  resource :session, controller: "sessions", only: [:new, :create, :destroy]
+  delete "sign_out", to: "sessions#destroy", as: nil
 
   get "what_is_breakthrough", to: "welcome#info"
   get "schedule", to: "welcome#schedule"
@@ -12,10 +15,9 @@ BreakthroughForMen::Application.routes.draw do
   resource "contact", controller: :contact, only: [:create]
 
   namespace :my do
-    resource :account, only: [:show, :edit, :update]
-    resource :alumni_membership, only: [:show, :new, :create, :edit, :update]
-    resource :credit_card, only: [:update]
+    resource :alumni_membership, only: [:new, :create, :show, :edit, :update]
     resource :profile, only: [:show, :edit, :update]
+    resource :credit_card, only: [:update]
     resources :payments, only: [:index, :show]
   end
 

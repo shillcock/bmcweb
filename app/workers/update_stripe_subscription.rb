@@ -12,6 +12,7 @@ class UpdateStripeSubscription
   end
 
   private
+
     def find_alumni(alumni_id)
       @alumni = AlumniMembership.find(alumni_id)
     end
@@ -33,7 +34,7 @@ class UpdateStripeSubscription
 
     def update_user
       card = customer.cards.retrieve(customer.default_card)
-      user.update(
+      @alumni.user.update(
         stripe_token: nil,
         card_type: card.brand,
         card_last4: card.last4,

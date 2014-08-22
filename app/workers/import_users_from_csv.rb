@@ -15,6 +15,7 @@ class ImportUsersFromCsv
   end
 
   private
+
     def build_user(row)
       params = user_params(row)
       @user = User.new(params)
@@ -41,6 +42,7 @@ class ImportUsersFromCsv
         birthday: row["Birthday"],
       }
     end
+
 
     def other_params
       #@row.to_hash

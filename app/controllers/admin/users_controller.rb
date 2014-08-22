@@ -53,6 +53,11 @@ class Admin::UsersController < Clearance::UsersController
   end
 
   def update_credit_card
+    UpdateUsersDefaultCreditCard.new.perform(@user.id, params[:stripeToken])
+    flash[:notice] = "Your credit card was sucessfully updated!"
+
+    redirect_to [:edit, :admin, @user, :alumni_membership]
+
     # UpdateUsersDefaultCreditCard.perform_async(@user.id, params[:stripeToken])
     # if @user.update_credit_card(params[:stripeToken])
     #   flash[:notice] = "Your credit card was sucessfully updated!"

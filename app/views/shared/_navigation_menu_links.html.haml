@@ -2,7 +2,6 @@
   %li= link_to fa_icon("dashboard", text: "Admin"), [:admin, :root]
   %li= link_to fa_icon("rocket", text: "Sidekiq"), admin_sidekiq_path, target: "blank"
   %li.divider
-%li= link_to fa_icon("home", text: "Home"), root_path
 %li= link_to fa_icon("user", text: "Profile"), [:my, :profile]
 %li.divider
 %li= link_to fa_icon("graduation-cap", text: "Learn"), root_url(subdomain: "learn")

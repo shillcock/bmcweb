@@ -10,14 +10,7 @@
         %td= "#{alumni_level(membership.amount)} Level at $#{membership.amount} a #{membership.interval}"
       %tr
         %td Membership Status:
-        %td= membership.status
+        %td= membership.status.capitalize
       %tr
         %td Member Since:
         %td= membership.member_since
-      %tr
-        %td Credit Card:
-        %td
-          = "#{user.card_type} ending in #{user.card_last4} which expires on #{user.card_expiration}"
-      %tr
-        %td
-        %td= render "update_credit_card", user: user

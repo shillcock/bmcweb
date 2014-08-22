@@ -1,0 +1,32 @@
+.panel.panel-default
+  .panel-heading
+    %h4= fa_icon("bank", text: "Billing")
+  .panel-body
+    %table.table
+      %thead
+        %tr
+          %th.col-md-3
+          %th
+      %tbody
+        %tr{class: "#{'success' if user.alumni?}" }
+          %td Alumni:
+          %td
+            - if user.alumni?
+              = "#{alumni_level(membership.amount)} Level at $#{membership.amount} a #{membership.interval}"
+            - else
+              = link_to "Join Alumni Membership", new_my_alumni_membership_path, class: "btn btn-success"
+        - if user.card_last4
+          %tr
+            %td Credit Card:
+            %td
+              %div.pull-right
+                = render "my/shared/update_credit_card", user: user
+              = "#{user.card_type} ending in #{user.card_last4}"
+              %br
+              = "expires on #{user.card_expiration}"
+  .panel-footer
+    %p
+      To ensure your data is safe, we use
+      = link_to "Stripe", "http://stripe.com"
+      to process the payments and store your information. Your data is sent encrypted using HTTPS.
+      Breakthrough Men's Community does not directly process or store your credit card information at any time.
