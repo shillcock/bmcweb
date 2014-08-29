@@ -12,12 +12,22 @@ jQuery ->
       $form.append $('<input type="hidden" name="alumni_membership[email]" />').val(token.email)
       $form.append $('<input type="hidden" name="alumni_membership[interval]" />').val(interval)
       $form.append $('<input type="hidden" name="alumni_membership[stripe_token]" />').val(token.id)
-      $form.get(0).submit()
+      #$form.get(0).submit()
+      $.ajax
+        type: "POST"
+        url: "/my/alumni_membership"
+        data: $("#alumni_membership_form").serialize()
+        success: (data) ->
+          pollStatus(30)
+        error: (data) ->
+          console.log("call show error here")
   )
   catch error then console.log "Skipping StripeCheckout"
 
   $("#alumni_membership_form").submit ->
     amount = $('#alumni_membership_amount').val()
+    $form = $(this)
+    $form.find('button').prop('disabled', true)
     if membershipCheckout
       membershipCheckout.open
         amount: amount * 100 * billingCycleFactor()
@@ -26,7 +36,6 @@ jQuery ->
     else
       amount = $("#alumni_membership_amount").val() * billingCycleFactor()
       interval = billingCycleInterval()
-      $form = $("#alumni_membership_form")
       $form.append $('<input type="hidden" name="alumni_membership[amount]" />').val(amount)
       $form.append $('<input type="hidden" name="alumni_membership[interval]" />').val(interval)
       $form.get(0).submit()
@@ -63,11 +72,25 @@ jQuery ->
 
   updateJoinButton($('#alumni_membership_amount').val())
 
+  setupSpinner()
+
+pollStatus = (numberOfTriesLeft) ->
+  if numberOfTriesLeft > 0
+    $.get "/my/alumni_membership/status", (data) ->
+      if data.status == "active"
+        window.location = "/my/alumni_membership"
+      else if data.status == "error"
+        console.log("error createing membership")
+      else
+        setTimeout ->
+          pollStatus(numberOfTriesLeft - 1)
+  else
+    console.log("This seems to be taking to long")
+
 updateLevel = (value) ->
   $("#alumni_membership_amount").val(value)
   $("#alumni_membership_amount_slider").slider("value", value)
   updateJoinButton(value)
-
 
 billingCycleInterval = ->
   if $("#billing_cycle_monthly").prop("checked")
@@ -100,3 +123,25 @@ alumniLevel = (amount) ->
     "Magnificent"
   else
     "Wild and Wooly"
+
+setupSpinner = ->
+  opts =
+    lines: 13
+    length: 20
+    width: 10
+    radius: 30
+    corners: 1
+    rotate: 0
+    direction: 1
+    color: '#000'
+    speed: 1
+    trail: 60
+    shadow: false
+    hwaccel: false
+    className: 'spinner'
+    zIndex: 2e9
+    top: '50%'
+    left: '50%'
+
+  target = $("#processing-spinner")
+  spinner = new Spinner(opts).spin(target)

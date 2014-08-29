@@ -19,12 +19,20 @@ module ApplicationHelper
     "http://www.gravatar.com/avatar/#{hash}?d=identicon&s=#{size}"
   end
 
-  def stripe_customer_url(id)
-    id ? "https://dashboard.stripe.com/test/customers/#{id}" : ""
+  def stripe_url(type, id)
+    id ? "https://dashboard.stripe.com/test/#{type}/#{id}" : "#"
   end
 
-  def stripe_subscription_url(id)
-    id ? "https://dashboard.stripe.com/test/subscriptions/#{id}" : ""
+  def stripe_customers_url(id)
+    stripe_url(:customers, id)
+  end
+
+  def stripe_payments_url(id)
+    stripe_url(:payments, id)
+  end
+
+  def stripe_invoices_url(id)
+    stripe_url(:invoices, id)
   end
 
   def alumni_level(amount)

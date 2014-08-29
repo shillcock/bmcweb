@@ -39,6 +39,10 @@ class AlumniMembership < ActiveRecord::Base
     "alumni_#{interval}ly"
   end
 
+  def description
+    "Alumni Association Membership"
+  end
+
   def member_since
     created_at.strftime("%B %e, %Y")
   end
@@ -46,7 +50,8 @@ class AlumniMembership < ActiveRecord::Base
   private
 
     def cancel_subscription
-      if stripe_subscription_id
+      if stripe_customer_id and stripe_subscription_id
+
         CancelStripeSubscription.perform_async(
           stripe_customer_id,
           stripe_subscription_id)

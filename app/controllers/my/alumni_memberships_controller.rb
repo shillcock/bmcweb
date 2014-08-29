@@ -1,6 +1,6 @@
 class My::AlumniMembershipsController < MyController
   before_action :set_user
-  before_action :set_membership, only: [:show, :edit, :update, :status]
+  before_action :set_membership, only: [:show, :edit, :update, :status, :destroy]
 
   def new
     @membership = AlumniMembership.new(amount: 40, deactivated_on: Time.zone.today)
@@ -38,6 +38,11 @@ class My::AlumniMembershipsController < MyController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @membership.destroy
+    redirect_to my_profile_path
   end
 
   private
