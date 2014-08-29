@@ -1,4 +1,4 @@
-- if not payments.empty?
+- if payments.empty?
   %p
     Your payment history is not available. If you have any questions about your account, please email
     #{mail_to "support@breakthroughmenscommunity.org"}.
@@ -6,12 +6,14 @@
   %table.table
     %thead
       %tr
+        %th Id
         %th Date
-        %th Card Details
+        %th Credit Card
         %th Amount
     %tbody
       - payments.each do |payment|
         %tr
+          %td= link_to payment.guid, my_payment_path(payment)
           %td= payment.date
-          %td= "XXXX-XXXX-XXXX-#{payment.card_last4}"
-          %td= "$#{payment.amount}"
+          %td= "ending in #{payment.card_last4}"
+          %td= "$ #{payment.amount}"

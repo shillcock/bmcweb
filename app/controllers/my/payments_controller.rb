@@ -16,6 +16,6 @@ class My::PaymentsController < MyController
     end
 
     def set_payment
-      @payment = @user.payments.find(:id)
+      @payment = @user.payments.find_by(guid: params[:id])
     end
 end
