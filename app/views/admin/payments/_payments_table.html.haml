@@ -1,0 +1,20 @@
+%br/
+- if payments.empty?
+  %p Payment history is not available.
+- else
+  %table.table.table-hover#payments{data: { source: admin_user_payments_url(@user, format: 'json')}}
+    %thead
+      %tr
+        %th Id
+        %th Guid
+        %th Date
+        %th Stripe Charge
+        %th Amount
+    %tbody
+      - payments.each do |payment|
+        %tr[payment]
+          %td= payment.id
+          %td= link_to payment.guid, [:admin, user, payment]
+          %td= payment.date
+          %td= link_to payment.stripe_charge_id, stripe_payments_url(payment.stripe_charge_id), target: "blank"
+          %td= "$ #{payment.amount}"

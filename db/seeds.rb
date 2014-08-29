@@ -9,3 +9,27 @@
 if User.count == 0
   user = User.create name: "System Admin", email: "admin@bmc.link", password: ENV["BASIC_AUTH_PASSWORD"], admin: true
 end
+
+Faker::Config.locale = "en-US"
+def fake_user_params
+  first_name = Faker::Name.first_name
+  {
+    name: "#{first_name} #{Faker::Name.last_name}",
+    email: Faker::Internet.email(first_name),
+    password: 'test', #Faker::Internet.password(12),
+    phone_number: Faker::PhoneNumber.cell_phone,
+    address1: Faker::Address.street_address,
+    city: Faker::Address.city,
+    state: "California",
+    zip_code: Faker::Address.zip,
+    birthday: "0001-#{rand(1..12)}-#{rand(1..31)}}"
+  }
+end
+
+15.times do
+  user = User.new(fake_user_params)
+  if user.save
+    CreateStripeCustomer.perform_async(user.id)
+  end
+end
+

@@ -34,12 +34,7 @@ class UpdateStripeSubscription
 
     def update_user
       card = customer.cards.retrieve(customer.default_card)
-      @alumni.user.update(
-        stripe_token: nil,
-        card_type: card.brand,
-        card_last4: card.last4,
-        card_expiration: Date.new(card.exp_year, card.exp_month, 1)
-      )
+      @alumni.user.update_credit_card(card)
     end
 
     def customer

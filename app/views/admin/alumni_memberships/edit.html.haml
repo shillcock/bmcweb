@@ -21,7 +21,7 @@
     #subscription{"data-stripe-key" => "#{Rails.configuration.stripe[:publishable_key]}", |
                   "data-user-email" => "#{@user.email}"}
 
-    =form_tag [:update_credit_card, :admin, @user] do
+    = form_tag [:update_credit_card, :admin, @user] do
       %script.stripe-button{"src"=>"https://checkout.stripe.com/checkout.js", |
         "data-key"=>"#{Rails.configuration.stripe[:publishable_key]}", |
         "data-name"=>"Alumni Membership", |

@@ -5,6 +5,9 @@
       %th
   %tbody
     %tr
+      %td Id:
+      %td= user.id
+    %tr
       %td Name:
       %td= user.name
     %tr
@@ -22,7 +25,7 @@
           %span.label.label-primary Alumni
     %tr
       %td Stripe Customer:
-      %td= link_to user.stripe_customer_id, stripe_customer_url(user.stripe_customer_id), target: "_blank"
+      %td= link_to user.stripe_customer_id, stripe_customers_url(user.stripe_customer_id), target: "_blank"
     %tr
       %td Created at:
       %td= l(user.created_at)

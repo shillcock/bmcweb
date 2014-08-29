@@ -12,7 +12,7 @@
           %td Alumni:
           %td
             - if user.alumni?
-              = "#{alumni_level(membership.amount)} Level at $#{membership.amount} a #{membership.interval}"
+              = link_to "#{alumni_level(membership.amount)} Level at $#{membership.amount} a #{membership.interval}", my_alumni_membership_path
             - else
               = link_to "Join Alumni Membership", new_my_alumni_membership_path, class: "btn btn-success"
         - if user.card_last4

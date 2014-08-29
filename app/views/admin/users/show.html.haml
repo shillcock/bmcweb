@@ -12,16 +12,17 @@
   .main[@user]
     .row
       .col-md-6
-        %br/
-        %h4= "Account - #{@user.id} - #{@user.username}"
+        %br
+        %h4= "Account"
         = render "account", user: @user
       .col-md-6
-        %br/
+        %br
         %h4 Profile
         = render "profile", user: @user
     .row
       .col-md-6
         - unless @user.alumni?
           = link_to "Join Alumni", [:new, :admin, @user, :alumni_membership], class: "btn btn-default pull-right"
+        %br
         %h4 Alumni Membership
         = render "alumni", user: @user, membership: @user.alumni_membership

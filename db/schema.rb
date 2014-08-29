@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140822032917) do
+ActiveRecord::Schema.define(version: 20140826214611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,15 +77,21 @@ ActiveRecord::Schema.define(version: 20140822032917) do
 
   create_table "payments", force: true do |t|
     t.integer  "user_id"
-    t.date     "invoice_date"
-    t.decimal  "amount"
+    t.date     "date"
     t.string   "stripe_invoice_id"
     t.string   "card_last4"
     t.boolean  "email_sent"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "amount_cents"
+    t.string   "stripe_customer_id"
+    t.string   "stripe_charge_id"
+    t.string   "guid"
+    t.string   "description"
+    t.boolean  "paid"
   end
 
+  add_index "payments", ["guid"], name: "index_payments_on_guid", unique: true, using: :btree
   add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
   create_table "users", force: true do |t|

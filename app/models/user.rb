@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
 
   scope :card_expiring, -> (date) { where("card_expiration <= ?", date) }
 
-  before_validation :ensure_username
+  before_validation :populate_username
 
   # after_save :create_stripe_customer, on: :create
   # before_destroy :delete_stripe_customer
@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
     #  DeleteStripeCustomer.perform_async(stripe_customer_id) if stripe_customer_id.present?
     # end
 
-    def ensure_username
+    def populate_username
       self.username ||= name.parameterize("_")
     end
 end

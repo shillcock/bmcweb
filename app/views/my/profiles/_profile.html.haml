@@ -7,13 +7,12 @@
   .panel-body
     .row
       .col-md-3
-        .thumbnail_image
+        .thumbnail_image.text-center
           = image_tag gravatar_url(user.email, "150x150"), alt: "#{user.name}", class: "img-rounded"
-          .caption
-            %p.text-center
-              %em
-                = user.name
-                = fa_icon("trophy") if user.admin?
+        .caption.text-center
+          %p
+            = user.name
+            = fa_icon("shield") if user.admin?
       .col-md-9
         %table.table
           %thead

@@ -1,0 +1,28 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-2
+      %th
+  %tbody
+    %tr
+      %td Id:
+      %td= payment.id
+    %tr
+      %td Guid:
+      %td= payment.guid
+    %tr
+      %td Date:
+      %td= payment.date
+    %tr
+      %td Credit Card:
+      %td= "ending in #{payment.card_last4}"
+    %tr
+      %td Amount:
+      %td= "$ #{payment.amount}"
+    %tr
+      %td Stripe Charge:
+      %td= link_to payment.stripe_charge_id, stripe_payments_url(payment.stripe_charge_id), target: "blank"
+    - if payment.stripe_invoice_id
+      %tr
+        %td Stripe Invoice:
+        %td= link_to payment.stripe_invoice_id, stripe_invoices_url(payment.stripe_invoice_id), target: "blank"

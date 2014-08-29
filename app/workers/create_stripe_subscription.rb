@@ -57,8 +57,9 @@ class CreateStripeSubscription
       sub_attr = {
         plan: @alumni.plan,
         quantity: @alumni.amount,
-         metadata: {
-          alumni_membership_id: @alumni.id
+        metadata: {
+          user_id: @user.id,
+          alumni_id: @alumni.id
         }
       }
       sub_attr[:card] = @alumni.stripe_token if @alumni.stripe_token.present?

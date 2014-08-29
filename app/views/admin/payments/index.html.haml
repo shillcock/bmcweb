@@ -3,16 +3,18 @@
     %li= link_to "Dashboard", [:admin, :root]
     %li= link_to "Users", [:admin, :users]
     %li= link_to @user.name, [:admin, @user]
-    %li.active Alumni
+    %li.active Payments
 
 .container.users
   %header
-    %h2= fa_icon("users", text: "Alumni Association")
+    %h2= fa_icon("money", text: "Payments")
   %hr
-  = render 'tabs', user: @user, current: 'show'
+  .tabbable
+    %ul.nav.nav-tabs
+      %li= link_to fa_icon("chevron-left"), [:admin, @user]
+      %li.active= link_to fa_icon("list", text: "List"), [:admin, @user, :payments]
   .main
-    %h2 Membership
-    = render "admin/users/alumni", user: @user, membership: @membership
+    = render "payments_table", user: @user, payments: @payments
     / - if @user.alumni?
     /   %table.table
     /     %thead

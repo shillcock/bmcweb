@@ -1,0 +1,6 @@
+.tabbable
+  %ul.nav.nav-tabs
+    %li
+      = link_to fa_icon("chevron-left"), [:admin, user, :payments]
+      %li{class: ("active" if current == "show")}
+        = link_to fa_icon("info-circle", text: "Show"), [:admin, user, payment]

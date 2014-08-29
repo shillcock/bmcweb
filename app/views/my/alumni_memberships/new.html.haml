@@ -16,7 +16,7 @@
           %hr
           %h3 Membership level?
           #alumni_membership{"data-stripe-key" => "#{Rails.configuration.stripe[:publishable_key]}", |
-                             "data-user-email" => "#{@user.email}"}
+                             "data-user-email" => "#{@user.email}" }
           = render 'form', user: @user, membership: @membership
           %br/
         .panel-heading

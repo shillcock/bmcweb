@@ -1,0 +1,15 @@
+- content_for :breadcrumbs do
+  %ol.breadcrumb
+    %li= link_to "Dashboard", [:admin, :root]
+    %li= link_to "Users", [:admin, :users]
+    %li= link_to @user.name, [:admin, @user]
+    %li= link_to "Payments", [:admin, @user, :payments]
+    %li.active= @payment.guid
+
+.container.users
+  %header
+    %h2= fa_icon("money", text: "Payment: $#{@payment.amount}")
+  %hr
+  = render 'tabs', user: @user, payment: @payment, current: 'show'
+  .main
+    = render "payment", user: @user, payment: @payment
