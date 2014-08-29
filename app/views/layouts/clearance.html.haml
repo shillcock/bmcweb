@@ -1,0 +1,22 @@
+!!! 5
+%html
+  %head
+    = render 'shared/typekit'
+    %meta{charset: "utf-8"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+    %title Breakthrough Men's Community
+    %meta{name: "description", content: "Breakthrough Men's Community"}
+    = stylesheet_link_tag :application
+    /[if lt IE 9]
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    = yield :head
+    = csrf_meta_tags
+  %body{class: page_class}
+    .container-narrow
+      #clearance.sign-in.col-md-6.col-md-offset-4
+        = link_to root_path, class: "thumbnail" do
+          = image_tag "bmc_banner.png"
+        = render 'shared/messages'
+        = yield
+    = javascript_include_tag :application
+    = render 'shared/javascript'

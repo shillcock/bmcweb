@@ -6,6 +6,7 @@ BreakthroughForMen::Application.routes.draw do
   get "intouch/sso", to: "in_touch_sso#sso"
 
   resource :session, controller: "sessions", only: [:new, :create, :destroy]
+  get "sign_in", to: "sessions#new", as:nil
   delete "sign_out", to: "sessions#destroy", as: nil
 
   get "what_is_breakthrough", to: "welcome#info"
@@ -15,10 +16,20 @@ BreakthroughForMen::Application.routes.draw do
   resource "contact", controller: :contact, only: [:create]
 
   namespace :my do
-    resource :alumni_membership, only: [:new, :create, :show, :edit, :update]
+    resource :alumni_membership do
+      member do
+        get :status
+      end
+    end
     resource :profile, only: [:show, :edit, :update]
     resource :credit_card, only: [:update]
     resources :payments, only: [:index, :show]
+  end
+
+  namespace :learn do
+    resources :workshops, only: [:show] do
+      resources :meetings, only: [:show]
+    end
   end
 
   resources :intro_meetings, only: [:index] do
@@ -32,6 +43,7 @@ BreakthroughForMen::Application.routes.draw do
 
     resources :users do
       resource :alumni_membership
+      resources :payments, only: [:index, :show]
       member do
         get :history
         post :update_credit_card

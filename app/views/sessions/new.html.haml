@@ -1,5 +1,11 @@
-.row
-  #clearance.sign-in.col-md-6.col-md-offset-3
-    .well
-      %h2 Please Sign In
-      = render :partial => '/sessions/form'
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      %strong Please sign in
+  .panel-body
+    = minimal_form_for :session, url: session_path do |f|
+      = f.input :email
+      = f.input :password
+      = f.button :button, "Sign in", class: "btn btn-primary btn-block"
+      = link_to t(".forgot_password"), [:new, :password], class: "btn"
+      = link_to "Cancel", root_path, class: "btn pull-right"

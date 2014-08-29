@@ -1,5 +1,4 @@
-= simple_form_for :session, url: session_path do |f|
-  = f.input :email
-  = f.input :password
-  = f.submit class: "btn btn-primary"
-  = link_to t('.forgot_password'), [:new, :password]
+= minimal_form_for :session, url: session_path do |f|
+  = f.input :email, placeholder: "Email address"
+  = f.input :password, placeholder: "Password"
+  = f.button :button, "Sign in", class: "btn btn-primary btn-block"

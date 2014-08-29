@@ -1,8 +1,9 @@
-.row
-  #clearance.password-reset.col-md-6.col-md-offset-3
-    .well
-      %h2= t '.title'
-      %p= t '.description'
-      = simple_form_for :password, url: passwords_path do |f|
-        = f.input :email
-        = f.submit class: "btn btn-primary"
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      %strong= t ".title"
+  .panel-body
+    %p= t ".description"
+    = minimal_form_for :password, url: passwords_path do |f|
+      = f.input :email
+      = f.submit class: "btn btn-primary btn-block"
