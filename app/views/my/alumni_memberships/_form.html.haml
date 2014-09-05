@@ -18,4 +18,7 @@
 
 = simple_form_for membership, url: my_alumni_membership_path, html: { id: "alumni_membership_form" } do |f|
   = f.error_notification
-  = f.button :submit, "I would like to join at the Awesome level of $40 a month", id: "submit_button", class: "btn btn-block btn-lg btn-success"
+  %p
+    = f.button :submit, "I would like to join at the Awesome level of $40 a month", id: "submit_button", class: "btn btn-block btn-lg btn-success"
+    %span#processing-spinner
+

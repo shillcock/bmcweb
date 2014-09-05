@@ -34,7 +34,7 @@ class UpdateStripeSubscription
 
     def update_user
       card = customer.cards.retrieve(customer.default_card)
-      @alumni.user.update_credit_card(card)
+      @alumni.user.update_from_stripe_card(card)
     end
 
     def customer

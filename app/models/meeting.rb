@@ -11,10 +11,6 @@
 #  position    :integer
 #  workshop_id :integer
 #
-# Indexes
-#
-#  index_meetings_on_workshop_id  (workshop_id)
-#
 
 class Meeting < ActiveRecord::Base
   belongs_to :workshop

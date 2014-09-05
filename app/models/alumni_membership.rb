@@ -13,10 +13,6 @@
 #  updated_at             :datetime
 #  status                 :string(255)      default("pending")
 #
-# Indexes
-#
-#  index_alumni_memberships_on_user_id  (user_id)
-#
 
 class AlumniMembership < ActiveRecord::Base
   belongs_to :user

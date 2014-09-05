@@ -23,11 +23,9 @@
 #  card_type          :string(255)
 #  card_last4         :string(255)
 #  card_expiration    :date
-#
-# Indexes
-#
-#  index_users_on_email           (email)
-#  index_users_on_remember_token  (remember_token)
+#  username           :string(255)
+#  sign_in_count      :integer          default(0), not null
+#  last_sign_in_at    :datetime
 #
 
 class User < ActiveRecord::Base
@@ -71,7 +69,7 @@ class User < ActiveRecord::Base
     workshops.include?(workshop) if workshop
   end
 
-  def update_credit_card(card)
+  def update_from_stripe_card(card)
     update(
       card_type: card.brand,
       card_last4: card.last4,
