@@ -2,3 +2,5 @@ build_environment: ubuntu1204
 language: ruby
 rvm:
  - 2.1.2
+env:
+  - CI_REPORTS=shippable/testresults COVERAGE_REPORTS=shippable/codecoverage
