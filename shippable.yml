@@ -4,3 +4,7 @@ rvm:
  - 2.1.2
 env:
   - CI_REPORTS=shippable/testresults COVERAGE_REPORTS=shippable/codecoverage
+before_script:
+  - cp config/database.shippable.yml config/database.yml
+  - psql -c 'create database breakthrough_for_men_test;' -U postgres
+  - rake db:migrate

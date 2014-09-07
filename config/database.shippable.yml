@@ -1,0 +1,16 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: breakthrough_for_men_development
+  pool: 5
+  username: postgres
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: breakthrough_for_men_test
+  pool: 5
+  username: postgres
+  password:
+  min_messages: warning
