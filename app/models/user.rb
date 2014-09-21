@@ -88,6 +88,6 @@ class User < ActiveRecord::Base
     # end
 
     def populate_username
-      self.username ||= name.parameterize("_")
+      self.username ||= name.parameterize("_") if name
     end
 end
