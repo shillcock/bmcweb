@@ -30,9 +30,9 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.order = "random"
 
-  # config.expect_with :rspec do |c|
-  #   c.syntax = :expect
-  # end
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
 end
 
 # I18n.enforce_available_locales will default to true in the future.

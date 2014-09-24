@@ -1,6 +1,6 @@
 require 'sidekiq/web'
 
-BreakthroughForMen::Application.routes.draw do
+BMC::Application.routes.draw do
   # website homepage
   root to: "welcome#index"
 

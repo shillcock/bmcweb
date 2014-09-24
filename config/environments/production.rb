@@ -1,6 +1,6 @@
 require Rails.root.join('config/initializers/mail')
 
-BreakthroughForMen::Application.configure do
+BMC::Application.configure do
   config.cache_classes = true
   config.eager_load = true
 

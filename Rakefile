@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-BreakthroughForMen::Application.load_tasks
+BMC::Application.load_tasks
