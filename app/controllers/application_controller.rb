@@ -4,12 +4,12 @@ class ApplicationController < ActionController::Base
   before_action :authorize
   protect_from_forgery with: :exception
 
-  protected
+  def sign_in(user)
+    update_tracked_fields(user) if user
+    super(user)
+  end
 
-    def sign_in(user)
-      update_tracked_fields(user) if user
-      super(user)
-    end
+  protected
 
     def redirect_unless_user_is_admin
       unless current_user_is_admin?
