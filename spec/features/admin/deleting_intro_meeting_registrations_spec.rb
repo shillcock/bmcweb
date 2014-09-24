@@ -12,7 +12,7 @@ feature "Deleting Intro Meeting Registrations" do
 
     find("#intro_meeting_#{intro_meeting.id}").click_link "Registrations"
 
-    current_path.should eq admin_intro_meeting_registrations_path(intro_meeting)
+    expect(current_path).to match admin_intro_meeting_registrations_path(intro_meeting)
   end
 
   scenario "Deleting an intro meeting registration" do

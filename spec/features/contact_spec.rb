@@ -7,12 +7,14 @@ feature 'Contact Us' do
     contact_page.visit_page
     contact_page.complete_form
     contact_page.submit
-    contact_page.should be_successful
+    expect(contact_page).to be_successful
 
-    ActionMailer::Base.deliveries.should_not be_empty
+    expect(ActionMailer::Base.deliveries).to_not be_empty
     result = ActionMailer::Base.deliveries.select do |email|
-      email.subject =~ /Contact/i && email.body =~ /keep up the good work/
+      expect(email.subject).to match(/Contact/i)
+      expect(email.body).to match(/keep up the good work/)
     end
-    # result.should have_at_least(1).item
+
+    expect(result).to have_at_least(1).items
   end
 end

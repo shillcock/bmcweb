@@ -1,29 +1,31 @@
-require 'spec_helper'
+# require "spec_helper"
 
-feature 'Visitor signs up' do
-  # scenario 'by navigating to the page' do
-  #   visit sign_in_path
+#FIXME: Don't support sign up yet
 
-  #   click_link I18n.t('sessions.form.sign_up')
+# feature "Visitor signs up" do
+#   scenario "by navigating to the page" do
+#     visit sign_in_path
 
-  #   current_path.should eq sign_up_path
-  # end
+#     click_link I18n.t("sessions.form.sign_up")
 
-  # scenario 'with valid email and password' do
-  #   sign_up_with 'valid@example.com', 'password'
+#     expect(current_path).to eq sign_up_path
+#   end
 
-  #   user_should_be_signed_in
-  # end
+#   scenario "with valid email and password" do
+#     sign_up_with "valid@example.com", "password"
 
-  # scenario 'tries with invalid email' do
-  #   sign_up_with 'invalid_email', 'password'
+#     user_should_be_signed_in
+#   end
 
-  #   user_should_be_signed_out
-  # end
+#   scenario "tries with invalid email" do
+#     sign_up_with "invalid_email", "password"
 
-  # scenario 'tries with blank password' do
-  #   sign_up_with 'valid@example.com', ''
+#     user_should_be_signed_out
+#   end
 
-  #   user_should_be_signed_out
-  # end
-end
+#   scenario "tries with blank password" do
+#     sign_up_with "valid@example.com", ""
+
+#     user_should_be_signed_out
+#   end
+# end

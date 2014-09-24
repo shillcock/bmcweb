@@ -11,7 +11,7 @@ feature "Registering for Intro Meeting" do
       click_link "Register"
     end
 
-    current_path.should eq new_intro_meeting_registration_path(intro_meeting)
+    expect(current_path).to eq new_intro_meeting_registration_path(intro_meeting)
   end
 
   scenario 'Visitor registers for an intro meeting' do

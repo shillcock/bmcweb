@@ -1,10 +1,9 @@
 require 'spec_helper'
 
 describe Participant do
-  before { pending }
   let(:user) { create(:user) }
-  let(:section) { create(:section) }
-  let(:participant) { Participant.new(user, section)}
+  let(:workshop) { create(:workshop) }
+  let(:participant) { Participant.new(user, workshop)}
 
   subject { participant }
 
