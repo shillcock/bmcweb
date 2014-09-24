@@ -31,7 +31,7 @@ class Participant
   end
 
   def educator?
-    enrollment.present?
+    enrollment.educator?
   end
 
   def birthday
