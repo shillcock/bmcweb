@@ -15,6 +15,6 @@ feature 'Contact Us' do
       expect(email.body).to match(/keep up the good work/)
     end
 
-    expect(result).to have_at_least(1).items
+    expect(result.size).to be >= 1
   end
 end

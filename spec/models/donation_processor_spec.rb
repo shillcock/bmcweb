@@ -26,7 +26,7 @@ describe DonationProcessor do
       processor = DonationProcessor.new(donation)
       result = processor.process
 
-      expect(result).to be_true
+      expect(result).to be_truthy
       expect(donation.stripe_charge_id).to equal charge_id
     end
 
@@ -38,7 +38,7 @@ describe DonationProcessor do
     #   processor = DonationProcessor.new(donation)
     #   result = processor.process
 
-    #   expect(result).to be_false
+    #   expect(result).to be_falsey
     #   donation.errors[:base].should include('An error occurred while processing the card.')
     # end
 
@@ -50,7 +50,7 @@ describe DonationProcessor do
       processor = DonationProcessor.new(donation)
       result = processor.process
 
-      expect(result).to be_false
+      expect(result).to be_falsey
       expect(donation.errors[:base]).to include('There was a problem processing your credit card, your card was declined')
     end
   end

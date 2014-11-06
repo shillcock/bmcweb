@@ -79,7 +79,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'capybara'
   gem 'selenium-webdriver'
-  gem 'rspec-rails', '~> 2.14.2'
+  gem 'rspec-rails', '~> 2.99'
   gem 'factory_girl_rails'
   gem 'spring-commands-rspec'
   #gem 'jazz_hands'

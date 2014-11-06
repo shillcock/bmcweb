@@ -55,7 +55,7 @@ FactoryGirl.define do
     description { "#{title} will rock your world." }
 
     factory :workshop_with_meetings do
-      ignore do
+      transient do
         meeting_count 5
       end
 
