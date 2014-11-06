@@ -1,6 +1,6 @@
 require 'sidekiq/web'
 
-BMC::Application.routes.draw do
+Rails.application.routes.draw do
   # website homepage
   root to: "welcome#index"
 

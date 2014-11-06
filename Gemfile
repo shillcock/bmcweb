@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 ruby '2.1.4'
 
-gem 'rails', '4.1.6'
+gem 'rails', '4.2.0.beta4'
 gem 'pg'
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0.0.beta1'
 gem 'uglifier', '~> 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
@@ -21,8 +21,8 @@ gem 'virtus', '~> 1.0.3'
 gem 'clearance', '~> 1.5.0'
 # gem 'rolify'
 gem 'simple_form', '~> 3.1.0.rc2'
-gem 'money', '~> 6.1.1'
-gem 'money-rails', '~> 0.12.0'
+gem 'money', '~> 6.4.0'
+gem 'money-rails', '~> 1.0.0'
 gem 'paper_trail', '~> 3.0.5'
 # gem 'destroyed_at'
 # gem 'mailchimp'
@@ -62,9 +62,10 @@ group :test do
 end
 
 group :development do
+  gem 'web-console', '~> 2.0.0.beta4'
   # gem 'sass-rails-source-maps'
   gem 'better_errors'
-  gem 'binding_of_caller'
+  gem 'binding_of_caller', '~> 0.7.3.pre1'
   gem 'meta_request'
   gem 'rails_best_practices'
   gem 'brakeman'
@@ -96,3 +97,4 @@ end
 #   gem 'rails_12factor'
 #   gem 'rails_stdout_logging'
 # end
+
