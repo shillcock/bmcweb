@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::IntroMeetingsController do
+describe Admin::IntroMeetingsController, :type => :controller do
   before do
     sign_in
   end

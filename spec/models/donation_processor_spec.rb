@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe DonationProcessor do
+describe DonationProcessor, :type => :model do
   before do
     Stripe.api_key = 'fake_stripe_test_key'
   end

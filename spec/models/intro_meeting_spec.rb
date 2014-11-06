@@ -12,11 +12,11 @@
 
 require 'spec_helper'
 
-describe IntroMeeting do
+describe IntroMeeting, :type => :model do
 
-  it { should validate_presence_of :date }
-  it { should validate_presence_of :starts_at }
-  it { should validate_presence_of :ends_at }
+  it { is_expected.to validate_presence_of :date }
+  it { is_expected.to validate_presence_of :starts_at }
+  it { is_expected.to validate_presence_of :ends_at }
 
   describe ".upcoming" do
     it "should list only meetings that haven't happened yet with limit of 3" do

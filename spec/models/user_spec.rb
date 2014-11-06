@@ -32,11 +32,11 @@
 
 require 'spec_helper'
 
-describe User do
+describe User, :type => :model do
   let(:user) { create(:user) }
   subject { user }
 
-  it { should validate_presence_of :name }
+  it { is_expected.to validate_presence_of :name }
 
   context "#first_name" do
     it "has a first_name that is the first part of name" do

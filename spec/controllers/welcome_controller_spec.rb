@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe WelcomeController do
+describe WelcomeController, :type => :controller do
   describe "GET #index" do
     it "populates an array of upcoming meetings" do
       meeting1 = create_intro_meeting_on 1.week.from_now

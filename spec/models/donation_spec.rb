@@ -18,16 +18,16 @@
 
 require 'spec_helper'
 
-describe Donation do
+describe Donation, :type => :model do
   let(:donation) { build(:donation) }
   subject { donation }
 
   context "validations" do
     include MoneyRails::TestHelpers
 
-    it { should validate_presence_of :email }
-    it { should validate_presence_of :amount_cents }
-    it { should monetize(:amount_cents) }
-    it { should be_valid }
+    it { is_expected.to validate_presence_of :email }
+    it { is_expected.to validate_presence_of :amount_cents }
+    it { is_expected.to monetize(:amount_cents) }
+    it { is_expected.to be_valid }
   end
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::IntroMeetingRegistrationsController do
+describe Admin::IntroMeetingRegistrationsController, :type => :controller do
   let(:admin) { create(:admin) }
   let(:intro_meeting) { create(:intro_meeting) }
 

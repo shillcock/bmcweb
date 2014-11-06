@@ -18,10 +18,10 @@
 
 require 'spec_helper'
 
-describe Meeting do
+describe Meeting, :type => :model do
   let(:workshop) { create(:workshop) }
   let(:meeting) { create(:meeting, workshop: workshop) }
   subject { meeting }
 
-  it { should belong_to(:workshop) }
+  it { is_expected.to belong_to(:workshop) }
 end

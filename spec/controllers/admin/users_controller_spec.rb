@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::UsersController do
+describe Admin::UsersController, :type => :controller do
   let(:admin) { create(:admin) }
 
   context "standard users" do
