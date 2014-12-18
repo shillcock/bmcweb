@@ -9,3 +9,15 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
+
+Rails.application.config.assets.precompile += %w{
+  vendor/modernizr.js
+  donations.js
+  admin.css
+  admin.js
+  admin/alumni_membership.js
+  my.css
+  my.js
+  my/alumni_membership.js
+}
+

@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
-ruby '2.1.4'
+ruby '2.1.5'
 
-gem 'rails', '4.2.0.beta4'
+gem 'rails', '4.2.0.rc3'
 gem 'pg'
-gem 'sass-rails', '~> 5.0.0.beta1'
+gem 'sass-rails', '~> 5.0.0'
 gem 'uglifier', '~> 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jquery-ui-sass-rails'
 gem 'bootstrap-sass', '~> 3.3.0.1'
@@ -18,9 +18,9 @@ gem 'autoprefixer-rails'
 gem 'passenger'
 gem 'virtus', '~> 1.0.3'
 # gem 'active_type', '~> 0.1.2'
-gem 'clearance', '~> 1.5.0'
+gem 'devise', '~> 3.4.1'
 # gem 'rolify'
-gem 'simple_form', '~> 3.1.0.rc2'
+gem 'simple_form', '~> 3.1.0'
 gem 'money', '~> 6.4.0'
 gem 'money-rails', '~> 1.0.0'
 gem 'paper_trail', '~> 3.0.5'
@@ -62,7 +62,6 @@ group :test do
 end
 
 group :development do
-  gem 'web-console', '~> 2.0.0.beta4'
   # gem 'sass-rails-source-maps'
   gem 'better_errors'
   gem 'binding_of_caller', '~> 0.7.3.pre1'
@@ -70,13 +69,14 @@ group :development do
   gem 'rails_best_practices'
   gem 'brakeman'
   gem 'annotate'
-  gem 'spring'
   gem 'rails-erd'
   gem 'bullet'
 end
 
 group :development, :test do
-  # gem 'debugger', '~> 1.6.8'
+  gem 'byebug'
+  gem 'web-console', '~> 2.0'
+  gem 'spring'
   gem 'dotenv-rails'
   gem 'capybara'
   gem 'selenium-webdriver'

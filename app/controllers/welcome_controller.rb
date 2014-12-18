@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  skip_before_action :authorize, only: [:index, :info, :schedule]
+  skip_before_action :authenticate_user!, only: [:index, :info, :schedule]
 
   def index
     @upcoming_intro_meetings = IntroMeeting.upcoming

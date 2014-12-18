@@ -1,5 +1,5 @@
 class ContactController < ApplicationController
-  skip_before_action :authorize, only: [:new, :create]
+  skip_before_action :authenticate_user!, only: [:new, :create]
 
   def new
     build_message

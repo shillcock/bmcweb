@@ -1,19 +1,29 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  # website homepage
-  root to: "welcome#index"
 
-  # InTouch (discourse) sso
-  get "intouch/sso", to: "in_touch_sso#sso"
+  devise_for :users, controllers: {
+      passwords: "user/passwords",
+      registrations: "user/registrations",
+      sessions: "user/sessions"
+  }
 
-  # stripe webhooks
-  resources :stripe_events, only: [:create]
+  devise_scope :user do
+    get "log_in", to: "user/sessions#new"
+  end
 
-  # clearance overrides
-  resource :session, controller: "sessions", only: [:new, :create, :destroy]
-  get "sign_in", to: "sessions#new", as:nil
-  delete "sign_out", to: "sessions#destroy", as: nil
+  # clearance
+  #get "/sign_in" => "sessions#new", as: :sign_in
+  #delete "/sign_out" => "sessions#destroy", as: :sign_out
+  # get "/sign_up" => "clearance/users#new", as: :sign_up
+
+  #resources :passwords, controller: "clearance/passwords", only: [:create, :new]
+  #resource :session, controller: "clearance/sessions", only: [:create]
+  #resource :session, controller: "sessions", only: [:new, :create, :destroy]
+
+  #resources :users, controller: "clearance/users", only: [:create] do
+  #  resource :password, controller: "clearance/passwords", only: [:create, :edit, :update]
+  #end
 
   # website pages
   get "what_is_breakthrough", to: "welcome#info"
@@ -81,8 +91,22 @@ Rails.application.routes.draw do
     get "dashboard", to: "dashboard#index"
   end
 
+  # website homepage
+  root to: "welcome#index"
+
+  # InTouch (discourse) sso
+  get "intouch/sso", to: "in_touch_sso#sso"
+
+  # stripe webhooks
+  resources :stripe_events, only: [:create]
+
   # sidekiq
-  constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
-    mount Sidekiq::Web, at: "/admin/sidekiq", as: "admin_sidekiq"
-  end
+  # authenticate :user, -> { |user| user.admin? } do
+  #   mount Sidekiq::Web, at: "/admin/sidekiq"
+  # end
+
+  #constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
+  #  mount Sidekiq::Web, at: "/admin/sidekiq"
+  #end
 end
+

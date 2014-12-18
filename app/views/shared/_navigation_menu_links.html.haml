@@ -1,10 +1,11 @@
 - admins_only do
   %li= link_to fa_icon("shield", text: "Admin"), [:admin, :root]
-  %li= link_to fa_icon("rocket", text: "Sidekiq"), admin_sidekiq_path, target: "blank"
+  %li= link_to fa_icon("rocket", text: "Sidekiq"), "/admin/sidekiq", target: "blank"
+  -#%li= link_to fa_icon("rocket", text: "Sidekiq"), :admin_sidekiq, target: "blank"
   %li.divider
 %li= link_to fa_icon("user", text: "Profile"), [:my, :profile]
 %li.divider
 %li= link_to fa_icon("graduation-cap", text: "Learn"), root_url(subdomain: "learn")
 %li= link_to fa_icon("comments-o", text: "InTouch"), root_url(subdomain: "intouch")
 %li.divider
-%li= link_to fa_icon("sign-out", text: "Sign out"), sign_out_path, method: :delete
+%li= link_to fa_icon("sign-out", text: "Sign out"), destroy_user_session_path, method: :delete

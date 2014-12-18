@@ -1,0 +1,12 @@
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      %strong= t ".title"
+  .panel-body
+    = minimal_form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+      = f.input :email
+      = f.input :password
+      = f.button :button, t(".submit"), class: "btn btn-primary btn-block"
+      = link_to t(".forgot_password"), new_password_path(:user), class: "btn"
+      = link_to "Cancel", root_path, class: "btn pull-right"
+

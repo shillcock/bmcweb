@@ -1,6 +1,6 @@
 class StripeEventsController < ApplicationController
   skip_before_action :verify_authenticity_token, if: -> (c) { c.request.format == "application/json" }
-  skip_before_action :authorize, only: [:create]
+  skip_before_action :authenticate_user!, only: [:create]
   before_action :parse_and_validate_event
 
   def create

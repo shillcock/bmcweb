@@ -1,4 +1,4 @@
-class Admin::ProfilesController < Clearance::UsersController
+class Admin::ProfilesController < AdminController
   before_action :set_user
 
   def edit

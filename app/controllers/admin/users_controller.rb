@@ -1,7 +1,6 @@
-class Admin::UsersController < Clearance::UsersController
+class Admin::UsersController < AdminController
   layout 'admin'
   before_action :redirect_unless_user_is_admin
-  skip_before_filter :avoid_sign_in # clearance defaults to signing in user after create
 
   before_action :set_user, only: [:show, :edit, :update, :destroy, :update_credit_card, :history]
 

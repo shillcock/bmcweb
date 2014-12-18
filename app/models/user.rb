@@ -29,7 +29,9 @@
 #
 
 class User < ActiveRecord::Base
-  include Clearance::User
+  devise :database_authenticatable, :registerable, :recoverable,
+         :rememberable, :trackable, :validatable
+
   has_paper_trail
 
   has_one :alumni_membership, dependent: :destroy

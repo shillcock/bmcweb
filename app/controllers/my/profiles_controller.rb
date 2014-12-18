@@ -12,7 +12,9 @@ class My::ProfilesController < MyController
     end
 
     if @user.update(user_params)
-      flash[:notice] = "User has been updated."
+      flash[:notice] = t "my.profile.updated"
+      sign_in @user, :bypass => true unless params[:user][:password].blank?
+
       redirect_to [:my, :profile]
     else
       render :edit
@@ -30,3 +32,4 @@ class My::ProfilesController < MyController
         :address1, :address2, :city, :state, :zip_code, :phone_number, :birthday)
     end
 end
+

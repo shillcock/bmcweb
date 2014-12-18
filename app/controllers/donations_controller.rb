@@ -1,5 +1,5 @@
 class DonationsController < ApplicationController
-  skip_before_action :authorize, only: [:new, :iframe, :create]
+  skip_before_action :authenticate_user!, only: [:new, :iframe, :create]
   before_action :set_donation, only: [:show, :destroy]
 
   def index

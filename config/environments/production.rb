@@ -1,5 +1,3 @@
-require Rails.root.join('config/initializers/mail')
-
 Rails.application.configure do
   config.cache_classes = true
   config.eager_load = true
@@ -45,18 +43,10 @@ Rails.application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
 
-  config.assets.precompile += %w{
-    vendor/modernizr.js
-    donations.js
-    admin.css
-    admin.js
-    admin/alumni_membership.js
-    my.css
-    my.js
-    my/alumni_membership.js
-  }
 
   HOST = ENV['DOMAIN'] || 'breakthroughmenscommunity.org'
+
+
   config.action_mailer.default_url_options = { :host => HOST }
 
   config.i18n.fallbacks = true
@@ -65,10 +55,26 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = MAIL_SETTINGS
+  config.action_mailer.smtp_settings = {
+    address:   "smtp.mandrillapp.com",
+    port:      587,
+    user_name: ENV["MANDRILL_USERNAME"],
+    password:  ENV["MANDRILL_API_KEY"]
+  }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
+
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   :user_name => '2254346df566f4eaa',
+  #   :password => '783d67ebb8a5b8',
+  #   :address => 'mailtrap.io',
+  #   :domain => 'mailtrap.io',
+  #   :port => '2525',
+  #   :authentication => :cram_md5,
+  #   :enable_starttls_auto => true
+  # }
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
@@ -83,3 +89,4 @@ Rails.application.configure do
 
   #config.middleware.use Mixpanel::Middleware, ENV["MIXPANEL_API_TOKEN"]
 end
+

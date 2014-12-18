@@ -1,5 +1,5 @@
 class IntroMeetingRegistrationsController < ApplicationController
-  skip_before_action :authorize, only: [:new, :create]
+  skip_before_action :authenticate_user!, only: [:new, :create]
   before_action :set_meeting
 
   def new

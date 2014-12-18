@@ -20,4 +20,19 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  my:
+    profile:
+      updated: Your profile has been updated successfully.
+  user:
+    passwords:
+      new:
+        title: Forgot your password?
+        description: To be emailed a link to reset your password, please enter your email address.
+        submit: Send me password reset instructions
+    sessions:
+      new:
+        title: Please sign in
+        submit: Sign in
+        forgot_password: Forgot Password
+
+

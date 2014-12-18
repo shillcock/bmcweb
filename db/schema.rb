@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140830231814) do
+ActiveRecord::Schema.define(version: 20141113040513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_stat_statements"
 
   create_table "alumni_memberships", force: true do |t|
     t.integer  "user_id"
@@ -114,22 +113,37 @@ ActiveRecord::Schema.define(version: 20140830231814) do
     t.date     "birthday"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password", limit: 128
-    t.string   "confirmation_token", limit: 128
-    t.string   "remember_token",     limit: 128
-    t.boolean  "admin",                          default: false
+    t.string   "encrypted_password",     limit: 128
+    t.string   "confirmation_token",     limit: 128
+    t.string   "remember_token",         limit: 128
+    t.boolean  "admin",                              default: false
     t.string   "stripe_customer_id"
     t.string   "stripe_token"
     t.string   "card_type"
     t.string   "card_last4"
     t.date     "card_expiration"
     t.string   "username"
-    t.integer  "sign_in_count",                  default: 0,     null: false
+    t.integer  "sign_in_count",                      default: 0,     null: false
     t.datetime "last_sign_in_at"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "current_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",                    default: 0,     null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
   end
 
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "versions", force: true do |t|
