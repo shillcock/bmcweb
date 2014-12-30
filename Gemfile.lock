@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    aasm (4.0.5)
+    aasm (4.0.7)
     actionmailer (4.2.0.rc3)
       actionpack (= 4.2.0.rc3)
       actionview (= 4.2.0.rc3)
@@ -62,16 +62,6 @@ GEM
       sass (~> 3.2)
     bourne (1.6.0)
       mocha (~> 1.1)
-    brakeman (1.9.2)
-      erubis (~> 2.6)
-      fastercsv (~> 1.5)
-      haml (~> 3.0)
-      highline (~> 1.6)
-      multi_json (~> 1.2)
-      ruby2ruby (~> 2.0)
-      ruby_parser (~> 3.1.1)
-      sass (~> 3.0)
-      terminal-table (~> 1.4)
     builder (3.2.2)
     bullet (4.14.0)
       activesupport (>= 3.0.0)
@@ -154,7 +144,6 @@ GEM
       i18n (~> 0.5)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
-    fastercsv (1.5.5)
     ffi (1.9.6)
     font-awesome-rails (4.1.0.0)
       railties (>= 3.2, < 5.0)
@@ -166,25 +155,34 @@ GEM
     grit (2.0.0)
       diff-lcs (>= 1.1.2)
       mime-types (>= 1.15)
-    haml (3.1.8)
-    haml-rails (0.5.3)
+    haml (4.1.0.beta.1)
+      tilt
+    haml-rails (0.6.0)
       actionpack (>= 4.0.1)
       activesupport (>= 4.0.1)
       haml (>= 3.1, < 5.0)
+      html2haml (>= 1.0.1)
       railties (>= 4.0.1)
-    highline (1.6.21)
     hike (1.2.3)
     hirb (0.7.2)
+    hpricot (0.8.6)
+    html2haml (1.0.1)
+      erubis (~> 2.7.0)
+      haml (>= 4.0.0.rc.1)
+      hpricot (~> 0.8.6)
+      ruby_parser (~> 3.1.1)
     httparty (0.13.3)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0.beta1)
     ice_nine (0.11.1)
-    jbuilder (2.2.5)
+    jbuilder (2.2.6)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
-    jquery-datatables-rails (3.0.0)
+    jquery-datatables-rails (3.1.1)
+      actionpack (>= 3.1)
       jquery-rails
+      railties (>= 3.1)
       sass-rails
     jquery-rails (4.0.1)
       rails-dom-testing (~> 1.0)
@@ -231,7 +229,7 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    netrc (0.10.1)
+    netrc (0.10.2)
     newrelic_rpm (3.9.8.273)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
@@ -239,7 +237,7 @@ GEM
     paper_trail (3.0.6)
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
-    passenger (4.0.55)
+    passenger (4.0.56)
       daemon_controller (>= 1.2.0)
       rack
       rake (>= 0.8.1)
@@ -260,7 +258,7 @@ GEM
       pry (>= 0.9.8)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
-    rack (1.6.0.beta2)
+    rack (1.6.0)
     rack-contrib (1.2.0)
       rack (>= 0.9.1)
     rack-protection (1.5.3)
@@ -333,10 +331,7 @@ GEM
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
     ruby-graphviz (1.0.9)
-    ruby-progressbar (1.7.0)
-    ruby2ruby (2.1.3)
-      ruby_parser (~> 3.1)
-      sexp_processor (~> 4.0)
+    ruby-progressbar (1.7.1)
     ruby_parser (3.1.3)
       sexp_processor (~> 4.1)
     rubyzip (1.1.6)
@@ -393,14 +388,16 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    stripe (1.16.0)
+    stripe (1.16.1)
       json (~> 1.8.1)
       mime-types (>= 1.25, < 3.0)
       rest-client (~> 1.4)
+    stripe_event (1.4.0)
+      activesupport (>= 3.1)
+      stripe (~> 1.6)
     temple (0.7.3)
     term-ansicolor (1.3.0)
       tins (~> 1.0)
-    terminal-table (1.4.5)
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
@@ -444,7 +441,6 @@ DEPENDENCIES
   binding_of_caller (~> 0.7.3.pre1)
   bootstrap-sass (~> 3.3.0.1)
   bourne
-  brakeman
   bullet
   byebug
   capybara
@@ -464,7 +460,7 @@ DEPENDENCIES
   haml-rails
   hirb
   jbuilder (~> 2.2)
-  jquery-datatables-rails (~> 3.0.0)
+  jquery-datatables-rails (~> 3.1.1)
   jquery-rails
   jquery-ui-sass-rails
   kaminari (~> 0.16.1)
@@ -498,6 +494,7 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   stripe (~> 1.16.0)
+  stripe_event (~> 1.4.0)
   timecop
   uglifier (~> 1.3.0)
   virtus (~> 1.0.3)

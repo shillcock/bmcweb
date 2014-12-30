@@ -95,10 +95,11 @@ Rails.application.routes.draw do
   root to: "welcome#index"
 
   # InTouch (discourse) sso
-  get "intouch/sso", to: "in_touch_sso#sso"
+  # get "intouch/sso", to: "in_touch_sso#sso"
 
   # stripe webhooks
-  resources :stripe_events, only: [:create]
+  # resources :stripe_webhooks, only: [:create]
+  mount StripeEvent::Engine => '/stripe-events'
 
   # sidekiq
   # authenticate :user, -> { |user| user.admin? } do

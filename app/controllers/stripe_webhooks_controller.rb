@@ -1,4 +1,4 @@
-class StripeEventsController < ApplicationController
+class StripeWebhooksController < ApplicationController
   skip_before_action :verify_authenticity_token, if: -> (c) { c.request.format == "application/json" }
   skip_before_action :authenticate_user!, only: [:create]
   before_action :parse_and_validate_event
@@ -14,7 +14,7 @@ class StripeEventsController < ApplicationController
   private
 
     def parse_and_validate_event
-      @event = StripeEvent.new(stripe_id: params[:id], stripe_type: params[:type])
+      @event = StripeWebhook.new(stripe_id: params[:id], stripe_type: params[:type])
 
       unless @event.save
         if @event.valid?
