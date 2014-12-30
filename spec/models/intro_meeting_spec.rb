@@ -9,9 +9,6 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
-
-require 'spec_helper'
-
 describe IntroMeeting, :type => :model do
 
   it { is_expected.to validate_presence_of :date }

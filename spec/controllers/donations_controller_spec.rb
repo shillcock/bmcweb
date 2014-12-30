@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe DonationsController, :type => :controller do
   before do
     Stripe.api_key = 'fake_stripe_test_key'

@@ -1,12 +1,12 @@
-require 'spec_helper'
-
 feature "Deleting Intro Meeting Registrations" do
   let!(:admin) { create(:admin) }
   let!(:intro_meeting) { create(:future_intro_meeting) }
   let!(:registration) { create(:intro_meeting_registration, intro_meeting: intro_meeting) }
 
   before do
-    visit root_path(as: admin)
+    sign_in_with admin.email, admin.password
+    visit root_path
+
     click_link "Admin"
     click_link "Intro Meetings"
 

@@ -1,12 +1,14 @@
-require "spec_helper"
-
 feature "Creating New Meeting" do
   let(:admin) { create(:admin) }
   let!(:workshop) { create(:workshop) }
 
+  before do
+    sign_in_with admin.email, admin.password
+    visit root_path
+    click_link "Admin"
+  end
+
   scenario "From workshop" do
-    visit root_path(as: admin)
-    click_link("Admin")
     click_link("Workshops")
     click_link workshop.title
     click_link("Meetings")

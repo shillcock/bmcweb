@@ -1,11 +1,10 @@
-require 'spec_helper'
-
 describe Admin::IntroMeetingRegistrationsController, :type => :controller do
+  let(:user) { create(:user) }
   let(:admin) { create(:admin) }
   let(:intro_meeting) { create(:intro_meeting) }
 
   context "standard users" do
-    before { sign_in }
+    before { sign_in user }
 
     it "are not able to access the index action" do
       get :index, intro_meeting_id: intro_meeting.id
@@ -16,7 +15,7 @@ describe Admin::IntroMeetingRegistrationsController, :type => :controller do
   end
 
   context "admin users" do
-    before { sign_in_as admin }
+    before { sign_in admin }
 
     it "is able to access the index action" do
       get :index, intro_meeting_id: intro_meeting.id

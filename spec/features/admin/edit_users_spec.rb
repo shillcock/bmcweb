@@ -5,8 +5,10 @@ feature "Editing Users" do
   let!(:user) { create(:user) }
 
   before do
-    # visit root_path(as: admin)
-    # click_link "Admin"
+    sign_in_with admin.email, admin.password
+    visit root_path
+    click_link "Admin"
+
     # click_link "Users"
     # click_link user.email
     # click_link "Edit"

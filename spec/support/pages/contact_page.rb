@@ -1,3 +1,5 @@
+require 'capybara/rspec'
+
 class ContactPage
   include Capybara::DSL
 

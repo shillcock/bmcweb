@@ -5,12 +5,13 @@ feature "Deleting Intro Meetings" do
   let!(:intro_meeting) { create(:intro_meeting) }
 
   before do
-    visit root_path(as: admin)
+    sign_in_with admin.email, admin.password
+    visit root_path
     click_link "Admin"
-    click_link "Intro Meetings"
   end
 
   scenario "Deleting an intro meeting" do
+    click_link "Intro Meetings"
     find("#intro_meeting_#{intro_meeting.id}").click_link "Delete"
 
     expect(page).to have_content("Intro meeting has been deleted.")

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 feature "Registering for Intro Meeting" do
   let!(:intro_meeting) { create(:future_intro_meeting) }
 

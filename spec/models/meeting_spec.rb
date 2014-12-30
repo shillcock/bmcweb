@@ -15,9 +15,6 @@
 #
 #  index_meetings_on_workshop_id  (workshop_id)
 #
-
-require 'spec_helper'
-
 describe Meeting, :type => :model do
   let(:workshop) { create(:workshop) }
   let(:meeting) { create(:meeting, workshop: workshop) }

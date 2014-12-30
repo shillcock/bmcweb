@@ -1,11 +1,13 @@
-require 'spec_helper'
-
 feature 'Creating IntroMeetings as an Admin' do
   let(:admin) { create(:admin) }
 
+  before do
+    sign_in_with admin.email, admin.password
+    visit root_path
+    click_link "Admin"
+  end
+
   scenario 'Creating an intro meeting' do
-    visit root_path(as: admin)
-    click_link 'Admin'
     click_link 'Intro Meetings'
     click_link 'Add new meeting'
 

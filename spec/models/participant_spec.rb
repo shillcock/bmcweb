@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Participant, :type => :model do
   let(:user) { create(:user) }
   let(:workshop) { create(:workshop) }

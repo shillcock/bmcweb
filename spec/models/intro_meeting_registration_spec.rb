@@ -14,9 +14,6 @@
 #
 #  index_intro_meeting_registrations_on_intro_meeting_id  (intro_meeting_id)
 #
-
-require 'spec_helper'
-
 describe IntroMeetingRegistration, :type => :model do
   let(:registration) { create(:intro_meeting_registration) }
 

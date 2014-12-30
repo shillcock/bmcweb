@@ -29,9 +29,6 @@
 #  index_users_on_email           (email)
 #  index_users_on_remember_token  (remember_token)
 #
-
-require 'spec_helper'
-
 describe User, :type => :model do
   let(:user) { create(:user) }
   subject { user }

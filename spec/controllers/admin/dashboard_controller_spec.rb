@@ -1,17 +1,16 @@
-require 'spec_helper'
-
 describe Admin::DashboardController, :type => :controller do
+  let(:user) { create(:user) }
   let(:admin) { create(:admin) }
 
   context "guest users" do
     it "are not able to access the index action" do
       get :index
-      expect(response).to redirect_to sign_in_path
+      expect(response).to redirect_to new_user_session_path
     end
   end
 
   context "standard users" do
-    before { sign_in }
+    before { sign_in user }
 
     it "are not able to access the index action" do
       get :index
@@ -21,7 +20,7 @@ describe Admin::DashboardController, :type => :controller do
   end
 
   context "admin users" do
-    before { sign_in_as admin }
+    before { sign_in admin }
 
     it "is able to access the index action" do
       get :index

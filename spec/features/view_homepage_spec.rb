@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 feature 'View the homepage' do
   scenario 'user sees welcome page information' do
     visit root_path

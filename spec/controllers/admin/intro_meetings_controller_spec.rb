@@ -1,8 +1,8 @@
-require 'spec_helper'
-
 describe Admin::IntroMeetingsController, :type => :controller do
+  let(:user) { create(:user) }
+
   before do
-    sign_in
+    sign_in user
   end
 
   context "standard user" do

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 feature 'Contact Us' do
   let(:contact_page) { ContactPage.new }
 

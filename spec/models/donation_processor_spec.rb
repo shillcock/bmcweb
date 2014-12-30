@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe DonationProcessor, :type => :model do
   before do
     Stripe.api_key = 'fake_stripe_test_key'
@@ -10,8 +8,8 @@ describe DonationProcessor, :type => :model do
       donation = build(:donation, id: 1, stripe_charge_id: nil)
       charge_id = "CHARGE-ID"
 
-      card = stub("card", brand: 'visa', last4: 1234, exp_year: 15, exp_month: 2)
-      charge = stub("charge", id: charge_id, card: card)
+      card = double("card", brand: "visa", last4: 1234, exp_year: 15, exp_month: 2)
+      charge = double("charge", id: charge_id, card: card)
       Stripe::Charge.expects(:create).
         with(
           currency: 'usd',
@@ -27,7 +25,7 @@ describe DonationProcessor, :type => :model do
       result = processor.process
 
       expect(result).to be_truthy
-      expect(donation.stripe_charge_id).to equal charge_id
+      expect(donation.stripe_charge_id).to eq(charge_id)
     end
 
     # it 'expects an error message when processing a bad card' do
@@ -55,3 +53,4 @@ describe DonationProcessor, :type => :model do
     end
   end
 end
+

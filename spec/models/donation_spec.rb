@@ -16,8 +16,6 @@
 #  card_expiration  :date
 #
 
-require 'spec_helper'
-
 describe Donation, :type => :model do
   let(:donation) { build(:donation) }
   subject { donation }

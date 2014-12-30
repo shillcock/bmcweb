@@ -7,7 +7,9 @@ feature "Deleting Users" do
   before do
     @admin = create(:admin)
     @user = create(:user)
-    visit root_path(as: @admin)
+
+    sign_in_with @admin.email, @admin.password
+    visit root_path
     click_link "Admin"
     click_link "Users"
   end
