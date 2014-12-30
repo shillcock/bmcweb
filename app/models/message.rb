@@ -13,6 +13,6 @@ class Message < PlainModel
   private
 
     def send_message
-      ContactMailer.new_message(self).deliver
+      ContactMailer.new_message(self).deliver_now
     end
 end
