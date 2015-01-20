@@ -7,7 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 if User.count == 0
-  user = User.create name: "System Admin", email: "admin@bmc.link", password: ENV["BASIC_AUTH_PASSWORD"], admin: true
+  user = User.create name: "System Admin", email: "admin@bmc.dev", password: ENV["BASIC_AUTH_PASSWORD"], admin: true
+  me = User.create name: "Scott Sh", email: "scott@bmc.dev", password: "test1234"
 end
 
 Faker::Config.locale = "en-US"
