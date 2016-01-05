@@ -42,6 +42,11 @@ Rails.application.routes.draw do
   get "donate", to: "donations#new"
   post "donate", to: "donations#create"
 
+  # workshops
+  resources :workshops, only: [:index] do
+    resources :registrations, only: [:new, :create]
+  end
+
   # my account
   namespace :my do
     resource :alumni_membership do
@@ -102,12 +107,8 @@ Rails.application.routes.draw do
   mount StripeEvent::Engine => '/stripe-events'
 
   # sidekiq
-  # authenticate :user, -> { |user| user.admin? } do
-  #   mount Sidekiq::Web, at: "/admin/sidekiq"
-  # end
-
-  #constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
-  #  mount Sidekiq::Web, at: "/admin/sidekiq"
-  #end
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web, at: "/admin/sidekiq"
+  end
 end
 

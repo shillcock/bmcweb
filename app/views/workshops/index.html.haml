@@ -1,0 +1,18 @@
+.row
+  .col-md-12
+    %section
+      %h2 Breakthrough Workshops
+      %table#meetings.table.table-hover
+        %thead
+          %tr
+            %th Workshop
+            %th On
+            %th Start Date
+            %th Register
+        %tbody
+          - @workshops.each do |workshop|
+            %tr[workshop]{class: "#{'warning' if workshop.active?}"}
+              %td= workshop.title
+              %td= workshop.start_date.strftime("%A")
+              %td= workshop.start_date.strftime("%B %e, %Y")
+              %td= link_to "Register", new_workshop_registration_path(workshop), class: "btn btn-success"

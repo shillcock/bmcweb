@@ -9,6 +9,7 @@ class WelcomeController < ApplicationController
   end
 
   def schedule
-    @workshops = Workshop.includes(:meetings).bt1_or_bt2
+    @workshops = Workshop.bt1_or_bt2_active_or_upcoming
   end
 end
+

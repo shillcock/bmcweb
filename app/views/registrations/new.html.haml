@@ -1,0 +1,8 @@
+.container.registration
+  %header
+    %h2= "Registration for the #{@workshop.title} workshop"
+    %h4= "Starts: #{formatted_date(@workshop.start_date)}"
+    %h4= "Cost: $500 - $1,000 (sliding scale)"
+  .main[@workshop]
+    .col-md-6
+      = render "form", registration: @registration, workshop: @workshop

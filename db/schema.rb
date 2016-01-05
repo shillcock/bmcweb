@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20141218041634) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "alumni_memberships", force: true do |t|
+  create_table "alumni_memberships", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "stripe_subscription_id"
     t.string   "stripe_token"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20141218041634) do
 
   add_index "alumni_memberships", ["user_id"], name: "index_alumni_memberships_on_user_id", using: :btree
 
-  create_table "donations", force: true do |t|
+  create_table "donations", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.text     "comment"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20141218041634) do
     t.date     "card_expiration"
   end
 
-  create_table "intro_meeting_registrations", force: true do |t|
+  create_table "intro_meeting_registrations", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20141218041634) do
 
   add_index "intro_meeting_registrations", ["intro_meeting_id"], name: "index_intro_meeting_registrations_on_intro_meeting_id", using: :btree
 
-  create_table "intro_meetings", force: true do |t|
+  create_table "intro_meetings", force: :cascade do |t|
     t.date     "date"
     t.time     "starts_at"
     t.time     "ends_at"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20141218041634) do
     t.datetime "updated_at"
   end
 
-  create_table "meetings", force: true do |t|
+  create_table "meetings", force: :cascade do |t|
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.datetime "created_at"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20141218041634) do
 
   add_index "meetings", ["workshop_id"], name: "index_meetings_on_workshop_id", using: :btree
 
-  create_table "payments", force: true do |t|
+  create_table "payments", force: :cascade do |t|
     t.integer  "user_id"
     t.date     "date"
     t.string   "stripe_invoice_id"
@@ -94,14 +94,14 @@ ActiveRecord::Schema.define(version: 20141218041634) do
   add_index "payments", ["guid"], name: "index_payments_on_guid", unique: true, using: :btree
   add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
-  create_table "stripe_webhooks", force: true do |t|
+  create_table "stripe_webhooks", force: :cascade do |t|
     t.string   "stripe_id"
     t.string   "stripe_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "name"
     t.string   "phone_number"
@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(version: 20141218041634) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
-  create_table "versions", force: true do |t|
+  create_table "versions", force: :cascade do |t|
     t.string   "item_type",      null: false
     t.integer  "item_id",        null: false
     t.string   "event",          null: false
@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 20141218041634) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
-  create_table "workshop_enrollments", force: true do |t|
+  create_table "workshop_enrollments", force: :cascade do |t|
     t.integer  "user_id",                 null: false
     t.integer  "workshop_id",             null: false
     t.integer  "role",        default: 0
@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 20141218041634) do
 
   add_index "workshop_enrollments", ["workshop_id", "user_id"], name: "index_workshop_enrollments_on_workshop_id_and_user_id", unique: true, using: :btree
 
-  create_table "workshops", force: true do |t|
+  create_table "workshops", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.datetime "created_at"

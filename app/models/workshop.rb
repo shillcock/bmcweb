@@ -12,7 +12,7 @@
 #
 
 class Workshop < ActiveRecord::Base
-  has_many :meetings, -> { order("position ASC") }, dependent: :destroy
+  has_many :meetings, -> { order(position: :asc) }, dependent: :destroy
 
   has_many :workshop_enrollments, dependent: :destroy
   has_many :enrollments, through: :workshop_enrollments, source: :user
@@ -22,13 +22,27 @@ class Workshop < ActiveRecord::Base
   validates :name, presence: true
   validates :title, presence: true
 
+  scope :bt1, -> { where(name: "BT1") }
+  scope :bt2, -> { where(name: "BT2") }
   scope :bt1_or_bt2, -> { where(name: ["BT1", "BT2"]) }
-  scope :active, -> { joins(:meetings).merge(Meeting.active) }
+  scope :active, -> { joins(:meetings).merge(Meeting.upcoming).distinct }
   scope :upcoming, -> { joins(:meetings).merge(Meeting.upcoming) }
   scope :past, -> { joins(:meetings).merge(Meeting.past) }
 
+  def self.bt1_or_bt2_active_or_upcoming
+    includes(:meetings).bt1_or_bt2.select {|w| w.active? or w.upcoming?}
+  end
+
   def active?
-    (starts_at..ends_at).cover?(Time.zone.today)
+    (start_date..end_date).cover?(Time.zone.today)
+  end
+
+  def upcoming?
+    Time.zone.today < start_date
+  end
+
+  def past?
+    Time.zone.today > end_date
   end
 
   def start_date

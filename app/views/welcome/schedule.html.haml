@@ -1,11 +1,11 @@
 .row
-  .col-md-4
+  .col-md-5
     %ul.nav.nav-pills.nav-stacked
       - is_first = true
       - @workshops.each do |workshop|
         %li{class: is_first ? "active" : ""}= link_to "#{workshop.title} - #{workshop.start_date.strftime("%A %Y")}", "#workshop-#{workshop.id}", "data-toggle" => "pill"
         - is_first = false
-  .col-md-8
+  .col-md-7
     .tab-content
       - is_first = true
       - @workshops.each do |workshop|

@@ -1,0 +1,8 @@
+.form-inputs
+= f.input :address1
+= f.input :address2
+= f.input :city
+= f.input :state
+= f.input :zip_code
+= f.input :phone_number
+= f.input :birthday, include_blank: true, discard_year: true, order: [:month, :day]
